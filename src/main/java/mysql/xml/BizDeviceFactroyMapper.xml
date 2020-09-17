@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.BizDeviceFactroyMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.BizDeviceFactroy">
+ <id column="DEVICE_FACTORY_ID" property="deviceFactoryId" jdbcType="INTEGER"/> <!--设备厂家ID-->
+ <result column="DEVICE_FACTORY_CODE" property="deviceFactoryCode" jdbcType="VARCHAR"/> <!--厂家编号-->
+ <result column="DEVICE_FACTORY_NAME" property="deviceFactoryName" jdbcType="VARCHAR"/> <!--厂家名称-->
+ <result column="LONGITUDE_" property="longitude" jdbcType="VARCHAR"/> <!--位置经度-->
+ <result column="LATITUDE_" property="latitude" jdbcType="VARCHAR"/> <!--位置纬度-->
+ <result column="ADDRESS_" property="address" jdbcType="VARCHAR"/> <!--地址-->
+ <result column="FACTORY_OWNER" property="factoryOwner" jdbcType="VARCHAR"/> <!--厂家负责人-->
+ <result column="OWNER_PHONE" property="ownerPhone" jdbcType="VARCHAR"/> <!--联系电话-->
+ <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/> <!--创建人员ID-->
+ <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!--创建时间-->
+ <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="INTEGER"/> <!--修改人员ID-->
+ <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR"/> <!--修改时间-->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+ <result column="REMARK_" property="remark" jdbcType="VARCHAR"/> <!--备注-->
+</resultMap>
+ <sql id="filed">
+ <if test="deviceFactoryId != null and deviceFactoryId !='' ">
+DEVICE_FACTORY_ID,
+ </if>
+ <if test="deviceFactoryCode != null and deviceFactoryCode !='' ">
+DEVICE_FACTORY_CODE,
+ </if>
+ <if test="deviceFactoryName != null and deviceFactoryName !='' ">
+DEVICE_FACTORY_NAME,
+ </if>
+ <if test="longitude != null and longitude !='' ">
+LONGITUDE_,
+ </if>
+ <if test="latitude != null and latitude !='' ">
+LATITUDE_,
+ </if>
+ <if test="address != null and address !='' ">
+ADDRESS_,
+ </if>
+ <if test="factoryOwner != null and factoryOwner !='' ">
+FACTORY_OWNER,
+ </if>
+ <if test="ownerPhone != null and ownerPhone !='' ">
+OWNER_PHONE,
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID,
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE,
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID,
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="deviceFactoryId != null and deviceFactoryId !='' ">
+#{deviceFactoryId,jdbcType=INTEGER},
+ </if>
+ <if test="deviceFactoryCode != null and deviceFactoryCode !='' ">
+#{deviceFactoryCode,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceFactoryName != null and deviceFactoryName !='' ">
+#{deviceFactoryName,jdbcType=VARCHAR},
+ </if>
+ <if test="longitude != null and longitude !='' ">
+#{longitude,jdbcType=VARCHAR},
+ </if>
+ <if test="latitude != null and latitude !='' ">
+#{latitude,jdbcType=VARCHAR},
+ </if>
+ <if test="address != null and address !='' ">
+#{address,jdbcType=VARCHAR},
+ </if>
+ <if test="factoryOwner != null and factoryOwner !='' ">
+#{factoryOwner,jdbcType=VARCHAR},
+ </if>
+ <if test="ownerPhone != null and ownerPhone !='' ">
+#{ownerPhone,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+#{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+#{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+#{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+#{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+#{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="deviceFactoryId != null and deviceFactoryId !='' ">
+and DEVICE_FACTORY_ID = #{deviceFactoryId,jdbcType=INTEGER}
+ </if>
+ <if test="deviceFactoryCode != null and deviceFactoryCode !='' ">
+and DEVICE_FACTORY_CODE = #{deviceFactoryCode,jdbcType=VARCHAR}
+ </if>
+ <if test="deviceFactoryName != null and deviceFactoryName !='' ">
+and DEVICE_FACTORY_NAME = #{deviceFactoryName,jdbcType=VARCHAR}
+ </if>
+ <if test="longitude != null and longitude !='' ">
+and LONGITUDE_ = #{longitude,jdbcType=VARCHAR}
+ </if>
+ <if test="latitude != null and latitude !='' ">
+and LATITUDE_ = #{latitude,jdbcType=VARCHAR}
+ </if>
+ <if test="address != null and address !='' ">
+and ADDRESS_ = #{address,jdbcType=VARCHAR}
+ </if>
+ <if test="factoryOwner != null and factoryOwner !='' ">
+and FACTORY_OWNER = #{factoryOwner,jdbcType=VARCHAR}
+ </if>
+ <if test="ownerPhone != null and ownerPhone !='' ">
+and OWNER_PHONE = #{ownerPhone,jdbcType=VARCHAR}
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+and CREATE_USER_ID = #{createUserId,jdbcType=INTEGER}
+ </if>
+ <if test="createDate != null and createDate !='' ">
+and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+and MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER}
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+and MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+ <if test="remark != null and remark !='' ">
+and REMARK_ = #{remark,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="deviceFactoryId != null and deviceFactoryId !='' ">
+DEVICE_FACTORY_ID = #{deviceFactoryId,jdbcType=INTEGER},
+ </if>
+ <if test="deviceFactoryCode != null and deviceFactoryCode !='' ">
+DEVICE_FACTORY_CODE = #{deviceFactoryCode,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceFactoryName != null and deviceFactoryName !='' ">
+DEVICE_FACTORY_NAME = #{deviceFactoryName,jdbcType=VARCHAR},
+ </if>
+ <if test="longitude != null and longitude !='' ">
+LONGITUDE_ = #{longitude,jdbcType=VARCHAR},
+ </if>
+ <if test="latitude != null and latitude !='' ">
+LATITUDE_ = #{latitude,jdbcType=VARCHAR},
+ </if>
+ <if test="address != null and address !='' ">
+ADDRESS_ = #{address,jdbcType=VARCHAR},
+ </if>
+ <if test="factoryOwner != null and factoryOwner !='' ">
+FACTORY_OWNER = #{factoryOwner,jdbcType=VARCHAR},
+ </if>
+ <if test="ownerPhone != null and ownerPhone !='' ">
+OWNER_PHONE = #{ownerPhone,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_ = #{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.BizDeviceFactroy">
+select * from biz_device_factroy
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by DEVICE_FACTORY_ID </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.BizDeviceFactroy" useGeneratedKeys="true" keyProperty="deviceFactoryId">
+ insert into biz_device_factroy
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.BizDeviceFactroy">
+ update biz_device_factroy
+<set>
+<include refid="update"/>
+</set>
+where DEVICE_FACTORY_ID = #{deviceFactoryId,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.BizDeviceFactroy">
+  <if test="deviceFactoryId != null and deviceFactoryId != ''">
+delete from biz_device_factroy where DEVICE_FACTORY_ID = #{deviceFactoryId}
+ </if>
+ </delete>
+</mapper>

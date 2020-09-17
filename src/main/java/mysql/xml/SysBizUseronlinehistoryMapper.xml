@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.SysBizUseronlinehistoryMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.SysBizUseronlinehistory">
+ <id column="USER_ONLINEHISTORY_ID" property="userOnlinehistoryId" jdbcType="INTEGER"/> <!--在线历史ID-->
+ <result column="USER_ID" property="userId" jdbcType="INTEGER"/> <!--企业员工ID-->
+ <result column="DEVICE_TYPE" property="deviceType" jdbcType="VARCHAR"/> <!--设备类型(0:android;1:ios;2:web)-->
+ <result column="ONLINE_TIME" property="onlineTime" jdbcType="VARCHAR"/> <!--在线时间-->
+ <result column="IP_" property="ip" jdbcType="VARCHAR"/> <!--ip地址-->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+</resultMap>
+ <sql id="filed">
+ <if test="userOnlinehistoryId != null and userOnlinehistoryId !='' ">
+USER_ONLINEHISTORY_ID,
+ </if>
+ <if test="userId != null and userId !='' ">
+USER_ID,
+ </if>
+ <if test="deviceType != null and deviceType !='' ">
+DEVICE_TYPE,
+ </if>
+ <if test="onlineTime != null and onlineTime !='' ">
+ONLINE_TIME,
+ </if>
+ <if test="ip != null and ip !='' ">
+IP_,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="userOnlinehistoryId != null and userOnlinehistoryId !='' ">
+#{userOnlinehistoryId,jdbcType=INTEGER},
+ </if>
+ <if test="userId != null and userId !='' ">
+#{userId,jdbcType=INTEGER},
+ </if>
+ <if test="deviceType != null and deviceType !='' ">
+#{deviceType,jdbcType=VARCHAR},
+ </if>
+ <if test="onlineTime != null and onlineTime !='' ">
+#{onlineTime,jdbcType=VARCHAR},
+ </if>
+ <if test="ip != null and ip !='' ">
+#{ip,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="userOnlinehistoryId != null and userOnlinehistoryId !='' ">
+and USER_ONLINEHISTORY_ID = #{userOnlinehistoryId,jdbcType=INTEGER}
+ </if>
+ <if test="userId != null and userId !='' ">
+and USER_ID = #{userId,jdbcType=INTEGER}
+ </if>
+ <if test="deviceType != null and deviceType !='' ">
+and DEVICE_TYPE = #{deviceType,jdbcType=VARCHAR}
+ </if>
+ <if test="onlineTime != null and onlineTime !='' ">
+and ONLINE_TIME = #{onlineTime,jdbcType=VARCHAR}
+ </if>
+ <if test="ip != null and ip !='' ">
+and IP_ = #{ip,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="userOnlinehistoryId != null and userOnlinehistoryId !='' ">
+USER_ONLINEHISTORY_ID = #{userOnlinehistoryId,jdbcType=INTEGER},
+ </if>
+ <if test="userId != null and userId !='' ">
+USER_ID = #{userId,jdbcType=INTEGER},
+ </if>
+ <if test="deviceType != null and deviceType !='' ">
+DEVICE_TYPE = #{deviceType,jdbcType=VARCHAR},
+ </if>
+ <if test="onlineTime != null and onlineTime !='' ">
+ONLINE_TIME = #{onlineTime,jdbcType=VARCHAR},
+ </if>
+ <if test="ip != null and ip !='' ">
+IP_ = #{ip,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.SysBizUseronlinehistory">
+select * from sys_biz_useronlinehistory
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by USER_ONLINEHISTORY_ID </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.SysBizUseronlinehistory" useGeneratedKeys="true" keyProperty="userOnlinehistoryId">
+ insert into sys_biz_useronlinehistory
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.SysBizUseronlinehistory">
+ update sys_biz_useronlinehistory
+<set>
+<include refid="update"/>
+</set>
+where USER_ONLINEHISTORY_ID = #{userOnlinehistoryId,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.SysBizUseronlinehistory">
+  <if test="userOnlinehistoryId != null and userOnlinehistoryId != ''">
+delete from sys_biz_useronlinehistory where USER_ONLINEHISTORY_ID = #{userOnlinehistoryId}
+ </if>
+ </delete>
+</mapper>

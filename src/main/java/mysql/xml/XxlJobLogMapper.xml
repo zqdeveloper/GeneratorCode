@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.XxlJobLogMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.XxlJobLog">
+ <id column="id" property="id" jdbcType="INTEGER"/> <!---->
+ <result column="job_group" property="jobGroup" jdbcType="INTEGER"/> <!--执行器主键ID-->
+ <result column="job_id" property="jobId" jdbcType="INTEGER"/> <!--任务，主键ID-->
+ <result column="executor_address" property="executorAddress" jdbcType="VARCHAR"/> <!--执行器地址，本次执行的地址-->
+ <result column="executor_handler" property="executorHandler" jdbcType="VARCHAR"/> <!--执行器任务handler-->
+ <result column="executor_param" property="executorParam" jdbcType="VARCHAR"/> <!--执行器任务参数-->
+ <result column="executor_sharding_param" property="executorShardingParam" jdbcType="VARCHAR"/> <!--执行器任务分片参数，格式如 1/2-->
+ <result column="executor_fail_retry_count" property="executorFailRetryCount" jdbcType="INTEGER"/> <!--失败重试次数-->
+ <result column="trigger_time" property="triggerTime" jdbcType="VARCHAR"/> <!--调度-时间-->
+ <result column="trigger_code" property="triggerCode" jdbcType="INTEGER"/> <!--调度-结果-->
+ <result column="trigger_msg" property="triggerMsg" jdbcType="null"/> <!--调度-日志-->
+ <result column="handle_time" property="handleTime" jdbcType="VARCHAR"/> <!--执行-时间-->
+ <result column="handle_code" property="handleCode" jdbcType="INTEGER"/> <!--执行-状态-->
+ <result column="handle_msg" property="handleMsg" jdbcType="null"/> <!--执行-日志-->
+ <result column="alarm_status" property="alarmStatus" jdbcType="INTEGER"/> <!--告警状态：0-默认、1-无需告警、2-告警成功、3-告警失败-->
+</resultMap>
+ <sql id="filed">
+ <if test="id != null and id !='' ">
+id,
+ </if>
+ <if test="jobGroup != null and jobGroup !='' ">
+job_group,
+ </if>
+ <if test="jobId != null and jobId !='' ">
+job_id,
+ </if>
+ <if test="executorAddress != null and executorAddress !='' ">
+executor_address,
+ </if>
+ <if test="executorHandler != null and executorHandler !='' ">
+executor_handler,
+ </if>
+ <if test="executorParam != null and executorParam !='' ">
+executor_param,
+ </if>
+ <if test="executorShardingParam != null and executorShardingParam !='' ">
+executor_sharding_param,
+ </if>
+ <if test="executorFailRetryCount != null and executorFailRetryCount !='' ">
+executor_fail_retry_count,
+ </if>
+ <if test="triggerTime != null and triggerTime !='' ">
+trigger_time,
+ </if>
+ <if test="triggerCode != null and triggerCode !='' ">
+trigger_code,
+ </if>
+ <if test="triggerMsg != null and triggerMsg !='' ">
+trigger_msg,
+ </if>
+ <if test="handleTime != null and handleTime !='' ">
+handle_time,
+ </if>
+ <if test="handleCode != null and handleCode !='' ">
+handle_code,
+ </if>
+ <if test="handleMsg != null and handleMsg !='' ">
+handle_msg,
+ </if>
+ <if test="alarmStatus != null and alarmStatus !='' ">
+alarm_status,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="id != null and id !='' ">
+#{id,jdbcType=INTEGER},
+ </if>
+ <if test="jobGroup != null and jobGroup !='' ">
+#{jobGroup,jdbcType=INTEGER},
+ </if>
+ <if test="jobId != null and jobId !='' ">
+#{jobId,jdbcType=INTEGER},
+ </if>
+ <if test="executorAddress != null and executorAddress !='' ">
+#{executorAddress,jdbcType=VARCHAR},
+ </if>
+ <if test="executorHandler != null and executorHandler !='' ">
+#{executorHandler,jdbcType=VARCHAR},
+ </if>
+ <if test="executorParam != null and executorParam !='' ">
+#{executorParam,jdbcType=VARCHAR},
+ </if>
+ <if test="executorShardingParam != null and executorShardingParam !='' ">
+#{executorShardingParam,jdbcType=VARCHAR},
+ </if>
+ <if test="executorFailRetryCount != null and executorFailRetryCount !='' ">
+#{executorFailRetryCount,jdbcType=INTEGER},
+ </if>
+ <if test="triggerTime != null and triggerTime !='' ">
+#{triggerTime,jdbcType=VARCHAR},
+ </if>
+ <if test="triggerCode != null and triggerCode !='' ">
+#{triggerCode,jdbcType=INTEGER},
+ </if>
+ <if test="triggerMsg != null and triggerMsg !='' ">
+#{triggerMsg,jdbcType=null},
+ </if>
+ <if test="handleTime != null and handleTime !='' ">
+#{handleTime,jdbcType=VARCHAR},
+ </if>
+ <if test="handleCode != null and handleCode !='' ">
+#{handleCode,jdbcType=INTEGER},
+ </if>
+ <if test="handleMsg != null and handleMsg !='' ">
+#{handleMsg,jdbcType=null},
+ </if>
+ <if test="alarmStatus != null and alarmStatus !='' ">
+#{alarmStatus,jdbcType=INTEGER},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="id != null and id !='' ">
+and id = #{id,jdbcType=INTEGER}
+ </if>
+ <if test="jobGroup != null and jobGroup !='' ">
+and job_group = #{jobGroup,jdbcType=INTEGER}
+ </if>
+ <if test="jobId != null and jobId !='' ">
+and job_id = #{jobId,jdbcType=INTEGER}
+ </if>
+ <if test="executorAddress != null and executorAddress !='' ">
+and executor_address = #{executorAddress,jdbcType=VARCHAR}
+ </if>
+ <if test="executorHandler != null and executorHandler !='' ">
+and executor_handler = #{executorHandler,jdbcType=VARCHAR}
+ </if>
+ <if test="executorParam != null and executorParam !='' ">
+and executor_param = #{executorParam,jdbcType=VARCHAR}
+ </if>
+ <if test="executorShardingParam != null and executorShardingParam !='' ">
+and executor_sharding_param = #{executorShardingParam,jdbcType=VARCHAR}
+ </if>
+ <if test="executorFailRetryCount != null and executorFailRetryCount !='' ">
+and executor_fail_retry_count = #{executorFailRetryCount,jdbcType=INTEGER}
+ </if>
+ <if test="triggerTime != null and triggerTime !='' ">
+and trigger_time = #{triggerTime,jdbcType=VARCHAR}
+ </if>
+ <if test="triggerCode != null and triggerCode !='' ">
+and trigger_code = #{triggerCode,jdbcType=INTEGER}
+ </if>
+ <if test="triggerMsg != null and triggerMsg !='' ">
+and trigger_msg = #{triggerMsg,jdbcType=null}
+ </if>
+ <if test="handleTime != null and handleTime !='' ">
+and handle_time = #{handleTime,jdbcType=VARCHAR}
+ </if>
+ <if test="handleCode != null and handleCode !='' ">
+and handle_code = #{handleCode,jdbcType=INTEGER}
+ </if>
+ <if test="handleMsg != null and handleMsg !='' ">
+and handle_msg = #{handleMsg,jdbcType=null}
+ </if>
+ <if test="alarmStatus != null and alarmStatus !='' ">
+and alarm_status = #{alarmStatus,jdbcType=INTEGER}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="id != null and id !='' ">
+id = #{id,jdbcType=INTEGER},
+ </if>
+ <if test="jobGroup != null and jobGroup !='' ">
+job_group = #{jobGroup,jdbcType=INTEGER},
+ </if>
+ <if test="jobId != null and jobId !='' ">
+job_id = #{jobId,jdbcType=INTEGER},
+ </if>
+ <if test="executorAddress != null and executorAddress !='' ">
+executor_address = #{executorAddress,jdbcType=VARCHAR},
+ </if>
+ <if test="executorHandler != null and executorHandler !='' ">
+executor_handler = #{executorHandler,jdbcType=VARCHAR},
+ </if>
+ <if test="executorParam != null and executorParam !='' ">
+executor_param = #{executorParam,jdbcType=VARCHAR},
+ </if>
+ <if test="executorShardingParam != null and executorShardingParam !='' ">
+executor_sharding_param = #{executorShardingParam,jdbcType=VARCHAR},
+ </if>
+ <if test="executorFailRetryCount != null and executorFailRetryCount !='' ">
+executor_fail_retry_count = #{executorFailRetryCount,jdbcType=INTEGER},
+ </if>
+ <if test="triggerTime != null and triggerTime !='' ">
+trigger_time = #{triggerTime,jdbcType=VARCHAR},
+ </if>
+ <if test="triggerCode != null and triggerCode !='' ">
+trigger_code = #{triggerCode,jdbcType=INTEGER},
+ </if>
+ <if test="triggerMsg != null and triggerMsg !='' ">
+trigger_msg = #{triggerMsg,jdbcType=null},
+ </if>
+ <if test="handleTime != null and handleTime !='' ">
+handle_time = #{handleTime,jdbcType=VARCHAR},
+ </if>
+ <if test="handleCode != null and handleCode !='' ">
+handle_code = #{handleCode,jdbcType=INTEGER},
+ </if>
+ <if test="handleMsg != null and handleMsg !='' ">
+handle_msg = #{handleMsg,jdbcType=null},
+ </if>
+ <if test="alarmStatus != null and alarmStatus !='' ">
+alarm_status = #{alarmStatus,jdbcType=INTEGER},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.XxlJobLog">
+select * from xxl_job_log
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by id </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.XxlJobLog" useGeneratedKeys="true" keyProperty="id">
+ insert into xxl_job_log
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.XxlJobLog">
+ update xxl_job_log
+<set>
+<include refid="update"/>
+</set>
+where id = #{id,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.XxlJobLog">
+  <if test="id != null and id != ''">
+delete from xxl_job_log where id = #{id}
+ </if>
+ </delete>
+</mapper>

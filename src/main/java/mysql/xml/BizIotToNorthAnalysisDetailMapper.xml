@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.BizIotToNorthAnalysisDetailMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.BizIotToNorthAnalysisDetail">
+ <id column="IOT_TO_NORTH_ANALYSIS_DETAIL_ID" property="iotToNorthAnalysisDetailId" jdbcType="INTEGER"/> <!--主键ID-->
+ <result column="IOT_TO_NORTH_ANALYSIS_MAIN_ID" property="iotToNorthAnalysisMainId" jdbcType="INTEGER"/> <!--北向json返回ID-->
+ <result column="IOT_TO_NORTH_JSON_TYPE" property="iotToNorthJsonType" jdbcType="VARCHAR"/> <!--JSON类型（1：String|2：integer|3：array|4：object）-->
+ <result column="IOT_TO_NORTH_JSON_LEVEL" property="iotToNorthJsonLevel" jdbcType="VARCHAR"/> <!--JSON层级（顶级：0|非顶级：主键ID）-->
+ <result column="IOT_TO_NORTH_JSON_NAME" property="iotToNorthJsonName" jdbcType="VARCHAR"/> <!--JSON属性名-->
+ <result column="IOT_TO_NORTH_JSON_VALUE_TYPE" property="iotToNorthJsonValueType" jdbcType="VARCHAR"/> <!--JSON值类型（1：挂载南向json解析ID|2：String|3：integer）-->
+ <result column="IOT_TO_NORTH_JSON_VALUE" property="iotToNorthJsonValue" jdbcType="VARCHAR"/> <!--具体值或者南向json解析ID-->
+ <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/> <!--创建人员ID-->
+ <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!--创建时间-->
+ <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="INTEGER"/> <!--修改人员ID-->
+ <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR"/> <!--修改时间-->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+ <result column="REMARK_" property="remark" jdbcType="VARCHAR"/> <!--备注-->
+</resultMap>
+ <sql id="filed">
+ <if test="iotToNorthAnalysisDetailId != null and iotToNorthAnalysisDetailId !='' ">
+IOT_TO_NORTH_ANALYSIS_DETAIL_ID,
+ </if>
+ <if test="iotToNorthAnalysisMainId != null and iotToNorthAnalysisMainId !='' ">
+IOT_TO_NORTH_ANALYSIS_MAIN_ID,
+ </if>
+ <if test="iotToNorthJsonType != null and iotToNorthJsonType !='' ">
+IOT_TO_NORTH_JSON_TYPE,
+ </if>
+ <if test="iotToNorthJsonLevel != null and iotToNorthJsonLevel !='' ">
+IOT_TO_NORTH_JSON_LEVEL,
+ </if>
+ <if test="iotToNorthJsonName != null and iotToNorthJsonName !='' ">
+IOT_TO_NORTH_JSON_NAME,
+ </if>
+ <if test="iotToNorthJsonValueType != null and iotToNorthJsonValueType !='' ">
+IOT_TO_NORTH_JSON_VALUE_TYPE,
+ </if>
+ <if test="iotToNorthJsonValue != null and iotToNorthJsonValue !='' ">
+IOT_TO_NORTH_JSON_VALUE,
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID,
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE,
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID,
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="iotToNorthAnalysisDetailId != null and iotToNorthAnalysisDetailId !='' ">
+#{iotToNorthAnalysisDetailId,jdbcType=INTEGER},
+ </if>
+ <if test="iotToNorthAnalysisMainId != null and iotToNorthAnalysisMainId !='' ">
+#{iotToNorthAnalysisMainId,jdbcType=INTEGER},
+ </if>
+ <if test="iotToNorthJsonType != null and iotToNorthJsonType !='' ">
+#{iotToNorthJsonType,jdbcType=VARCHAR},
+ </if>
+ <if test="iotToNorthJsonLevel != null and iotToNorthJsonLevel !='' ">
+#{iotToNorthJsonLevel,jdbcType=VARCHAR},
+ </if>
+ <if test="iotToNorthJsonName != null and iotToNorthJsonName !='' ">
+#{iotToNorthJsonName,jdbcType=VARCHAR},
+ </if>
+ <if test="iotToNorthJsonValueType != null and iotToNorthJsonValueType !='' ">
+#{iotToNorthJsonValueType,jdbcType=VARCHAR},
+ </if>
+ <if test="iotToNorthJsonValue != null and iotToNorthJsonValue !='' ">
+#{iotToNorthJsonValue,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+#{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+#{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+#{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+#{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+#{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="iotToNorthAnalysisDetailId != null and iotToNorthAnalysisDetailId !='' ">
+and IOT_TO_NORTH_ANALYSIS_DETAIL_ID = #{iotToNorthAnalysisDetailId,jdbcType=INTEGER}
+ </if>
+ <if test="iotToNorthAnalysisMainId != null and iotToNorthAnalysisMainId !='' ">
+and IOT_TO_NORTH_ANALYSIS_MAIN_ID = #{iotToNorthAnalysisMainId,jdbcType=INTEGER}
+ </if>
+ <if test="iotToNorthJsonType != null and iotToNorthJsonType !='' ">
+and IOT_TO_NORTH_JSON_TYPE = #{iotToNorthJsonType,jdbcType=VARCHAR}
+ </if>
+ <if test="iotToNorthJsonLevel != null and iotToNorthJsonLevel !='' ">
+and IOT_TO_NORTH_JSON_LEVEL = #{iotToNorthJsonLevel,jdbcType=VARCHAR}
+ </if>
+ <if test="iotToNorthJsonName != null and iotToNorthJsonName !='' ">
+and IOT_TO_NORTH_JSON_NAME = #{iotToNorthJsonName,jdbcType=VARCHAR}
+ </if>
+ <if test="iotToNorthJsonValueType != null and iotToNorthJsonValueType !='' ">
+and IOT_TO_NORTH_JSON_VALUE_TYPE = #{iotToNorthJsonValueType,jdbcType=VARCHAR}
+ </if>
+ <if test="iotToNorthJsonValue != null and iotToNorthJsonValue !='' ">
+and IOT_TO_NORTH_JSON_VALUE = #{iotToNorthJsonValue,jdbcType=VARCHAR}
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+and CREATE_USER_ID = #{createUserId,jdbcType=INTEGER}
+ </if>
+ <if test="createDate != null and createDate !='' ">
+and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+and MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER}
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+and MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+ <if test="remark != null and remark !='' ">
+and REMARK_ = #{remark,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="iotToNorthAnalysisDetailId != null and iotToNorthAnalysisDetailId !='' ">
+IOT_TO_NORTH_ANALYSIS_DETAIL_ID = #{iotToNorthAnalysisDetailId,jdbcType=INTEGER},
+ </if>
+ <if test="iotToNorthAnalysisMainId != null and iotToNorthAnalysisMainId !='' ">
+IOT_TO_NORTH_ANALYSIS_MAIN_ID = #{iotToNorthAnalysisMainId,jdbcType=INTEGER},
+ </if>
+ <if test="iotToNorthJsonType != null and iotToNorthJsonType !='' ">
+IOT_TO_NORTH_JSON_TYPE = #{iotToNorthJsonType,jdbcType=VARCHAR},
+ </if>
+ <if test="iotToNorthJsonLevel != null and iotToNorthJsonLevel !='' ">
+IOT_TO_NORTH_JSON_LEVEL = #{iotToNorthJsonLevel,jdbcType=VARCHAR},
+ </if>
+ <if test="iotToNorthJsonName != null and iotToNorthJsonName !='' ">
+IOT_TO_NORTH_JSON_NAME = #{iotToNorthJsonName,jdbcType=VARCHAR},
+ </if>
+ <if test="iotToNorthJsonValueType != null and iotToNorthJsonValueType !='' ">
+IOT_TO_NORTH_JSON_VALUE_TYPE = #{iotToNorthJsonValueType,jdbcType=VARCHAR},
+ </if>
+ <if test="iotToNorthJsonValue != null and iotToNorthJsonValue !='' ">
+IOT_TO_NORTH_JSON_VALUE = #{iotToNorthJsonValue,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_ = #{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.BizIotToNorthAnalysisDetail">
+select * from biz_iot_to_north_analysis_detail
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by IOT_TO_NORTH_ANALYSIS_DETAIL_ID </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.BizIotToNorthAnalysisDetail" useGeneratedKeys="true" keyProperty="iotToNorthAnalysisDetailId">
+ insert into biz_iot_to_north_analysis_detail
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.BizIotToNorthAnalysisDetail">
+ update biz_iot_to_north_analysis_detail
+<set>
+<include refid="update"/>
+</set>
+where IOT_TO_NORTH_ANALYSIS_DETAIL_ID = #{iotToNorthAnalysisDetailId,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.BizIotToNorthAnalysisDetail">
+  <if test="iotToNorthAnalysisDetailId != null and iotToNorthAnalysisDetailId != ''">
+delete from biz_iot_to_north_analysis_detail where IOT_TO_NORTH_ANALYSIS_DETAIL_ID = #{iotToNorthAnalysisDetailId}
+ </if>
+ </delete>
+</mapper>

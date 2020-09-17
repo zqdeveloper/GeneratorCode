@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.SysBizUserMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.SysBizUser">
+ <id column="USER_ID" property="userId" jdbcType="INTEGER"/> <!--用户ID-->
+ <result column="DEPT_ID" property="deptId" jdbcType="INTEGER"/> <!--所属部门ID-->
+ <result column="USER_CODE" property="userCode" jdbcType="VARCHAR"/> <!--用户编号-->
+ <result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR"/> <!--员工登录账号-->
+ <result column="PASSWORD_" property="password" jdbcType="VARCHAR"/> <!--员工登录密码-->
+ <result column="USER_NAME" property="userName" jdbcType="VARCHAR"/> <!--员工姓名-->
+ <result column="PINYIN_NAME" property="pinyinName" jdbcType="VARCHAR"/> <!--员工中文拼音名称-->
+ <result column="SEX_" property="sex" jdbcType="VARCHAR"/> <!--性别(与数据字典USER_SEX关联)-->
+ <result column="MOBILE_" property="mobile" jdbcType="VARCHAR"/> <!--手机号码-->
+ <result column="EMAIL_" property="email" jdbcType="VARCHAR"/> <!--电子邮箱-->
+ <result column="PHOTO_FILE_URL" property="photoFileUrl" jdbcType="VARCHAR"/> <!--头像文件URL-->
+ <result column="MOD_PASS_DATE" property="modPassDate" jdbcType="VARCHAR"/> <!--修改密码时间-->
+ <result column="OPEN_STATE" property="openState" jdbcType="VARCHAR"/> <!--是否开通(0:否, 1:是)-->
+ <result column="OPEN_DATE" property="openDate" jdbcType="VARCHAR"/> <!--开通时间-->
+ <result column="CLOSE_DATE" property="closeDate" jdbcType="VARCHAR"/> <!--关闭时间-->
+ <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/> <!--创建人员ID-->
+ <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!--创建时间-->
+ <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="INTEGER"/> <!--修改人员ID-->
+ <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR"/> <!--修改时间-->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+ <result column="REMARK_" property="remark" jdbcType="VARCHAR"/> <!--备注-->
+</resultMap>
+ <sql id="filed">
+ <if test="userId != null and userId !='' ">
+USER_ID,
+ </if>
+ <if test="deptId != null and deptId !='' ">
+DEPT_ID,
+ </if>
+ <if test="userCode != null and userCode !='' ">
+USER_CODE,
+ </if>
+ <if test="loginName != null and loginName !='' ">
+LOGIN_NAME,
+ </if>
+ <if test="password != null and password !='' ">
+PASSWORD_,
+ </if>
+ <if test="userName != null and userName !='' ">
+USER_NAME,
+ </if>
+ <if test="pinyinName != null and pinyinName !='' ">
+PINYIN_NAME,
+ </if>
+ <if test="sex != null and sex !='' ">
+SEX_,
+ </if>
+ <if test="mobile != null and mobile !='' ">
+MOBILE_,
+ </if>
+ <if test="email != null and email !='' ">
+EMAIL_,
+ </if>
+ <if test="photoFileUrl != null and photoFileUrl !='' ">
+PHOTO_FILE_URL,
+ </if>
+ <if test="modPassDate != null and modPassDate !='' ">
+MOD_PASS_DATE,
+ </if>
+ <if test="openState != null and openState !='' ">
+OPEN_STATE,
+ </if>
+ <if test="openDate != null and openDate !='' ">
+OPEN_DATE,
+ </if>
+ <if test="closeDate != null and closeDate !='' ">
+CLOSE_DATE,
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID,
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE,
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID,
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="userId != null and userId !='' ">
+#{userId,jdbcType=INTEGER},
+ </if>
+ <if test="deptId != null and deptId !='' ">
+#{deptId,jdbcType=INTEGER},
+ </if>
+ <if test="userCode != null and userCode !='' ">
+#{userCode,jdbcType=VARCHAR},
+ </if>
+ <if test="loginName != null and loginName !='' ">
+#{loginName,jdbcType=VARCHAR},
+ </if>
+ <if test="password != null and password !='' ">
+#{password,jdbcType=VARCHAR},
+ </if>
+ <if test="userName != null and userName !='' ">
+#{userName,jdbcType=VARCHAR},
+ </if>
+ <if test="pinyinName != null and pinyinName !='' ">
+#{pinyinName,jdbcType=VARCHAR},
+ </if>
+ <if test="sex != null and sex !='' ">
+#{sex,jdbcType=VARCHAR},
+ </if>
+ <if test="mobile != null and mobile !='' ">
+#{mobile,jdbcType=VARCHAR},
+ </if>
+ <if test="email != null and email !='' ">
+#{email,jdbcType=VARCHAR},
+ </if>
+ <if test="photoFileUrl != null and photoFileUrl !='' ">
+#{photoFileUrl,jdbcType=VARCHAR},
+ </if>
+ <if test="modPassDate != null and modPassDate !='' ">
+#{modPassDate,jdbcType=VARCHAR},
+ </if>
+ <if test="openState != null and openState !='' ">
+#{openState,jdbcType=VARCHAR},
+ </if>
+ <if test="openDate != null and openDate !='' ">
+#{openDate,jdbcType=VARCHAR},
+ </if>
+ <if test="closeDate != null and closeDate !='' ">
+#{closeDate,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+#{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+#{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+#{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+#{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+#{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="userId != null and userId !='' ">
+and USER_ID = #{userId,jdbcType=INTEGER}
+ </if>
+ <if test="deptId != null and deptId !='' ">
+and DEPT_ID = #{deptId,jdbcType=INTEGER}
+ </if>
+ <if test="userCode != null and userCode !='' ">
+and USER_CODE = #{userCode,jdbcType=VARCHAR}
+ </if>
+ <if test="loginName != null and loginName !='' ">
+and LOGIN_NAME = #{loginName,jdbcType=VARCHAR}
+ </if>
+ <if test="password != null and password !='' ">
+and PASSWORD_ = #{password,jdbcType=VARCHAR}
+ </if>
+ <if test="userName != null and userName !='' ">
+and USER_NAME = #{userName,jdbcType=VARCHAR}
+ </if>
+ <if test="pinyinName != null and pinyinName !='' ">
+and PINYIN_NAME = #{pinyinName,jdbcType=VARCHAR}
+ </if>
+ <if test="sex != null and sex !='' ">
+and SEX_ = #{sex,jdbcType=VARCHAR}
+ </if>
+ <if test="mobile != null and mobile !='' ">
+and MOBILE_ = #{mobile,jdbcType=VARCHAR}
+ </if>
+ <if test="email != null and email !='' ">
+and EMAIL_ = #{email,jdbcType=VARCHAR}
+ </if>
+ <if test="photoFileUrl != null and photoFileUrl !='' ">
+and PHOTO_FILE_URL = #{photoFileUrl,jdbcType=VARCHAR}
+ </if>
+ <if test="modPassDate != null and modPassDate !='' ">
+and MOD_PASS_DATE = #{modPassDate,jdbcType=VARCHAR}
+ </if>
+ <if test="openState != null and openState !='' ">
+and OPEN_STATE = #{openState,jdbcType=VARCHAR}
+ </if>
+ <if test="openDate != null and openDate !='' ">
+and OPEN_DATE = #{openDate,jdbcType=VARCHAR}
+ </if>
+ <if test="closeDate != null and closeDate !='' ">
+and CLOSE_DATE = #{closeDate,jdbcType=VARCHAR}
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+and CREATE_USER_ID = #{createUserId,jdbcType=INTEGER}
+ </if>
+ <if test="createDate != null and createDate !='' ">
+and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+and MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER}
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+and MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+ <if test="remark != null and remark !='' ">
+and REMARK_ = #{remark,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="userId != null and userId !='' ">
+USER_ID = #{userId,jdbcType=INTEGER},
+ </if>
+ <if test="deptId != null and deptId !='' ">
+DEPT_ID = #{deptId,jdbcType=INTEGER},
+ </if>
+ <if test="userCode != null and userCode !='' ">
+USER_CODE = #{userCode,jdbcType=VARCHAR},
+ </if>
+ <if test="loginName != null and loginName !='' ">
+LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+ </if>
+ <if test="password != null and password !='' ">
+PASSWORD_ = #{password,jdbcType=VARCHAR},
+ </if>
+ <if test="userName != null and userName !='' ">
+USER_NAME = #{userName,jdbcType=VARCHAR},
+ </if>
+ <if test="pinyinName != null and pinyinName !='' ">
+PINYIN_NAME = #{pinyinName,jdbcType=VARCHAR},
+ </if>
+ <if test="sex != null and sex !='' ">
+SEX_ = #{sex,jdbcType=VARCHAR},
+ </if>
+ <if test="mobile != null and mobile !='' ">
+MOBILE_ = #{mobile,jdbcType=VARCHAR},
+ </if>
+ <if test="email != null and email !='' ">
+EMAIL_ = #{email,jdbcType=VARCHAR},
+ </if>
+ <if test="photoFileUrl != null and photoFileUrl !='' ">
+PHOTO_FILE_URL = #{photoFileUrl,jdbcType=VARCHAR},
+ </if>
+ <if test="modPassDate != null and modPassDate !='' ">
+MOD_PASS_DATE = #{modPassDate,jdbcType=VARCHAR},
+ </if>
+ <if test="openState != null and openState !='' ">
+OPEN_STATE = #{openState,jdbcType=VARCHAR},
+ </if>
+ <if test="openDate != null and openDate !='' ">
+OPEN_DATE = #{openDate,jdbcType=VARCHAR},
+ </if>
+ <if test="closeDate != null and closeDate !='' ">
+CLOSE_DATE = #{closeDate,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_ = #{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.SysBizUser">
+select * from sys_biz_user
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by USER_ID </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.SysBizUser" useGeneratedKeys="true" keyProperty="userId">
+ insert into sys_biz_user
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.SysBizUser">
+ update sys_biz_user
+<set>
+<include refid="update"/>
+</set>
+where USER_ID = #{userId,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.SysBizUser">
+  <if test="userId != null and userId != ''">
+delete from sys_biz_user where USER_ID = #{userId}
+ </if>
+ </delete>
+</mapper>

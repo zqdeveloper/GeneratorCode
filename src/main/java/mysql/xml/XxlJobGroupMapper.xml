@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.XxlJobGroupMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.XxlJobGroup">
+ <id column="id" property="id" jdbcType="INTEGER"/> <!---->
+ <result column="app_name" property="appName" jdbcType="VARCHAR"/> <!--执行器AppName-->
+ <result column="title" property="title" jdbcType="VARCHAR"/> <!--执行器名称-->
+ <result column="order" property="order" jdbcType="INTEGER"/> <!--排序-->
+ <result column="address_type" property="addressType" jdbcType="INTEGER"/> <!--执行器地址类型：0=自动注册、1=手动录入-->
+ <result column="address_list" property="addressList" jdbcType="VARCHAR"/> <!--执行器地址列表，多地址逗号分隔-->
+</resultMap>
+ <sql id="filed">
+ <if test="id != null and id !='' ">
+id,
+ </if>
+ <if test="appName != null and appName !='' ">
+app_name,
+ </if>
+ <if test="title != null and title !='' ">
+title,
+ </if>
+ <if test="order != null and order !='' ">
+order,
+ </if>
+ <if test="addressType != null and addressType !='' ">
+address_type,
+ </if>
+ <if test="addressList != null and addressList !='' ">
+address_list,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="id != null and id !='' ">
+#{id,jdbcType=INTEGER},
+ </if>
+ <if test="appName != null and appName !='' ">
+#{appName,jdbcType=VARCHAR},
+ </if>
+ <if test="title != null and title !='' ">
+#{title,jdbcType=VARCHAR},
+ </if>
+ <if test="order != null and order !='' ">
+#{order,jdbcType=INTEGER},
+ </if>
+ <if test="addressType != null and addressType !='' ">
+#{addressType,jdbcType=INTEGER},
+ </if>
+ <if test="addressList != null and addressList !='' ">
+#{addressList,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="id != null and id !='' ">
+and id = #{id,jdbcType=INTEGER}
+ </if>
+ <if test="appName != null and appName !='' ">
+and app_name = #{appName,jdbcType=VARCHAR}
+ </if>
+ <if test="title != null and title !='' ">
+and title = #{title,jdbcType=VARCHAR}
+ </if>
+ <if test="order != null and order !='' ">
+and order = #{order,jdbcType=INTEGER}
+ </if>
+ <if test="addressType != null and addressType !='' ">
+and address_type = #{addressType,jdbcType=INTEGER}
+ </if>
+ <if test="addressList != null and addressList !='' ">
+and address_list = #{addressList,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="id != null and id !='' ">
+id = #{id,jdbcType=INTEGER},
+ </if>
+ <if test="appName != null and appName !='' ">
+app_name = #{appName,jdbcType=VARCHAR},
+ </if>
+ <if test="title != null and title !='' ">
+title = #{title,jdbcType=VARCHAR},
+ </if>
+ <if test="order != null and order !='' ">
+order = #{order,jdbcType=INTEGER},
+ </if>
+ <if test="addressType != null and addressType !='' ">
+address_type = #{addressType,jdbcType=INTEGER},
+ </if>
+ <if test="addressList != null and addressList !='' ">
+address_list = #{addressList,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.XxlJobGroup">
+select * from xxl_job_group
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by id </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.XxlJobGroup" useGeneratedKeys="true" keyProperty="id">
+ insert into xxl_job_group
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.XxlJobGroup">
+ update xxl_job_group
+<set>
+<include refid="update"/>
+</set>
+where id = #{id,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.XxlJobGroup">
+  <if test="id != null and id != ''">
+delete from xxl_job_group where id = #{id}
+ </if>
+ </delete>
+</mapper>

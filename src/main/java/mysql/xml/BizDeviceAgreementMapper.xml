@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.BizDeviceAgreementMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.BizDeviceAgreement">
+ <id column="AGREEMENT_ID" property="agreementId" jdbcType="INTEGER"/> <!--设备协议ID-->
+ <result column="AGREEMENT_CODE" property="agreementCode" jdbcType="VARCHAR"/> <!--协议编号-->
+ <result column="AGREEMENT_NAME" property="agreementName" jdbcType="VARCHAR"/> <!--协议名称-->
+ <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/> <!--创建人员ID-->
+ <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!--创建时间-->
+ <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="INTEGER"/> <!--修改人员ID-->
+ <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR"/> <!--修改时间-->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+ <result column="REMARK_" property="remark" jdbcType="VARCHAR"/> <!--备注-->
+</resultMap>
+ <sql id="filed">
+ <if test="agreementId != null and agreementId !='' ">
+AGREEMENT_ID,
+ </if>
+ <if test="agreementCode != null and agreementCode !='' ">
+AGREEMENT_CODE,
+ </if>
+ <if test="agreementName != null and agreementName !='' ">
+AGREEMENT_NAME,
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID,
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE,
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID,
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="agreementId != null and agreementId !='' ">
+#{agreementId,jdbcType=INTEGER},
+ </if>
+ <if test="agreementCode != null and agreementCode !='' ">
+#{agreementCode,jdbcType=VARCHAR},
+ </if>
+ <if test="agreementName != null and agreementName !='' ">
+#{agreementName,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+#{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+#{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+#{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+#{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+#{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="agreementId != null and agreementId !='' ">
+and AGREEMENT_ID = #{agreementId,jdbcType=INTEGER}
+ </if>
+ <if test="agreementCode != null and agreementCode !='' ">
+and AGREEMENT_CODE = #{agreementCode,jdbcType=VARCHAR}
+ </if>
+ <if test="agreementName != null and agreementName !='' ">
+and AGREEMENT_NAME = #{agreementName,jdbcType=VARCHAR}
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+and CREATE_USER_ID = #{createUserId,jdbcType=INTEGER}
+ </if>
+ <if test="createDate != null and createDate !='' ">
+and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+and MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER}
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+and MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+ <if test="remark != null and remark !='' ">
+and REMARK_ = #{remark,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="agreementId != null and agreementId !='' ">
+AGREEMENT_ID = #{agreementId,jdbcType=INTEGER},
+ </if>
+ <if test="agreementCode != null and agreementCode !='' ">
+AGREEMENT_CODE = #{agreementCode,jdbcType=VARCHAR},
+ </if>
+ <if test="agreementName != null and agreementName !='' ">
+AGREEMENT_NAME = #{agreementName,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_ = #{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.BizDeviceAgreement">
+select * from biz_device_agreement
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by AGREEMENT_ID </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.BizDeviceAgreement" useGeneratedKeys="true" keyProperty="agreementId">
+ insert into biz_device_agreement
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.BizDeviceAgreement">
+ update biz_device_agreement
+<set>
+<include refid="update"/>
+</set>
+where AGREEMENT_ID = #{agreementId,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.BizDeviceAgreement">
+  <if test="agreementId != null and agreementId != ''">
+delete from biz_device_agreement where AGREEMENT_ID = #{agreementId}
+ </if>
+ </delete>
+</mapper>

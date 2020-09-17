@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.BizApiMapper">
+    <resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.BizApi">
+        <id column="API_ID" property="apiId" jdbcType="INTEGER"/> <!--接口ID-->
+        <result column="API_TYPE_ID" property="apiTypeId" jdbcType="INTEGER"/> <!--接口类型ID-->
+        <result column="API_CODE" property="apiCode" jdbcType="VARCHAR"/> <!--编号-->
+        <result column="API_NAME" property="apiName" jdbcType="VARCHAR"/> <!--名称-->
+        <result column="API_URL" property="apiUrl" jdbcType="VARCHAR"/> <!--接口URL-->
+        <result column="API_VERSION" property="apiVersion" jdbcType="VARCHAR"/> <!--版本-->
+        <result column="API_DESC" property="apiDesc" jdbcType="VARCHAR"/> <!--描述-->
+        <result column="API_USE_TYPE" property="apiUseType" jdbcType="VARCHAR"/> <!--使用类型(与数据字典API_USE_TYPE关联)-->
+        <result column="CLOSE_DATE" property="closeDate" jdbcType="VARCHAR"/> <!--关闭时间-->
+        <result column="OPEN_DATE" property="openDate" jdbcType="VARCHAR"/> <!--开通时间-->
+        <result column="OPEN_STATE" property="openState" jdbcType="VARCHAR"/> <!--是否开通(0:否, 1:是)-->
+        <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/> <!--创建人员ID-->
+        <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!--创建时间-->
+        <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="INTEGER"/> <!--修改人员ID-->
+        <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR"/> <!--修改时间-->
+        <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+        <result column="REMARK_" property="remark" jdbcType="VARCHAR"/> <!--备注-->
+    </resultMap>
+    <sql id="filed">
+        <if test="apiId != null and apiId !='' ">
+            API_ID,
+        </if>
+        <if test="apiTypeId != null and apiTypeId !='' ">
+            API_TYPE_ID,
+        </if>
+        <if test="apiCode != null and apiCode !='' ">
+            API_CODE,
+        </if>
+        <if test="apiName != null and apiName !='' ">
+            API_NAME,
+        </if>
+        <if test="apiUrl != null and apiUrl !='' ">
+            API_URL,
+        </if>
+        <if test="apiVersion != null and apiVersion !='' ">
+            API_VERSION,
+        </if>
+        <if test="apiDesc != null and apiDesc !='' ">
+            API_DESC,
+        </if>
+        <if test="apiUseType != null and apiUseType !='' ">
+            API_USE_TYPE,
+        </if>
+        <if test="closeDate != null and closeDate !='' ">
+            CLOSE_DATE,
+        </if>
+        <if test="openDate != null and openDate !='' ">
+            OPEN_DATE,
+        </if>
+        <if test="openState != null and openState !='' ">
+            OPEN_STATE,
+        </if>
+        <if test="createUserId != null and createUserId !='' ">
+            CREATE_USER_ID,
+        </if>
+        <if test="createDate != null and createDate !='' ">
+            CREATE_DATE,
+        </if>
+        <if test="modifyUserId != null and modifyUserId !='' ">
+            MODIFY_USER_ID,
+        </if>
+        <if test="modifyDate != null and modifyDate !='' ">
+            MODIFY_DATE,
+        </if>
+        <if test="status != null and status !='' ">
+            STATUS_,
+        </if>
+        <if test="remark != null and remark !='' ">
+            REMARK_,
+        </if>
+    </sql>
+    <sql id="values">
+        <if test="apiId != null and apiId !='' ">
+            #{apiId,jdbcType=INTEGER},
+        </if>
+        <if test="apiTypeId != null and apiTypeId !='' ">
+            #{apiTypeId,jdbcType=INTEGER},
+        </if>
+        <if test="apiCode != null and apiCode !='' ">
+            #{apiCode,jdbcType=VARCHAR},
+        </if>
+        <if test="apiName != null and apiName !='' ">
+            #{apiName,jdbcType=VARCHAR},
+        </if>
+        <if test="apiUrl != null and apiUrl !='' ">
+            #{apiUrl,jdbcType=VARCHAR},
+        </if>
+        <if test="apiVersion != null and apiVersion !='' ">
+            #{apiVersion,jdbcType=VARCHAR},
+        </if>
+        <if test="apiDesc != null and apiDesc !='' ">
+            #{apiDesc,jdbcType=VARCHAR},
+        </if>
+        <if test="apiUseType != null and apiUseType !='' ">
+            #{apiUseType,jdbcType=VARCHAR},
+        </if>
+        <if test="closeDate != null and closeDate !='' ">
+            #{closeDate,jdbcType=VARCHAR},
+        </if>
+        <if test="openDate != null and openDate !='' ">
+            #{openDate,jdbcType=VARCHAR},
+        </if>
+        <if test="openState != null and openState !='' ">
+            #{openState,jdbcType=VARCHAR},
+        </if>
+        <if test="createUserId != null and createUserId !='' ">
+            #{createUserId,jdbcType=INTEGER},
+        </if>
+        <if test="createDate != null and createDate !='' ">
+            #{createDate,jdbcType=VARCHAR},
+        </if>
+        <if test="modifyUserId != null and modifyUserId !='' ">
+            #{modifyUserId,jdbcType=INTEGER},
+        </if>
+        <if test="modifyDate != null and modifyDate !='' ">
+            #{modifyDate,jdbcType=VARCHAR},
+        </if>
+        <if test="status != null and status !='' ">
+            #{status,jdbcType=VARCHAR},
+        </if>
+        <if test="remark != null and remark !='' ">
+            #{remark,jdbcType=VARCHAR},
+        </if>
+    </sql>
+    <sql id="select">
+        <if test="apiId != null and apiId !='' ">
+            and API_ID = #{apiId,jdbcType=INTEGER}
+        </if>
+        <if test="apiTypeId != null and apiTypeId !='' ">
+            and API_TYPE_ID = #{apiTypeId,jdbcType=INTEGER}
+        </if>
+        <if test="apiCode != null and apiCode !='' ">
+            and API_CODE = #{apiCode,jdbcType=VARCHAR}
+        </if>
+        <if test="apiName != null and apiName !='' ">
+            and API_NAME = #{apiName,jdbcType=VARCHAR}
+        </if>
+        <if test="apiUrl != null and apiUrl !='' ">
+            and API_URL = #{apiUrl,jdbcType=VARCHAR}
+        </if>
+        <if test="apiVersion != null and apiVersion !='' ">
+            and API_VERSION = #{apiVersion,jdbcType=VARCHAR}
+        </if>
+        <if test="apiDesc != null and apiDesc !='' ">
+            and API_DESC = #{apiDesc,jdbcType=VARCHAR}
+        </if>
+        <if test="apiUseType != null and apiUseType !='' ">
+            and API_USE_TYPE = #{apiUseType,jdbcType=VARCHAR}
+        </if>
+        <if test="closeDate != null and closeDate !='' ">
+            and CLOSE_DATE = #{closeDate,jdbcType=VARCHAR}
+        </if>
+        <if test="openDate != null and openDate !='' ">
+            and OPEN_DATE = #{openDate,jdbcType=VARCHAR}
+        </if>
+        <if test="openState != null and openState !='' ">
+            and OPEN_STATE = #{openState,jdbcType=VARCHAR}
+        </if>
+        <if test="createUserId != null and createUserId !='' ">
+            and CREATE_USER_ID = #{createUserId,jdbcType=INTEGER}
+        </if>
+        <if test="createDate != null and createDate !='' ">
+            and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+        </if>
+        <if test="modifyUserId != null and modifyUserId !='' ">
+            and MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER}
+        </if>
+        <if test="modifyDate != null and modifyDate !='' ">
+            and MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR}
+        </if>
+        <if test="status != null and status !='' ">
+            and STATUS_ = #{status,jdbcType=VARCHAR}
+        </if>
+        <if test="remark != null and remark !='' ">
+            and REMARK_ = #{remark,jdbcType=VARCHAR}
+        </if>
+    </sql>
+    <sql id="update">
+        <if test="apiId != null and apiId !='' ">
+            API_ID = #{apiId,jdbcType=INTEGER},
+        </if>
+        <if test="apiTypeId != null and apiTypeId !='' ">
+            API_TYPE_ID = #{apiTypeId,jdbcType=INTEGER},
+        </if>
+        <if test="apiCode != null and apiCode !='' ">
+            API_CODE = #{apiCode,jdbcType=VARCHAR},
+        </if>
+        <if test="apiName != null and apiName !='' ">
+            API_NAME = #{apiName,jdbcType=VARCHAR},
+        </if>
+        <if test="apiUrl != null and apiUrl !='' ">
+            API_URL = #{apiUrl,jdbcType=VARCHAR},
+        </if>
+        <if test="apiVersion != null and apiVersion !='' ">
+            API_VERSION = #{apiVersion,jdbcType=VARCHAR},
+        </if>
+        <if test="apiDesc != null and apiDesc !='' ">
+            API_DESC = #{apiDesc,jdbcType=VARCHAR},
+        </if>
+        <if test="apiUseType != null and apiUseType !='' ">
+            API_USE_TYPE = #{apiUseType,jdbcType=VARCHAR},
+        </if>
+        <if test="closeDate != null and closeDate !='' ">
+            CLOSE_DATE = #{closeDate,jdbcType=VARCHAR},
+        </if>
+        <if test="openDate != null and openDate !='' ">
+            OPEN_DATE = #{openDate,jdbcType=VARCHAR},
+        </if>
+        <if test="openState != null and openState !='' ">
+            OPEN_STATE = #{openState,jdbcType=VARCHAR},
+        </if>
+        <if test="createUserId != null and createUserId !='' ">
+            CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+        </if>
+        <if test="createDate != null and createDate !='' ">
+            CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+        </if>
+        <if test="modifyUserId != null and modifyUserId !='' ">
+            MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER},
+        </if>
+        <if test="modifyDate != null and modifyDate !='' ">
+            MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+        </if>
+        <if test="status != null and status !='' ">
+            STATUS_ = #{status,jdbcType=VARCHAR},
+        </if>
+        <if test="remark != null and remark !='' ">
+            REMARK_ = #{remark,jdbcType=VARCHAR},
+        </if>
+    </sql>
+    <select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.BizApi">
+        select * from biz_api
+        where
+        STATUS_ =1
+        <include refid="select"/>
+        order by API_ID
+    </select>
+    <insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.BizApi" useGeneratedKeys="true"
+            keyProperty="apiId">
+        insert into biz_api
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="values"/>
+        </trim>
+    </insert>
+    <update id="update" parameterType="com.zjrc.iot.broker.model.biz.BizApi">
+        update biz_api
+        <set>
+            <include refid="update"/>
+        </set>
+        where API_ID = #{apiId,jdbcType=INTEGER} AND STATUS_ =1
+    </update>
+    <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.BizApi">
+        <if test="apiId != null and apiId != ''">
+            delete from biz_api where API_ID = #{apiId}
+        </if>
+    </delete>
+</mapper>

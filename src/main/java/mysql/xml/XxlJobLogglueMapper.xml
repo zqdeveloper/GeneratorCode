@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.XxlJobLogglueMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.XxlJobLogglue">
+ <id column="id" property="id" jdbcType="INTEGER"/> <!---->
+ <result column="job_id" property="jobId" jdbcType="INTEGER"/> <!--任务，主键ID-->
+ <result column="glue_type" property="glueType" jdbcType="VARCHAR"/> <!--GLUE类型-->
+ <result column="glue_source" property="glueSource" jdbcType="VARCHAR"/> <!--GLUE源代码-->
+ <result column="glue_remark" property="glueRemark" jdbcType="VARCHAR"/> <!--GLUE备注-->
+ <result column="add_time" property="addTime" jdbcType="VARCHAR"/> <!---->
+ <result column="update_time" property="updateTime" jdbcType="VARCHAR"/> <!---->
+</resultMap>
+ <sql id="filed">
+ <if test="id != null and id !='' ">
+id,
+ </if>
+ <if test="jobId != null and jobId !='' ">
+job_id,
+ </if>
+ <if test="glueType != null and glueType !='' ">
+glue_type,
+ </if>
+ <if test="glueSource != null and glueSource !='' ">
+glue_source,
+ </if>
+ <if test="glueRemark != null and glueRemark !='' ">
+glue_remark,
+ </if>
+ <if test="addTime != null and addTime !='' ">
+add_time,
+ </if>
+ <if test="updateTime != null and updateTime !='' ">
+update_time,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="id != null and id !='' ">
+#{id,jdbcType=INTEGER},
+ </if>
+ <if test="jobId != null and jobId !='' ">
+#{jobId,jdbcType=INTEGER},
+ </if>
+ <if test="glueType != null and glueType !='' ">
+#{glueType,jdbcType=VARCHAR},
+ </if>
+ <if test="glueSource != null and glueSource !='' ">
+#{glueSource,jdbcType=VARCHAR},
+ </if>
+ <if test="glueRemark != null and glueRemark !='' ">
+#{glueRemark,jdbcType=VARCHAR},
+ </if>
+ <if test="addTime != null and addTime !='' ">
+#{addTime,jdbcType=VARCHAR},
+ </if>
+ <if test="updateTime != null and updateTime !='' ">
+#{updateTime,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="id != null and id !='' ">
+and id = #{id,jdbcType=INTEGER}
+ </if>
+ <if test="jobId != null and jobId !='' ">
+and job_id = #{jobId,jdbcType=INTEGER}
+ </if>
+ <if test="glueType != null and glueType !='' ">
+and glue_type = #{glueType,jdbcType=VARCHAR}
+ </if>
+ <if test="glueSource != null and glueSource !='' ">
+and glue_source = #{glueSource,jdbcType=VARCHAR}
+ </if>
+ <if test="glueRemark != null and glueRemark !='' ">
+and glue_remark = #{glueRemark,jdbcType=VARCHAR}
+ </if>
+ <if test="addTime != null and addTime !='' ">
+and add_time = #{addTime,jdbcType=VARCHAR}
+ </if>
+ <if test="updateTime != null and updateTime !='' ">
+and update_time = #{updateTime,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="id != null and id !='' ">
+id = #{id,jdbcType=INTEGER},
+ </if>
+ <if test="jobId != null and jobId !='' ">
+job_id = #{jobId,jdbcType=INTEGER},
+ </if>
+ <if test="glueType != null and glueType !='' ">
+glue_type = #{glueType,jdbcType=VARCHAR},
+ </if>
+ <if test="glueSource != null and glueSource !='' ">
+glue_source = #{glueSource,jdbcType=VARCHAR},
+ </if>
+ <if test="glueRemark != null and glueRemark !='' ">
+glue_remark = #{glueRemark,jdbcType=VARCHAR},
+ </if>
+ <if test="addTime != null and addTime !='' ">
+add_time = #{addTime,jdbcType=VARCHAR},
+ </if>
+ <if test="updateTime != null and updateTime !='' ">
+update_time = #{updateTime,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.XxlJobLogglue">
+select * from xxl_job_logglue
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by id </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.XxlJobLogglue" useGeneratedKeys="true" keyProperty="id">
+ insert into xxl_job_logglue
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.XxlJobLogglue">
+ update xxl_job_logglue
+<set>
+<include refid="update"/>
+</set>
+where id = #{id,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.XxlJobLogglue">
+  <if test="id != null and id != ''">
+delete from xxl_job_logglue where id = #{id}
+ </if>
+ </delete>
+</mapper>

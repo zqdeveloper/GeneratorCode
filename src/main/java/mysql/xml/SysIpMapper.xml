@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.SysIpMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.SysIp">
+ <id column="IP_ID" property="ipId" jdbcType="INTEGER"/> <!--ip信息ID-->
+ <result column="IP_" property="ip" jdbcType="VARCHAR"/> <!--ip地址-->
+ <result column="OPEN_STATE" property="openState" jdbcType="VARCHAR"/> <!--是否开通(0:否, 1:是)-->
+ <result column="OPEN_DATE" property="openDate" jdbcType="VARCHAR"/> <!--开通时间-->
+ <result column="CLOSE_DATE" property="closeDate" jdbcType="VARCHAR"/> <!--关闭时间-->
+ <result column="CLOSE_TYPE" property="closeType" jdbcType="VARCHAR"/> <!--关闭类型(与数据字典IP_CLOSE_TYPE关联)-->
+ <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/> <!--创建人员-->
+ <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!--创建时间-->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--记录状态-->
+</resultMap>
+ <sql id="filed">
+ <if test="ipId != null and ipId !='' ">
+IP_ID,
+ </if>
+ <if test="ip != null and ip !='' ">
+IP_,
+ </if>
+ <if test="openState != null and openState !='' ">
+OPEN_STATE,
+ </if>
+ <if test="openDate != null and openDate !='' ">
+OPEN_DATE,
+ </if>
+ <if test="closeDate != null and closeDate !='' ">
+CLOSE_DATE,
+ </if>
+ <if test="closeType != null and closeType !='' ">
+CLOSE_TYPE,
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID,
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="ipId != null and ipId !='' ">
+#{ipId,jdbcType=INTEGER},
+ </if>
+ <if test="ip != null and ip !='' ">
+#{ip,jdbcType=VARCHAR},
+ </if>
+ <if test="openState != null and openState !='' ">
+#{openState,jdbcType=VARCHAR},
+ </if>
+ <if test="openDate != null and openDate !='' ">
+#{openDate,jdbcType=VARCHAR},
+ </if>
+ <if test="closeDate != null and closeDate !='' ">
+#{closeDate,jdbcType=VARCHAR},
+ </if>
+ <if test="closeType != null and closeType !='' ">
+#{closeType,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+#{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+#{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="ipId != null and ipId !='' ">
+and IP_ID = #{ipId,jdbcType=INTEGER}
+ </if>
+ <if test="ip != null and ip !='' ">
+and IP_ = #{ip,jdbcType=VARCHAR}
+ </if>
+ <if test="openState != null and openState !='' ">
+and OPEN_STATE = #{openState,jdbcType=VARCHAR}
+ </if>
+ <if test="openDate != null and openDate !='' ">
+and OPEN_DATE = #{openDate,jdbcType=VARCHAR}
+ </if>
+ <if test="closeDate != null and closeDate !='' ">
+and CLOSE_DATE = #{closeDate,jdbcType=VARCHAR}
+ </if>
+ <if test="closeType != null and closeType !='' ">
+and CLOSE_TYPE = #{closeType,jdbcType=VARCHAR}
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+and CREATE_USER_ID = #{createUserId,jdbcType=INTEGER}
+ </if>
+ <if test="createDate != null and createDate !='' ">
+and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="ipId != null and ipId !='' ">
+IP_ID = #{ipId,jdbcType=INTEGER},
+ </if>
+ <if test="ip != null and ip !='' ">
+IP_ = #{ip,jdbcType=VARCHAR},
+ </if>
+ <if test="openState != null and openState !='' ">
+OPEN_STATE = #{openState,jdbcType=VARCHAR},
+ </if>
+ <if test="openDate != null and openDate !='' ">
+OPEN_DATE = #{openDate,jdbcType=VARCHAR},
+ </if>
+ <if test="closeDate != null and closeDate !='' ">
+CLOSE_DATE = #{closeDate,jdbcType=VARCHAR},
+ </if>
+ <if test="closeType != null and closeType !='' ">
+CLOSE_TYPE = #{closeType,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.SysIp">
+select * from sys_ip
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by IP_ID </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.SysIp" useGeneratedKeys="true" keyProperty="ipId">
+ insert into sys_ip
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.SysIp">
+ update sys_ip
+<set>
+<include refid="update"/>
+</set>
+where IP_ID = #{ipId,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.SysIp">
+  <if test="ipId != null and ipId != ''">
+delete from sys_ip where IP_ID = #{ipId}
+ </if>
+ </delete>
+</mapper>

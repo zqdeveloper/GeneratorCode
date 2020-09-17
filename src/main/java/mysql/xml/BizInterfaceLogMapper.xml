@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.BizInterfaceLogMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.BizInterfaceLog">
+ <id column="INTERFACE_LOG_ID" property="interfaceLogId" jdbcType="INTEGER"/> <!--主键ID-->
+ <result column="IP_" property="ip" jdbcType="VARCHAR"/> <!--访问IP地址-->
+ <result column="API_CODE" property="apiCode" jdbcType="VARCHAR"/> <!--对外接口编号-->
+ <result column="API_NAME" property="apiName" jdbcType="VARCHAR"/> <!--对外接口名称-->
+ <result column="APP_ID" property="appId" jdbcType="VARCHAR"/> <!--上层应用ID-->
+ <result column="APP_NAME" property="appName" jdbcType="VARCHAR"/> <!--上层应用名称-->
+ <result column="IS_SUCCESS" property="isSuccess" jdbcType="VARCHAR"/> <!--是否成功(0:失败;1:成功)-->
+ <result column="FAIL_TYPE" property="failType" jdbcType="VARCHAR"/> <!--失败类型-->
+ <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!--创建时间-->
+ <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="INTEGER"/> <!--修改人员ID-->
+ <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR"/> <!--修改时间-->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+ <result column="REMARK_" property="remark" jdbcType="VARCHAR"/> <!--备注-->
+</resultMap>
+ <sql id="filed">
+ <if test="interfaceLogId != null and interfaceLogId !='' ">
+INTERFACE_LOG_ID,
+ </if>
+ <if test="ip != null and ip !='' ">
+IP_,
+ </if>
+ <if test="apiCode != null and apiCode !='' ">
+API_CODE,
+ </if>
+ <if test="apiName != null and apiName !='' ">
+API_NAME,
+ </if>
+ <if test="appId != null and appId !='' ">
+APP_ID,
+ </if>
+ <if test="appName != null and appName !='' ">
+APP_NAME,
+ </if>
+ <if test="isSuccess != null and isSuccess !='' ">
+IS_SUCCESS,
+ </if>
+ <if test="failType != null and failType !='' ">
+FAIL_TYPE,
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE,
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID,
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="interfaceLogId != null and interfaceLogId !='' ">
+#{interfaceLogId,jdbcType=INTEGER},
+ </if>
+ <if test="ip != null and ip !='' ">
+#{ip,jdbcType=VARCHAR},
+ </if>
+ <if test="apiCode != null and apiCode !='' ">
+#{apiCode,jdbcType=VARCHAR},
+ </if>
+ <if test="apiName != null and apiName !='' ">
+#{apiName,jdbcType=VARCHAR},
+ </if>
+ <if test="appId != null and appId !='' ">
+#{appId,jdbcType=VARCHAR},
+ </if>
+ <if test="appName != null and appName !='' ">
+#{appName,jdbcType=VARCHAR},
+ </if>
+ <if test="isSuccess != null and isSuccess !='' ">
+#{isSuccess,jdbcType=VARCHAR},
+ </if>
+ <if test="failType != null and failType !='' ">
+#{failType,jdbcType=VARCHAR},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+#{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+#{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+#{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+#{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="interfaceLogId != null and interfaceLogId !='' ">
+and INTERFACE_LOG_ID = #{interfaceLogId,jdbcType=INTEGER}
+ </if>
+ <if test="ip != null and ip !='' ">
+and IP_ = #{ip,jdbcType=VARCHAR}
+ </if>
+ <if test="apiCode != null and apiCode !='' ">
+and API_CODE = #{apiCode,jdbcType=VARCHAR}
+ </if>
+ <if test="apiName != null and apiName !='' ">
+and API_NAME = #{apiName,jdbcType=VARCHAR}
+ </if>
+ <if test="appId != null and appId !='' ">
+and APP_ID = #{appId,jdbcType=VARCHAR}
+ </if>
+ <if test="appName != null and appName !='' ">
+and APP_NAME = #{appName,jdbcType=VARCHAR}
+ </if>
+ <if test="isSuccess != null and isSuccess !='' ">
+and IS_SUCCESS = #{isSuccess,jdbcType=VARCHAR}
+ </if>
+ <if test="failType != null and failType !='' ">
+and FAIL_TYPE = #{failType,jdbcType=VARCHAR}
+ </if>
+ <if test="createDate != null and createDate !='' ">
+and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+and MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER}
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+and MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+ <if test="remark != null and remark !='' ">
+and REMARK_ = #{remark,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="interfaceLogId != null and interfaceLogId !='' ">
+INTERFACE_LOG_ID = #{interfaceLogId,jdbcType=INTEGER},
+ </if>
+ <if test="ip != null and ip !='' ">
+IP_ = #{ip,jdbcType=VARCHAR},
+ </if>
+ <if test="apiCode != null and apiCode !='' ">
+API_CODE = #{apiCode,jdbcType=VARCHAR},
+ </if>
+ <if test="apiName != null and apiName !='' ">
+API_NAME = #{apiName,jdbcType=VARCHAR},
+ </if>
+ <if test="appId != null and appId !='' ">
+APP_ID = #{appId,jdbcType=VARCHAR},
+ </if>
+ <if test="appName != null and appName !='' ">
+APP_NAME = #{appName,jdbcType=VARCHAR},
+ </if>
+ <if test="isSuccess != null and isSuccess !='' ">
+IS_SUCCESS = #{isSuccess,jdbcType=VARCHAR},
+ </if>
+ <if test="failType != null and failType !='' ">
+FAIL_TYPE = #{failType,jdbcType=VARCHAR},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_ = #{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.BizInterfaceLog">
+select * from biz_interface_log
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by INTERFACE_LOG_ID </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.BizInterfaceLog" useGeneratedKeys="true" keyProperty="interfaceLogId">
+ insert into biz_interface_log
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.BizInterfaceLog">
+ update biz_interface_log
+<set>
+<include refid="update"/>
+</set>
+where INTERFACE_LOG_ID = #{interfaceLogId,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.BizInterfaceLog">
+  <if test="interfaceLogId != null and interfaceLogId != ''">
+delete from biz_interface_log where INTERFACE_LOG_ID = #{interfaceLogId}
+ </if>
+ </delete>
+</mapper>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.BizSouthToIotAnalysisMainMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.BizSouthToIotAnalysisMain">
+ <id column="SOUTH_TO_IOT_ANALYSIS_MAIN_ID" property="southToIotAnalysisMainId" jdbcType="INTEGER"/> <!--主键ID-->
+ <result column="SOUTH_TO_IOT_ANALYSIS_MAIN_CODE" property="southToIotAnalysisMainCode" jdbcType="VARCHAR"/> <!--南向解析编号-->
+ <result column="SOUTH_TO_IOT_ANALYSIS_MAIN_NAME" property="southToIotAnalysisMainName" jdbcType="VARCHAR"/> <!--南向解析名称-->
+ <result column="SOUTH_TO_IOT_ANALYSIS_MAIN_TYPE" property="southToIotAnalysisMainType" jdbcType="VARCHAR"/> <!--解析类型（1：推送地址|2：MQTT主题）-->
+ <result column="SOUTH_TO_NORTH_MESSAGE_ID" property="southToNorthMessageId" jdbcType="INTEGER"/> <!--推送地址/MQTT主题-->
+ <result column="SOUTH_TO_NORTH_MESSAGE_CODE" property="southToNorthMessageCode" jdbcType="VARCHAR"/> <!--推送地址 CODE/MQTT主题CODE-->
+ <result column="IS_OPEN" property="isOpen" jdbcType="VARCHAR"/> <!--是否启用 | 1 启用 0 停止-->
+ <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/> <!--创建人员ID-->
+ <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!--创建时间-->
+ <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="INTEGER"/> <!--修改人员ID-->
+ <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR"/> <!--修改时间-->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+ <result column="REMARK_" property="remark" jdbcType="VARCHAR"/> <!--备注-->
+</resultMap>
+ <sql id="filed">
+ <if test="southToIotAnalysisMainId != null and southToIotAnalysisMainId !='' ">
+SOUTH_TO_IOT_ANALYSIS_MAIN_ID,
+ </if>
+ <if test="southToIotAnalysisMainCode != null and southToIotAnalysisMainCode !='' ">
+SOUTH_TO_IOT_ANALYSIS_MAIN_CODE,
+ </if>
+ <if test="southToIotAnalysisMainName != null and southToIotAnalysisMainName !='' ">
+SOUTH_TO_IOT_ANALYSIS_MAIN_NAME,
+ </if>
+ <if test="southToIotAnalysisMainType != null and southToIotAnalysisMainType !='' ">
+SOUTH_TO_IOT_ANALYSIS_MAIN_TYPE,
+ </if>
+ <if test="southToNorthMessageId != null and southToNorthMessageId !='' ">
+SOUTH_TO_NORTH_MESSAGE_ID,
+ </if>
+ <if test="southToNorthMessageCode != null and southToNorthMessageCode !='' ">
+SOUTH_TO_NORTH_MESSAGE_CODE,
+ </if>
+ <if test="isOpen != null and isOpen !='' ">
+IS_OPEN,
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID,
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE,
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID,
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="southToIotAnalysisMainId != null and southToIotAnalysisMainId !='' ">
+#{southToIotAnalysisMainId,jdbcType=INTEGER},
+ </if>
+ <if test="southToIotAnalysisMainCode != null and southToIotAnalysisMainCode !='' ">
+#{southToIotAnalysisMainCode,jdbcType=VARCHAR},
+ </if>
+ <if test="southToIotAnalysisMainName != null and southToIotAnalysisMainName !='' ">
+#{southToIotAnalysisMainName,jdbcType=VARCHAR},
+ </if>
+ <if test="southToIotAnalysisMainType != null and southToIotAnalysisMainType !='' ">
+#{southToIotAnalysisMainType,jdbcType=VARCHAR},
+ </if>
+ <if test="southToNorthMessageId != null and southToNorthMessageId !='' ">
+#{southToNorthMessageId,jdbcType=INTEGER},
+ </if>
+ <if test="southToNorthMessageCode != null and southToNorthMessageCode !='' ">
+#{southToNorthMessageCode,jdbcType=VARCHAR},
+ </if>
+ <if test="isOpen != null and isOpen !='' ">
+#{isOpen,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+#{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+#{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+#{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+#{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+#{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="southToIotAnalysisMainId != null and southToIotAnalysisMainId !='' ">
+and SOUTH_TO_IOT_ANALYSIS_MAIN_ID = #{southToIotAnalysisMainId,jdbcType=INTEGER}
+ </if>
+ <if test="southToIotAnalysisMainCode != null and southToIotAnalysisMainCode !='' ">
+and SOUTH_TO_IOT_ANALYSIS_MAIN_CODE = #{southToIotAnalysisMainCode,jdbcType=VARCHAR}
+ </if>
+ <if test="southToIotAnalysisMainName != null and southToIotAnalysisMainName !='' ">
+and SOUTH_TO_IOT_ANALYSIS_MAIN_NAME = #{southToIotAnalysisMainName,jdbcType=VARCHAR}
+ </if>
+ <if test="southToIotAnalysisMainType != null and southToIotAnalysisMainType !='' ">
+and SOUTH_TO_IOT_ANALYSIS_MAIN_TYPE = #{southToIotAnalysisMainType,jdbcType=VARCHAR}
+ </if>
+ <if test="southToNorthMessageId != null and southToNorthMessageId !='' ">
+and SOUTH_TO_NORTH_MESSAGE_ID = #{southToNorthMessageId,jdbcType=INTEGER}
+ </if>
+ <if test="southToNorthMessageCode != null and southToNorthMessageCode !='' ">
+and SOUTH_TO_NORTH_MESSAGE_CODE = #{southToNorthMessageCode,jdbcType=VARCHAR}
+ </if>
+ <if test="isOpen != null and isOpen !='' ">
+and IS_OPEN = #{isOpen,jdbcType=VARCHAR}
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+and CREATE_USER_ID = #{createUserId,jdbcType=INTEGER}
+ </if>
+ <if test="createDate != null and createDate !='' ">
+and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+and MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER}
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+and MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+ <if test="remark != null and remark !='' ">
+and REMARK_ = #{remark,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="southToIotAnalysisMainId != null and southToIotAnalysisMainId !='' ">
+SOUTH_TO_IOT_ANALYSIS_MAIN_ID = #{southToIotAnalysisMainId,jdbcType=INTEGER},
+ </if>
+ <if test="southToIotAnalysisMainCode != null and southToIotAnalysisMainCode !='' ">
+SOUTH_TO_IOT_ANALYSIS_MAIN_CODE = #{southToIotAnalysisMainCode,jdbcType=VARCHAR},
+ </if>
+ <if test="southToIotAnalysisMainName != null and southToIotAnalysisMainName !='' ">
+SOUTH_TO_IOT_ANALYSIS_MAIN_NAME = #{southToIotAnalysisMainName,jdbcType=VARCHAR},
+ </if>
+ <if test="southToIotAnalysisMainType != null and southToIotAnalysisMainType !='' ">
+SOUTH_TO_IOT_ANALYSIS_MAIN_TYPE = #{southToIotAnalysisMainType,jdbcType=VARCHAR},
+ </if>
+ <if test="southToNorthMessageId != null and southToNorthMessageId !='' ">
+SOUTH_TO_NORTH_MESSAGE_ID = #{southToNorthMessageId,jdbcType=INTEGER},
+ </if>
+ <if test="southToNorthMessageCode != null and southToNorthMessageCode !='' ">
+SOUTH_TO_NORTH_MESSAGE_CODE = #{southToNorthMessageCode,jdbcType=VARCHAR},
+ </if>
+ <if test="isOpen != null and isOpen !='' ">
+IS_OPEN = #{isOpen,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_ = #{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.BizSouthToIotAnalysisMain">
+select * from biz_south_to_iot_analysis_main
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by SOUTH_TO_IOT_ANALYSIS_MAIN_ID </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.BizSouthToIotAnalysisMain" useGeneratedKeys="true" keyProperty="southToIotAnalysisMainId">
+ insert into biz_south_to_iot_analysis_main
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.BizSouthToIotAnalysisMain">
+ update biz_south_to_iot_analysis_main
+<set>
+<include refid="update"/>
+</set>
+where SOUTH_TO_IOT_ANALYSIS_MAIN_ID = #{southToIotAnalysisMainId,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.BizSouthToIotAnalysisMain">
+  <if test="southToIotAnalysisMainId != null and southToIotAnalysisMainId != ''">
+delete from biz_south_to_iot_analysis_main where SOUTH_TO_IOT_ANALYSIS_MAIN_ID = #{southToIotAnalysisMainId}
+ </if>
+ </delete>
+</mapper>

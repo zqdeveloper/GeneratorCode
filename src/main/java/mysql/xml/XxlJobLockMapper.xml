@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.XxlJobLockMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.XxlJobLock">
+ <id column="lock_name" property="lockName" jdbcType="VARCHAR"/> <!--锁名称-->
+</resultMap>
+ <sql id="filed">
+ <if test="lockName != null and lockName !='' ">
+lock_name,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="lockName != null and lockName !='' ">
+#{lockName,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="lockName != null and lockName !='' ">
+and lock_name = #{lockName,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="lockName != null and lockName !='' ">
+lock_name = #{lockName,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.XxlJobLock">
+select * from xxl_job_lock
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by lock_name </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.XxlJobLock" useGeneratedKeys="true" keyProperty="lockName">
+ insert into xxl_job_lock
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.XxlJobLock">
+ update xxl_job_lock
+<set>
+<include refid="update"/>
+</set>
+where lock_name = #{lockName,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.XxlJobLock">
+  <if test="lockName != null and lockName != ''">
+delete from xxl_job_lock where lock_name = #{lockName}
+ </if>
+ </delete>
+</mapper>

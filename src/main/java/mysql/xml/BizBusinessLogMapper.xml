@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.BizBusinessLogMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.BizBusinessLog">
+ <id column="BUSINESS_LOG_ID" property="businessLogId" jdbcType="INTEGER"/> <!--用户操作日志ID-->
+ <result column="BUSINESS_ID" property="businessId" jdbcType="INTEGER"/> <!--业务ID-->
+ <result column="API_ID" property="apiId" jdbcType="INTEGER"/> <!--接口ID-->
+ <result column="IP_" property="ip" jdbcType="VARCHAR"/> <!--操作IP-->
+ <result column="IS_SUCCESS" property="isSuccess" jdbcType="VARCHAR"/> <!--是否成功(0:否;1:是)-->
+ <result column="FAIL_TYPE" property="failType" jdbcType="INTEGER"/> <!--失败类型(与数据字典BUSINESS_LOG_FAIL_TYPE关联)-->
+ <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/> <!--创建人员ID-->
+ <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!--创建时间-->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+</resultMap>
+ <sql id="filed">
+ <if test="businessLogId != null and businessLogId !='' ">
+BUSINESS_LOG_ID,
+ </if>
+ <if test="businessId != null and businessId !='' ">
+BUSINESS_ID,
+ </if>
+ <if test="apiId != null and apiId !='' ">
+API_ID,
+ </if>
+ <if test="ip != null and ip !='' ">
+IP_,
+ </if>
+ <if test="isSuccess != null and isSuccess !='' ">
+IS_SUCCESS,
+ </if>
+ <if test="failType != null and failType !='' ">
+FAIL_TYPE,
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID,
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="businessLogId != null and businessLogId !='' ">
+#{businessLogId,jdbcType=INTEGER},
+ </if>
+ <if test="businessId != null and businessId !='' ">
+#{businessId,jdbcType=INTEGER},
+ </if>
+ <if test="apiId != null and apiId !='' ">
+#{apiId,jdbcType=INTEGER},
+ </if>
+ <if test="ip != null and ip !='' ">
+#{ip,jdbcType=VARCHAR},
+ </if>
+ <if test="isSuccess != null and isSuccess !='' ">
+#{isSuccess,jdbcType=VARCHAR},
+ </if>
+ <if test="failType != null and failType !='' ">
+#{failType,jdbcType=INTEGER},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+#{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+#{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="businessLogId != null and businessLogId !='' ">
+and BUSINESS_LOG_ID = #{businessLogId,jdbcType=INTEGER}
+ </if>
+ <if test="businessId != null and businessId !='' ">
+and BUSINESS_ID = #{businessId,jdbcType=INTEGER}
+ </if>
+ <if test="apiId != null and apiId !='' ">
+and API_ID = #{apiId,jdbcType=INTEGER}
+ </if>
+ <if test="ip != null and ip !='' ">
+and IP_ = #{ip,jdbcType=VARCHAR}
+ </if>
+ <if test="isSuccess != null and isSuccess !='' ">
+and IS_SUCCESS = #{isSuccess,jdbcType=VARCHAR}
+ </if>
+ <if test="failType != null and failType !='' ">
+and FAIL_TYPE = #{failType,jdbcType=INTEGER}
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+and CREATE_USER_ID = #{createUserId,jdbcType=INTEGER}
+ </if>
+ <if test="createDate != null and createDate !='' ">
+and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="businessLogId != null and businessLogId !='' ">
+BUSINESS_LOG_ID = #{businessLogId,jdbcType=INTEGER},
+ </if>
+ <if test="businessId != null and businessId !='' ">
+BUSINESS_ID = #{businessId,jdbcType=INTEGER},
+ </if>
+ <if test="apiId != null and apiId !='' ">
+API_ID = #{apiId,jdbcType=INTEGER},
+ </if>
+ <if test="ip != null and ip !='' ">
+IP_ = #{ip,jdbcType=VARCHAR},
+ </if>
+ <if test="isSuccess != null and isSuccess !='' ">
+IS_SUCCESS = #{isSuccess,jdbcType=VARCHAR},
+ </if>
+ <if test="failType != null and failType !='' ">
+FAIL_TYPE = #{failType,jdbcType=INTEGER},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.BizBusinessLog">
+select * from biz_business_log
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by BUSINESS_LOG_ID </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.BizBusinessLog" useGeneratedKeys="true" keyProperty="businessLogId">
+ insert into biz_business_log
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.BizBusinessLog">
+ update biz_business_log
+<set>
+<include refid="update"/>
+</set>
+where BUSINESS_LOG_ID = #{businessLogId,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.BizBusinessLog">
+  <if test="businessLogId != null and businessLogId != ''">
+delete from biz_business_log where BUSINESS_LOG_ID = #{businessLogId}
+ </if>
+ </delete>
+</mapper>

@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.XxlJobInfoMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.XxlJobInfo">
+ <id column="id" property="id" jdbcType="INTEGER"/> <!---->
+ <result column="job_group" property="jobGroup" jdbcType="INTEGER"/> <!--执行器主键ID-->
+ <result column="job_cron" property="jobCron" jdbcType="VARCHAR"/> <!--任务执行CRON-->
+ <result column="job_desc" property="jobDesc" jdbcType="VARCHAR"/> <!---->
+ <result column="add_time" property="addTime" jdbcType="VARCHAR"/> <!---->
+ <result column="update_time" property="updateTime" jdbcType="VARCHAR"/> <!---->
+ <result column="author" property="author" jdbcType="VARCHAR"/> <!--作者-->
+ <result column="alarm_email" property="alarmEmail" jdbcType="VARCHAR"/> <!--报警邮件-->
+ <result column="executor_route_strategy" property="executorRouteStrategy" jdbcType="VARCHAR"/> <!--执行器路由策略-->
+ <result column="executor_handler" property="executorHandler" jdbcType="VARCHAR"/> <!--执行器任务handler-->
+ <result column="executor_param" property="executorParam" jdbcType="VARCHAR"/> <!--执行器任务参数-->
+ <result column="executor_block_strategy" property="executorBlockStrategy" jdbcType="VARCHAR"/> <!--阻塞处理策略-->
+ <result column="executor_timeout" property="executorTimeout" jdbcType="INTEGER"/> <!--任务执行超时时间，单位秒-->
+ <result column="executor_fail_retry_count" property="executorFailRetryCount" jdbcType="INTEGER"/> <!--失败重试次数-->
+ <result column="glue_type" property="glueType" jdbcType="VARCHAR"/> <!--GLUE类型-->
+ <result column="glue_source" property="glueSource" jdbcType="VARCHAR"/> <!--GLUE源代码-->
+ <result column="glue_remark" property="glueRemark" jdbcType="VARCHAR"/> <!--GLUE备注-->
+ <result column="glue_updatetime" property="glueUpdatetime" jdbcType="VARCHAR"/> <!--GLUE更新时间-->
+ <result column="child_jobid" property="childJobid" jdbcType="VARCHAR"/> <!--子任务ID，多个逗号分隔-->
+ <result column="trigger_status" property="triggerStatus" jdbcType="INTEGER"/> <!--调度状态：0-停止，1-运行-->
+ <result column="trigger_last_time" property="triggerLastTime" jdbcType="INTEGER"/> <!--上次调度时间-->
+ <result column="trigger_next_time" property="triggerNextTime" jdbcType="INTEGER"/> <!--下次调度时间-->
+</resultMap>
+ <sql id="filed">
+ <if test="id != null and id !='' ">
+id,
+ </if>
+ <if test="jobGroup != null and jobGroup !='' ">
+job_group,
+ </if>
+ <if test="jobCron != null and jobCron !='' ">
+job_cron,
+ </if>
+ <if test="jobDesc != null and jobDesc !='' ">
+job_desc,
+ </if>
+ <if test="addTime != null and addTime !='' ">
+add_time,
+ </if>
+ <if test="updateTime != null and updateTime !='' ">
+update_time,
+ </if>
+ <if test="author != null and author !='' ">
+author,
+ </if>
+ <if test="alarmEmail != null and alarmEmail !='' ">
+alarm_email,
+ </if>
+ <if test="executorRouteStrategy != null and executorRouteStrategy !='' ">
+executor_route_strategy,
+ </if>
+ <if test="executorHandler != null and executorHandler !='' ">
+executor_handler,
+ </if>
+ <if test="executorParam != null and executorParam !='' ">
+executor_param,
+ </if>
+ <if test="executorBlockStrategy != null and executorBlockStrategy !='' ">
+executor_block_strategy,
+ </if>
+ <if test="executorTimeout != null and executorTimeout !='' ">
+executor_timeout,
+ </if>
+ <if test="executorFailRetryCount != null and executorFailRetryCount !='' ">
+executor_fail_retry_count,
+ </if>
+ <if test="glueType != null and glueType !='' ">
+glue_type,
+ </if>
+ <if test="glueSource != null and glueSource !='' ">
+glue_source,
+ </if>
+ <if test="glueRemark != null and glueRemark !='' ">
+glue_remark,
+ </if>
+ <if test="glueUpdatetime != null and glueUpdatetime !='' ">
+glue_updatetime,
+ </if>
+ <if test="childJobid != null and childJobid !='' ">
+child_jobid,
+ </if>
+ <if test="triggerStatus != null and triggerStatus !='' ">
+trigger_status,
+ </if>
+ <if test="triggerLastTime != null and triggerLastTime !='' ">
+trigger_last_time,
+ </if>
+ <if test="triggerNextTime != null and triggerNextTime !='' ">
+trigger_next_time,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="id != null and id !='' ">
+#{id,jdbcType=INTEGER},
+ </if>
+ <if test="jobGroup != null and jobGroup !='' ">
+#{jobGroup,jdbcType=INTEGER},
+ </if>
+ <if test="jobCron != null and jobCron !='' ">
+#{jobCron,jdbcType=VARCHAR},
+ </if>
+ <if test="jobDesc != null and jobDesc !='' ">
+#{jobDesc,jdbcType=VARCHAR},
+ </if>
+ <if test="addTime != null and addTime !='' ">
+#{addTime,jdbcType=VARCHAR},
+ </if>
+ <if test="updateTime != null and updateTime !='' ">
+#{updateTime,jdbcType=VARCHAR},
+ </if>
+ <if test="author != null and author !='' ">
+#{author,jdbcType=VARCHAR},
+ </if>
+ <if test="alarmEmail != null and alarmEmail !='' ">
+#{alarmEmail,jdbcType=VARCHAR},
+ </if>
+ <if test="executorRouteStrategy != null and executorRouteStrategy !='' ">
+#{executorRouteStrategy,jdbcType=VARCHAR},
+ </if>
+ <if test="executorHandler != null and executorHandler !='' ">
+#{executorHandler,jdbcType=VARCHAR},
+ </if>
+ <if test="executorParam != null and executorParam !='' ">
+#{executorParam,jdbcType=VARCHAR},
+ </if>
+ <if test="executorBlockStrategy != null and executorBlockStrategy !='' ">
+#{executorBlockStrategy,jdbcType=VARCHAR},
+ </if>
+ <if test="executorTimeout != null and executorTimeout !='' ">
+#{executorTimeout,jdbcType=INTEGER},
+ </if>
+ <if test="executorFailRetryCount != null and executorFailRetryCount !='' ">
+#{executorFailRetryCount,jdbcType=INTEGER},
+ </if>
+ <if test="glueType != null and glueType !='' ">
+#{glueType,jdbcType=VARCHAR},
+ </if>
+ <if test="glueSource != null and glueSource !='' ">
+#{glueSource,jdbcType=VARCHAR},
+ </if>
+ <if test="glueRemark != null and glueRemark !='' ">
+#{glueRemark,jdbcType=VARCHAR},
+ </if>
+ <if test="glueUpdatetime != null and glueUpdatetime !='' ">
+#{glueUpdatetime,jdbcType=VARCHAR},
+ </if>
+ <if test="childJobid != null and childJobid !='' ">
+#{childJobid,jdbcType=VARCHAR},
+ </if>
+ <if test="triggerStatus != null and triggerStatus !='' ">
+#{triggerStatus,jdbcType=INTEGER},
+ </if>
+ <if test="triggerLastTime != null and triggerLastTime !='' ">
+#{triggerLastTime,jdbcType=INTEGER},
+ </if>
+ <if test="triggerNextTime != null and triggerNextTime !='' ">
+#{triggerNextTime,jdbcType=INTEGER},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="id != null and id !='' ">
+and id = #{id,jdbcType=INTEGER}
+ </if>
+ <if test="jobGroup != null and jobGroup !='' ">
+and job_group = #{jobGroup,jdbcType=INTEGER}
+ </if>
+ <if test="jobCron != null and jobCron !='' ">
+and job_cron = #{jobCron,jdbcType=VARCHAR}
+ </if>
+ <if test="jobDesc != null and jobDesc !='' ">
+and job_desc = #{jobDesc,jdbcType=VARCHAR}
+ </if>
+ <if test="addTime != null and addTime !='' ">
+and add_time = #{addTime,jdbcType=VARCHAR}
+ </if>
+ <if test="updateTime != null and updateTime !='' ">
+and update_time = #{updateTime,jdbcType=VARCHAR}
+ </if>
+ <if test="author != null and author !='' ">
+and author = #{author,jdbcType=VARCHAR}
+ </if>
+ <if test="alarmEmail != null and alarmEmail !='' ">
+and alarm_email = #{alarmEmail,jdbcType=VARCHAR}
+ </if>
+ <if test="executorRouteStrategy != null and executorRouteStrategy !='' ">
+and executor_route_strategy = #{executorRouteStrategy,jdbcType=VARCHAR}
+ </if>
+ <if test="executorHandler != null and executorHandler !='' ">
+and executor_handler = #{executorHandler,jdbcType=VARCHAR}
+ </if>
+ <if test="executorParam != null and executorParam !='' ">
+and executor_param = #{executorParam,jdbcType=VARCHAR}
+ </if>
+ <if test="executorBlockStrategy != null and executorBlockStrategy !='' ">
+and executor_block_strategy = #{executorBlockStrategy,jdbcType=VARCHAR}
+ </if>
+ <if test="executorTimeout != null and executorTimeout !='' ">
+and executor_timeout = #{executorTimeout,jdbcType=INTEGER}
+ </if>
+ <if test="executorFailRetryCount != null and executorFailRetryCount !='' ">
+and executor_fail_retry_count = #{executorFailRetryCount,jdbcType=INTEGER}
+ </if>
+ <if test="glueType != null and glueType !='' ">
+and glue_type = #{glueType,jdbcType=VARCHAR}
+ </if>
+ <if test="glueSource != null and glueSource !='' ">
+and glue_source = #{glueSource,jdbcType=VARCHAR}
+ </if>
+ <if test="glueRemark != null and glueRemark !='' ">
+and glue_remark = #{glueRemark,jdbcType=VARCHAR}
+ </if>
+ <if test="glueUpdatetime != null and glueUpdatetime !='' ">
+and glue_updatetime = #{glueUpdatetime,jdbcType=VARCHAR}
+ </if>
+ <if test="childJobid != null and childJobid !='' ">
+and child_jobid = #{childJobid,jdbcType=VARCHAR}
+ </if>
+ <if test="triggerStatus != null and triggerStatus !='' ">
+and trigger_status = #{triggerStatus,jdbcType=INTEGER}
+ </if>
+ <if test="triggerLastTime != null and triggerLastTime !='' ">
+and trigger_last_time = #{triggerLastTime,jdbcType=INTEGER}
+ </if>
+ <if test="triggerNextTime != null and triggerNextTime !='' ">
+and trigger_next_time = #{triggerNextTime,jdbcType=INTEGER}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="id != null and id !='' ">
+id = #{id,jdbcType=INTEGER},
+ </if>
+ <if test="jobGroup != null and jobGroup !='' ">
+job_group = #{jobGroup,jdbcType=INTEGER},
+ </if>
+ <if test="jobCron != null and jobCron !='' ">
+job_cron = #{jobCron,jdbcType=VARCHAR},
+ </if>
+ <if test="jobDesc != null and jobDesc !='' ">
+job_desc = #{jobDesc,jdbcType=VARCHAR},
+ </if>
+ <if test="addTime != null and addTime !='' ">
+add_time = #{addTime,jdbcType=VARCHAR},
+ </if>
+ <if test="updateTime != null and updateTime !='' ">
+update_time = #{updateTime,jdbcType=VARCHAR},
+ </if>
+ <if test="author != null and author !='' ">
+author = #{author,jdbcType=VARCHAR},
+ </if>
+ <if test="alarmEmail != null and alarmEmail !='' ">
+alarm_email = #{alarmEmail,jdbcType=VARCHAR},
+ </if>
+ <if test="executorRouteStrategy != null and executorRouteStrategy !='' ">
+executor_route_strategy = #{executorRouteStrategy,jdbcType=VARCHAR},
+ </if>
+ <if test="executorHandler != null and executorHandler !='' ">
+executor_handler = #{executorHandler,jdbcType=VARCHAR},
+ </if>
+ <if test="executorParam != null and executorParam !='' ">
+executor_param = #{executorParam,jdbcType=VARCHAR},
+ </if>
+ <if test="executorBlockStrategy != null and executorBlockStrategy !='' ">
+executor_block_strategy = #{executorBlockStrategy,jdbcType=VARCHAR},
+ </if>
+ <if test="executorTimeout != null and executorTimeout !='' ">
+executor_timeout = #{executorTimeout,jdbcType=INTEGER},
+ </if>
+ <if test="executorFailRetryCount != null and executorFailRetryCount !='' ">
+executor_fail_retry_count = #{executorFailRetryCount,jdbcType=INTEGER},
+ </if>
+ <if test="glueType != null and glueType !='' ">
+glue_type = #{glueType,jdbcType=VARCHAR},
+ </if>
+ <if test="glueSource != null and glueSource !='' ">
+glue_source = #{glueSource,jdbcType=VARCHAR},
+ </if>
+ <if test="glueRemark != null and glueRemark !='' ">
+glue_remark = #{glueRemark,jdbcType=VARCHAR},
+ </if>
+ <if test="glueUpdatetime != null and glueUpdatetime !='' ">
+glue_updatetime = #{glueUpdatetime,jdbcType=VARCHAR},
+ </if>
+ <if test="childJobid != null and childJobid !='' ">
+child_jobid = #{childJobid,jdbcType=VARCHAR},
+ </if>
+ <if test="triggerStatus != null and triggerStatus !='' ">
+trigger_status = #{triggerStatus,jdbcType=INTEGER},
+ </if>
+ <if test="triggerLastTime != null and triggerLastTime !='' ">
+trigger_last_time = #{triggerLastTime,jdbcType=INTEGER},
+ </if>
+ <if test="triggerNextTime != null and triggerNextTime !='' ">
+trigger_next_time = #{triggerNextTime,jdbcType=INTEGER},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.XxlJobInfo">
+select * from xxl_job_info
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by id </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.XxlJobInfo" useGeneratedKeys="true" keyProperty="id">
+ insert into xxl_job_info
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.XxlJobInfo">
+ update xxl_job_info
+<set>
+<include refid="update"/>
+</set>
+where id = #{id,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.XxlJobInfo">
+  <if test="id != null and id != ''">
+delete from xxl_job_info where id = #{id}
+ </if>
+ </delete>
+</mapper>

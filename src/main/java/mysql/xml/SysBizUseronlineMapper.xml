@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.SysBizUseronlineMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.SysBizUseronline">
+ <id column="USER_ONLINE_ID" property="userOnlineId" jdbcType="INTEGER"/> <!--在线状态ID-->
+ <result column="USER_ID" property="userId" jdbcType="INTEGER"/> <!--员工ID-->
+ <result column="DEVICE_TYPE" property="deviceType" jdbcType="VARCHAR"/> <!--设备类型(0:android;1:ios;2:web)-->
+ <result column="ONLINE_STATUS" property="onlineStatus" jdbcType="VARCHAR"/> <!--是否在线(1:是,0:否)-->
+ <result column="SESSION_ID" property="sessionId" jdbcType="VARCHAR"/> <!--登录sessionid-->
+ <result column="LAST_ONLINE_TIME" property="lastOnlineTime" jdbcType="VARCHAR"/> <!--最后在线时间-->
+ <result column="IP_" property="ip" jdbcType="VARCHAR"/> <!--ip地址-->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+</resultMap>
+ <sql id="filed">
+ <if test="userOnlineId != null and userOnlineId !='' ">
+USER_ONLINE_ID,
+ </if>
+ <if test="userId != null and userId !='' ">
+USER_ID,
+ </if>
+ <if test="deviceType != null and deviceType !='' ">
+DEVICE_TYPE,
+ </if>
+ <if test="onlineStatus != null and onlineStatus !='' ">
+ONLINE_STATUS,
+ </if>
+ <if test="sessionId != null and sessionId !='' ">
+SESSION_ID,
+ </if>
+ <if test="lastOnlineTime != null and lastOnlineTime !='' ">
+LAST_ONLINE_TIME,
+ </if>
+ <if test="ip != null and ip !='' ">
+IP_,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="userOnlineId != null and userOnlineId !='' ">
+#{userOnlineId,jdbcType=INTEGER},
+ </if>
+ <if test="userId != null and userId !='' ">
+#{userId,jdbcType=INTEGER},
+ </if>
+ <if test="deviceType != null and deviceType !='' ">
+#{deviceType,jdbcType=VARCHAR},
+ </if>
+ <if test="onlineStatus != null and onlineStatus !='' ">
+#{onlineStatus,jdbcType=VARCHAR},
+ </if>
+ <if test="sessionId != null and sessionId !='' ">
+#{sessionId,jdbcType=VARCHAR},
+ </if>
+ <if test="lastOnlineTime != null and lastOnlineTime !='' ">
+#{lastOnlineTime,jdbcType=VARCHAR},
+ </if>
+ <if test="ip != null and ip !='' ">
+#{ip,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="userOnlineId != null and userOnlineId !='' ">
+and USER_ONLINE_ID = #{userOnlineId,jdbcType=INTEGER}
+ </if>
+ <if test="userId != null and userId !='' ">
+and USER_ID = #{userId,jdbcType=INTEGER}
+ </if>
+ <if test="deviceType != null and deviceType !='' ">
+and DEVICE_TYPE = #{deviceType,jdbcType=VARCHAR}
+ </if>
+ <if test="onlineStatus != null and onlineStatus !='' ">
+and ONLINE_STATUS = #{onlineStatus,jdbcType=VARCHAR}
+ </if>
+ <if test="sessionId != null and sessionId !='' ">
+and SESSION_ID = #{sessionId,jdbcType=VARCHAR}
+ </if>
+ <if test="lastOnlineTime != null and lastOnlineTime !='' ">
+and LAST_ONLINE_TIME = #{lastOnlineTime,jdbcType=VARCHAR}
+ </if>
+ <if test="ip != null and ip !='' ">
+and IP_ = #{ip,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="userOnlineId != null and userOnlineId !='' ">
+USER_ONLINE_ID = #{userOnlineId,jdbcType=INTEGER},
+ </if>
+ <if test="userId != null and userId !='' ">
+USER_ID = #{userId,jdbcType=INTEGER},
+ </if>
+ <if test="deviceType != null and deviceType !='' ">
+DEVICE_TYPE = #{deviceType,jdbcType=VARCHAR},
+ </if>
+ <if test="onlineStatus != null and onlineStatus !='' ">
+ONLINE_STATUS = #{onlineStatus,jdbcType=VARCHAR},
+ </if>
+ <if test="sessionId != null and sessionId !='' ">
+SESSION_ID = #{sessionId,jdbcType=VARCHAR},
+ </if>
+ <if test="lastOnlineTime != null and lastOnlineTime !='' ">
+LAST_ONLINE_TIME = #{lastOnlineTime,jdbcType=VARCHAR},
+ </if>
+ <if test="ip != null and ip !='' ">
+IP_ = #{ip,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.SysBizUseronline">
+select * from sys_biz_useronline
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by USER_ONLINE_ID </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.SysBizUseronline" useGeneratedKeys="true" keyProperty="userOnlineId">
+ insert into sys_biz_useronline
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.SysBizUseronline">
+ update sys_biz_useronline
+<set>
+<include refid="update"/>
+</set>
+where USER_ONLINE_ID = #{userOnlineId,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.SysBizUseronline">
+  <if test="userOnlineId != null and userOnlineId != ''">
+delete from sys_biz_useronline where USER_ONLINE_ID = #{userOnlineId}
+ </if>
+ </delete>
+</mapper>

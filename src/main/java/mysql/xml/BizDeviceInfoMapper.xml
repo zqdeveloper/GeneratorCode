@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.BizDeviceInfoMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.BizDeviceInfo">
+ <id column="DEVICE_INFO_ID" property="deviceInfoId" jdbcType="INTEGER"/> <!--设备信息ID-->
+ <result column="DEVICE_ID" property="deviceId" jdbcType="INTEGER"/> <!--设备ID-->
+ <result column="DEVICE_CODE" property="deviceCode" jdbcType="VARCHAR"/> <!--设备编号-->
+ <result column="DEVICE_NAME" property="deviceName" jdbcType="VARCHAR"/> <!--设备名称-->
+ <result column="DEVICE_MODEL" property="deviceModel" jdbcType="VARCHAR"/> <!--设备型号-->
+ <result column="DEVICE_IMEI" property="deviceImei" jdbcType="VARCHAR"/> <!--设备IMEI-->
+ <result column="DEVICE_SN" property="deviceSn" jdbcType="VARCHAR"/> <!--设备SN-->
+ <result column="DEVICE_ONLY_ID" property="deviceOnlyId" jdbcType="VARCHAR"/> <!--设备DOID-->
+ <result column="DEVICE_FACTORY_CODE" property="deviceFactoryCode" jdbcType="VARCHAR"/> <!--设备厂家编码-->
+ <result column="LAST_RECALL_TIME" property="lastRecallTime" jdbcType="VARCHAR"/> <!--最后回传时间-->
+ <result column="ADDRESS_" property="address" jdbcType="VARCHAR"/> <!--设备所在位置-->
+ <result column="LONGITUDE_" property="longitude" jdbcType="VARCHAR"/> <!--经度-->
+ <result column="LATITUDE_" property="latitude" jdbcType="VARCHAR"/> <!--纬度-->
+ <result column="REGION_ID" property="regionId" jdbcType="INTEGER"/> <!--区域ID-->
+ <result column="DEVICE_OWNER" property="deviceOwner" jdbcType="VARCHAR"/> <!--设备所属人-->
+ <result column="OWNER_PHONE" property="ownerPhone" jdbcType="VARCHAR"/> <!--所属人联系电话-->
+ <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/> <!--创建人员ID-->
+ <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!--创建时间-->
+ <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="INTEGER"/> <!--修改人员ID-->
+ <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR"/> <!--修改时间-->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+ <result column="REMARK_" property="remark" jdbcType="VARCHAR"/> <!--备注-->
+</resultMap>
+ <sql id="filed">
+ <if test="deviceInfoId != null and deviceInfoId !='' ">
+DEVICE_INFO_ID,
+ </if>
+ <if test="deviceId != null and deviceId !='' ">
+DEVICE_ID,
+ </if>
+ <if test="deviceCode != null and deviceCode !='' ">
+DEVICE_CODE,
+ </if>
+ <if test="deviceName != null and deviceName !='' ">
+DEVICE_NAME,
+ </if>
+ <if test="deviceModel != null and deviceModel !='' ">
+DEVICE_MODEL,
+ </if>
+ <if test="deviceImei != null and deviceImei !='' ">
+DEVICE_IMEI,
+ </if>
+ <if test="deviceSn != null and deviceSn !='' ">
+DEVICE_SN,
+ </if>
+ <if test="deviceOnlyId != null and deviceOnlyId !='' ">
+DEVICE_ONLY_ID,
+ </if>
+ <if test="deviceFactoryCode != null and deviceFactoryCode !='' ">
+DEVICE_FACTORY_CODE,
+ </if>
+ <if test="lastRecallTime != null and lastRecallTime !='' ">
+LAST_RECALL_TIME,
+ </if>
+ <if test="address != null and address !='' ">
+ADDRESS_,
+ </if>
+ <if test="longitude != null and longitude !='' ">
+LONGITUDE_,
+ </if>
+ <if test="latitude != null and latitude !='' ">
+LATITUDE_,
+ </if>
+ <if test="regionId != null and regionId !='' ">
+REGION_ID,
+ </if>
+ <if test="deviceOwner != null and deviceOwner !='' ">
+DEVICE_OWNER,
+ </if>
+ <if test="ownerPhone != null and ownerPhone !='' ">
+OWNER_PHONE,
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID,
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE,
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID,
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="deviceInfoId != null and deviceInfoId !='' ">
+#{deviceInfoId,jdbcType=INTEGER},
+ </if>
+ <if test="deviceId != null and deviceId !='' ">
+#{deviceId,jdbcType=INTEGER},
+ </if>
+ <if test="deviceCode != null and deviceCode !='' ">
+#{deviceCode,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceName != null and deviceName !='' ">
+#{deviceName,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceModel != null and deviceModel !='' ">
+#{deviceModel,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceImei != null and deviceImei !='' ">
+#{deviceImei,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceSn != null and deviceSn !='' ">
+#{deviceSn,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceOnlyId != null and deviceOnlyId !='' ">
+#{deviceOnlyId,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceFactoryCode != null and deviceFactoryCode !='' ">
+#{deviceFactoryCode,jdbcType=VARCHAR},
+ </if>
+ <if test="lastRecallTime != null and lastRecallTime !='' ">
+#{lastRecallTime,jdbcType=VARCHAR},
+ </if>
+ <if test="address != null and address !='' ">
+#{address,jdbcType=VARCHAR},
+ </if>
+ <if test="longitude != null and longitude !='' ">
+#{longitude,jdbcType=VARCHAR},
+ </if>
+ <if test="latitude != null and latitude !='' ">
+#{latitude,jdbcType=VARCHAR},
+ </if>
+ <if test="regionId != null and regionId !='' ">
+#{regionId,jdbcType=INTEGER},
+ </if>
+ <if test="deviceOwner != null and deviceOwner !='' ">
+#{deviceOwner,jdbcType=VARCHAR},
+ </if>
+ <if test="ownerPhone != null and ownerPhone !='' ">
+#{ownerPhone,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+#{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+#{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+#{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+#{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+#{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="deviceInfoId != null and deviceInfoId !='' ">
+and DEVICE_INFO_ID = #{deviceInfoId,jdbcType=INTEGER}
+ </if>
+ <if test="deviceId != null and deviceId !='' ">
+and DEVICE_ID = #{deviceId,jdbcType=INTEGER}
+ </if>
+ <if test="deviceCode != null and deviceCode !='' ">
+and DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR}
+ </if>
+ <if test="deviceName != null and deviceName !='' ">
+and DEVICE_NAME = #{deviceName,jdbcType=VARCHAR}
+ </if>
+ <if test="deviceModel != null and deviceModel !='' ">
+and DEVICE_MODEL = #{deviceModel,jdbcType=VARCHAR}
+ </if>
+ <if test="deviceImei != null and deviceImei !='' ">
+and DEVICE_IMEI = #{deviceImei,jdbcType=VARCHAR}
+ </if>
+ <if test="deviceSn != null and deviceSn !='' ">
+and DEVICE_SN = #{deviceSn,jdbcType=VARCHAR}
+ </if>
+ <if test="deviceOnlyId != null and deviceOnlyId !='' ">
+and DEVICE_ONLY_ID = #{deviceOnlyId,jdbcType=VARCHAR}
+ </if>
+ <if test="deviceFactoryCode != null and deviceFactoryCode !='' ">
+and DEVICE_FACTORY_CODE = #{deviceFactoryCode,jdbcType=VARCHAR}
+ </if>
+ <if test="lastRecallTime != null and lastRecallTime !='' ">
+and LAST_RECALL_TIME = #{lastRecallTime,jdbcType=VARCHAR}
+ </if>
+ <if test="address != null and address !='' ">
+and ADDRESS_ = #{address,jdbcType=VARCHAR}
+ </if>
+ <if test="longitude != null and longitude !='' ">
+and LONGITUDE_ = #{longitude,jdbcType=VARCHAR}
+ </if>
+ <if test="latitude != null and latitude !='' ">
+and LATITUDE_ = #{latitude,jdbcType=VARCHAR}
+ </if>
+ <if test="regionId != null and regionId !='' ">
+and REGION_ID = #{regionId,jdbcType=INTEGER}
+ </if>
+ <if test="deviceOwner != null and deviceOwner !='' ">
+and DEVICE_OWNER = #{deviceOwner,jdbcType=VARCHAR}
+ </if>
+ <if test="ownerPhone != null and ownerPhone !='' ">
+and OWNER_PHONE = #{ownerPhone,jdbcType=VARCHAR}
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+and CREATE_USER_ID = #{createUserId,jdbcType=INTEGER}
+ </if>
+ <if test="createDate != null and createDate !='' ">
+and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+and MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER}
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+and MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+ <if test="remark != null and remark !='' ">
+and REMARK_ = #{remark,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="deviceInfoId != null and deviceInfoId !='' ">
+DEVICE_INFO_ID = #{deviceInfoId,jdbcType=INTEGER},
+ </if>
+ <if test="deviceId != null and deviceId !='' ">
+DEVICE_ID = #{deviceId,jdbcType=INTEGER},
+ </if>
+ <if test="deviceCode != null and deviceCode !='' ">
+DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceName != null and deviceName !='' ">
+DEVICE_NAME = #{deviceName,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceModel != null and deviceModel !='' ">
+DEVICE_MODEL = #{deviceModel,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceImei != null and deviceImei !='' ">
+DEVICE_IMEI = #{deviceImei,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceSn != null and deviceSn !='' ">
+DEVICE_SN = #{deviceSn,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceOnlyId != null and deviceOnlyId !='' ">
+DEVICE_ONLY_ID = #{deviceOnlyId,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceFactoryCode != null and deviceFactoryCode !='' ">
+DEVICE_FACTORY_CODE = #{deviceFactoryCode,jdbcType=VARCHAR},
+ </if>
+ <if test="lastRecallTime != null and lastRecallTime !='' ">
+LAST_RECALL_TIME = #{lastRecallTime,jdbcType=VARCHAR},
+ </if>
+ <if test="address != null and address !='' ">
+ADDRESS_ = #{address,jdbcType=VARCHAR},
+ </if>
+ <if test="longitude != null and longitude !='' ">
+LONGITUDE_ = #{longitude,jdbcType=VARCHAR},
+ </if>
+ <if test="latitude != null and latitude !='' ">
+LATITUDE_ = #{latitude,jdbcType=VARCHAR},
+ </if>
+ <if test="regionId != null and regionId !='' ">
+REGION_ID = #{regionId,jdbcType=INTEGER},
+ </if>
+ <if test="deviceOwner != null and deviceOwner !='' ">
+DEVICE_OWNER = #{deviceOwner,jdbcType=VARCHAR},
+ </if>
+ <if test="ownerPhone != null and ownerPhone !='' ">
+OWNER_PHONE = #{ownerPhone,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_ = #{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.BizDeviceInfo">
+select * from biz_device_info
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by DEVICE_INFO_ID </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.BizDeviceInfo" useGeneratedKeys="true" keyProperty="deviceInfoId">
+ insert into biz_device_info
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.BizDeviceInfo">
+ update biz_device_info
+<set>
+<include refid="update"/>
+</set>
+where DEVICE_INFO_ID = #{deviceInfoId,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.BizDeviceInfo">
+  <if test="deviceInfoId != null and deviceInfoId != ''">
+delete from biz_device_info where DEVICE_INFO_ID = #{deviceInfoId}
+ </if>
+ </delete>
+</mapper>

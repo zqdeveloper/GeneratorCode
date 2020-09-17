@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.BizBusinessRegionMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.BizBusinessRegion">
+ <id column="BUSINESS_REGION_ID" property="businessRegionId" jdbcType="INTEGER"/> <!--主键ID-->
+ <result column="BUSINESS_ID" property="businessId" jdbcType="INTEGER"/> <!--所属项目ID-->
+ <result column="REGION_ID" property="regionId" jdbcType="INTEGER"/> <!--所属地区ID-->
+ <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/> <!--创建人员ID-->
+ <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!--创建时间-->
+ <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="INTEGER"/> <!--修改人员ID-->
+ <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR"/> <!--修改时间-->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+ <result column="REMARK_" property="remark" jdbcType="VARCHAR"/> <!--备注-->
+</resultMap>
+ <sql id="filed">
+ <if test="businessRegionId != null and businessRegionId !='' ">
+BUSINESS_REGION_ID,
+ </if>
+ <if test="businessId != null and businessId !='' ">
+BUSINESS_ID,
+ </if>
+ <if test="regionId != null and regionId !='' ">
+REGION_ID,
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID,
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE,
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID,
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="businessRegionId != null and businessRegionId !='' ">
+#{businessRegionId,jdbcType=INTEGER},
+ </if>
+ <if test="businessId != null and businessId !='' ">
+#{businessId,jdbcType=INTEGER},
+ </if>
+ <if test="regionId != null and regionId !='' ">
+#{regionId,jdbcType=INTEGER},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+#{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+#{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+#{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+#{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+#{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="businessRegionId != null and businessRegionId !='' ">
+and BUSINESS_REGION_ID = #{businessRegionId,jdbcType=INTEGER}
+ </if>
+ <if test="businessId != null and businessId !='' ">
+and BUSINESS_ID = #{businessId,jdbcType=INTEGER}
+ </if>
+ <if test="regionId != null and regionId !='' ">
+and REGION_ID = #{regionId,jdbcType=INTEGER}
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+and CREATE_USER_ID = #{createUserId,jdbcType=INTEGER}
+ </if>
+ <if test="createDate != null and createDate !='' ">
+and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+and MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER}
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+and MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+ <if test="remark != null and remark !='' ">
+and REMARK_ = #{remark,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="businessRegionId != null and businessRegionId !='' ">
+BUSINESS_REGION_ID = #{businessRegionId,jdbcType=INTEGER},
+ </if>
+ <if test="businessId != null and businessId !='' ">
+BUSINESS_ID = #{businessId,jdbcType=INTEGER},
+ </if>
+ <if test="regionId != null and regionId !='' ">
+REGION_ID = #{regionId,jdbcType=INTEGER},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_ = #{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.BizBusinessRegion">
+select * from biz_business_region
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by BUSINESS_REGION_ID </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.BizBusinessRegion" useGeneratedKeys="true" keyProperty="businessRegionId">
+ insert into biz_business_region
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.BizBusinessRegion">
+ update biz_business_region
+<set>
+<include refid="update"/>
+</set>
+where BUSINESS_REGION_ID = #{businessRegionId,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.BizBusinessRegion">
+  <if test="businessRegionId != null and businessRegionId != ''">
+delete from biz_business_region where BUSINESS_REGION_ID = #{businessRegionId}
+ </if>
+ </delete>
+</mapper>

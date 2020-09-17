@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.BizItemRegionMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.BizItemRegion">
+ <id column="ITEM_REGION_ID" property="itemRegionId" jdbcType="INTEGER"/> <!--主键ID-->
+ <result column="PARENT_REGION_ID" property="parentRegionId" jdbcType="INTEGER"/> <!--区域父级-->
+ <result column="REGION_ID" property="regionId" jdbcType="INTEGER"/> <!--区域ID-->
+ <result column="BUSINESS_AMOUNT" property="businessAmount" jdbcType="INTEGER"/> <!--对接项目数量-->
+ <result column="DEVICE_AMOUNT" property="deviceAmount" jdbcType="INTEGER"/> <!--对接硬件数量-->
+ <result column="INTERFACE_ACCESS_AMOUNT" property="interfaceAccessAmount" jdbcType="INTEGER"/> <!--今日接口访问数量-->
+ <result column="INCREACE_DATA_AMOUNT" property="increaceDataAmount" jdbcType="INTEGER"/> <!--今日数据增加量-->
+ <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/> <!--创建人员ID-->
+ <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!--创建时间-->
+ <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="INTEGER"/> <!--修改人员ID-->
+ <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR"/> <!--修改时间-->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+ <result column="REMARK_" property="remark" jdbcType="VARCHAR"/> <!--备注-->
+</resultMap>
+ <sql id="filed">
+ <if test="itemRegionId != null and itemRegionId !='' ">
+ITEM_REGION_ID,
+ </if>
+ <if test="parentRegionId != null and parentRegionId !='' ">
+PARENT_REGION_ID,
+ </if>
+ <if test="regionId != null and regionId !='' ">
+REGION_ID,
+ </if>
+ <if test="businessAmount != null and businessAmount !='' ">
+BUSINESS_AMOUNT,
+ </if>
+ <if test="deviceAmount != null and deviceAmount !='' ">
+DEVICE_AMOUNT,
+ </if>
+ <if test="interfaceAccessAmount != null and interfaceAccessAmount !='' ">
+INTERFACE_ACCESS_AMOUNT,
+ </if>
+ <if test="increaceDataAmount != null and increaceDataAmount !='' ">
+INCREACE_DATA_AMOUNT,
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID,
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE,
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID,
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="itemRegionId != null and itemRegionId !='' ">
+#{itemRegionId,jdbcType=INTEGER},
+ </if>
+ <if test="parentRegionId != null and parentRegionId !='' ">
+#{parentRegionId,jdbcType=INTEGER},
+ </if>
+ <if test="regionId != null and regionId !='' ">
+#{regionId,jdbcType=INTEGER},
+ </if>
+ <if test="businessAmount != null and businessAmount !='' ">
+#{businessAmount,jdbcType=INTEGER},
+ </if>
+ <if test="deviceAmount != null and deviceAmount !='' ">
+#{deviceAmount,jdbcType=INTEGER},
+ </if>
+ <if test="interfaceAccessAmount != null and interfaceAccessAmount !='' ">
+#{interfaceAccessAmount,jdbcType=INTEGER},
+ </if>
+ <if test="increaceDataAmount != null and increaceDataAmount !='' ">
+#{increaceDataAmount,jdbcType=INTEGER},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+#{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+#{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+#{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+#{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+#{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="itemRegionId != null and itemRegionId !='' ">
+and ITEM_REGION_ID = #{itemRegionId,jdbcType=INTEGER}
+ </if>
+ <if test="parentRegionId != null and parentRegionId !='' ">
+and PARENT_REGION_ID = #{parentRegionId,jdbcType=INTEGER}
+ </if>
+ <if test="regionId != null and regionId !='' ">
+and REGION_ID = #{regionId,jdbcType=INTEGER}
+ </if>
+ <if test="businessAmount != null and businessAmount !='' ">
+and BUSINESS_AMOUNT = #{businessAmount,jdbcType=INTEGER}
+ </if>
+ <if test="deviceAmount != null and deviceAmount !='' ">
+and DEVICE_AMOUNT = #{deviceAmount,jdbcType=INTEGER}
+ </if>
+ <if test="interfaceAccessAmount != null and interfaceAccessAmount !='' ">
+and INTERFACE_ACCESS_AMOUNT = #{interfaceAccessAmount,jdbcType=INTEGER}
+ </if>
+ <if test="increaceDataAmount != null and increaceDataAmount !='' ">
+and INCREACE_DATA_AMOUNT = #{increaceDataAmount,jdbcType=INTEGER}
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+and CREATE_USER_ID = #{createUserId,jdbcType=INTEGER}
+ </if>
+ <if test="createDate != null and createDate !='' ">
+and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+and MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER}
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+and MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+ <if test="remark != null and remark !='' ">
+and REMARK_ = #{remark,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="itemRegionId != null and itemRegionId !='' ">
+ITEM_REGION_ID = #{itemRegionId,jdbcType=INTEGER},
+ </if>
+ <if test="parentRegionId != null and parentRegionId !='' ">
+PARENT_REGION_ID = #{parentRegionId,jdbcType=INTEGER},
+ </if>
+ <if test="regionId != null and regionId !='' ">
+REGION_ID = #{regionId,jdbcType=INTEGER},
+ </if>
+ <if test="businessAmount != null and businessAmount !='' ">
+BUSINESS_AMOUNT = #{businessAmount,jdbcType=INTEGER},
+ </if>
+ <if test="deviceAmount != null and deviceAmount !='' ">
+DEVICE_AMOUNT = #{deviceAmount,jdbcType=INTEGER},
+ </if>
+ <if test="interfaceAccessAmount != null and interfaceAccessAmount !='' ">
+INTERFACE_ACCESS_AMOUNT = #{interfaceAccessAmount,jdbcType=INTEGER},
+ </if>
+ <if test="increaceDataAmount != null and increaceDataAmount !='' ">
+INCREACE_DATA_AMOUNT = #{increaceDataAmount,jdbcType=INTEGER},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_ = #{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.BizItemRegion">
+select * from biz_item_region
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by ITEM_REGION_ID </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.BizItemRegion" useGeneratedKeys="true" keyProperty="itemRegionId">
+ insert into biz_item_region
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.BizItemRegion">
+ update biz_item_region
+<set>
+<include refid="update"/>
+</set>
+where ITEM_REGION_ID = #{itemRegionId,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.BizItemRegion">
+  <if test="itemRegionId != null and itemRegionId != ''">
+delete from biz_item_region where ITEM_REGION_ID = #{itemRegionId}
+ </if>
+ </delete>
+</mapper>

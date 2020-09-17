@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.BizHttpSchedulerMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.BizHttpScheduler">
+ <id column="SCHEDULER_ID" property="schedulerId" jdbcType="INTEGER"/> <!--定时任务ID-->
+ <result column="SCHEDULER_CODE" property="schedulerCode" jdbcType="VARCHAR"/> <!--定时任务编号-->
+ <result column="SCHEDULER_NAME" property="schedulerName" jdbcType="VARCHAR"/> <!--定时任务名称-->
+ <result column="HTTP_CODE" property="httpCode" jdbcType="VARCHAR"/> <!--HTTP任务编号-->
+ <result column="DATA_STREAM_CODE" property="dataStreamCode" jdbcType="VARCHAR"/> <!--数据流编号-->
+ <result column="CRONZ_" property="cronz" jdbcType="VARCHAR"/> <!--cronz表达式-->
+ <result column="IS_OPEN" property="isOpen" jdbcType="VARCHAR"/> <!--是否启用 | 1 启用 0 停止-->
+ <result column="XXLJOB_ID" property="xxljobId" jdbcType="INTEGER"/> <!--xxl任务Id-->
+ <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/> <!--创建人员ID-->
+ <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!--创建时间-->
+ <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="INTEGER"/> <!--修改人员ID-->
+ <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR"/> <!--修改时间-->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+ <result column="REMARK_" property="remark" jdbcType="VARCHAR"/> <!--备注-->
+</resultMap>
+ <sql id="filed">
+ <if test="schedulerId != null and schedulerId !='' ">
+SCHEDULER_ID,
+ </if>
+ <if test="schedulerCode != null and schedulerCode !='' ">
+SCHEDULER_CODE,
+ </if>
+ <if test="schedulerName != null and schedulerName !='' ">
+SCHEDULER_NAME,
+ </if>
+ <if test="httpCode != null and httpCode !='' ">
+HTTP_CODE,
+ </if>
+ <if test="dataStreamCode != null and dataStreamCode !='' ">
+DATA_STREAM_CODE,
+ </if>
+ <if test="cronz != null and cronz !='' ">
+CRONZ_,
+ </if>
+ <if test="isOpen != null and isOpen !='' ">
+IS_OPEN,
+ </if>
+ <if test="xxljobId != null and xxljobId !='' ">
+XXLJOB_ID,
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID,
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE,
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID,
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="schedulerId != null and schedulerId !='' ">
+#{schedulerId,jdbcType=INTEGER},
+ </if>
+ <if test="schedulerCode != null and schedulerCode !='' ">
+#{schedulerCode,jdbcType=VARCHAR},
+ </if>
+ <if test="schedulerName != null and schedulerName !='' ">
+#{schedulerName,jdbcType=VARCHAR},
+ </if>
+ <if test="httpCode != null and httpCode !='' ">
+#{httpCode,jdbcType=VARCHAR},
+ </if>
+ <if test="dataStreamCode != null and dataStreamCode !='' ">
+#{dataStreamCode,jdbcType=VARCHAR},
+ </if>
+ <if test="cronz != null and cronz !='' ">
+#{cronz,jdbcType=VARCHAR},
+ </if>
+ <if test="isOpen != null and isOpen !='' ">
+#{isOpen,jdbcType=VARCHAR},
+ </if>
+ <if test="xxljobId != null and xxljobId !='' ">
+#{xxljobId,jdbcType=INTEGER},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+#{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+#{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+#{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+#{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+#{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="schedulerId != null and schedulerId !='' ">
+and SCHEDULER_ID = #{schedulerId,jdbcType=INTEGER}
+ </if>
+ <if test="schedulerCode != null and schedulerCode !='' ">
+and SCHEDULER_CODE = #{schedulerCode,jdbcType=VARCHAR}
+ </if>
+ <if test="schedulerName != null and schedulerName !='' ">
+and SCHEDULER_NAME = #{schedulerName,jdbcType=VARCHAR}
+ </if>
+ <if test="httpCode != null and httpCode !='' ">
+and HTTP_CODE = #{httpCode,jdbcType=VARCHAR}
+ </if>
+ <if test="dataStreamCode != null and dataStreamCode !='' ">
+and DATA_STREAM_CODE = #{dataStreamCode,jdbcType=VARCHAR}
+ </if>
+ <if test="cronz != null and cronz !='' ">
+and CRONZ_ = #{cronz,jdbcType=VARCHAR}
+ </if>
+ <if test="isOpen != null and isOpen !='' ">
+and IS_OPEN = #{isOpen,jdbcType=VARCHAR}
+ </if>
+ <if test="xxljobId != null and xxljobId !='' ">
+and XXLJOB_ID = #{xxljobId,jdbcType=INTEGER}
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+and CREATE_USER_ID = #{createUserId,jdbcType=INTEGER}
+ </if>
+ <if test="createDate != null and createDate !='' ">
+and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+and MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER}
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+and MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+ <if test="remark != null and remark !='' ">
+and REMARK_ = #{remark,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="schedulerId != null and schedulerId !='' ">
+SCHEDULER_ID = #{schedulerId,jdbcType=INTEGER},
+ </if>
+ <if test="schedulerCode != null and schedulerCode !='' ">
+SCHEDULER_CODE = #{schedulerCode,jdbcType=VARCHAR},
+ </if>
+ <if test="schedulerName != null and schedulerName !='' ">
+SCHEDULER_NAME = #{schedulerName,jdbcType=VARCHAR},
+ </if>
+ <if test="httpCode != null and httpCode !='' ">
+HTTP_CODE = #{httpCode,jdbcType=VARCHAR},
+ </if>
+ <if test="dataStreamCode != null and dataStreamCode !='' ">
+DATA_STREAM_CODE = #{dataStreamCode,jdbcType=VARCHAR},
+ </if>
+ <if test="cronz != null and cronz !='' ">
+CRONZ_ = #{cronz,jdbcType=VARCHAR},
+ </if>
+ <if test="isOpen != null and isOpen !='' ">
+IS_OPEN = #{isOpen,jdbcType=VARCHAR},
+ </if>
+ <if test="xxljobId != null and xxljobId !='' ">
+XXLJOB_ID = #{xxljobId,jdbcType=INTEGER},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_ = #{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.BizHttpScheduler">
+select * from biz_http_scheduler
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by SCHEDULER_ID </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.BizHttpScheduler" useGeneratedKeys="true" keyProperty="schedulerId">
+ insert into biz_http_scheduler
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.BizHttpScheduler">
+ update biz_http_scheduler
+<set>
+<include refid="update"/>
+</set>
+where SCHEDULER_ID = #{schedulerId,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.BizHttpScheduler">
+  <if test="schedulerId != null and schedulerId != ''">
+delete from biz_http_scheduler where SCHEDULER_ID = #{schedulerId}
+ </if>
+ </delete>
+</mapper>

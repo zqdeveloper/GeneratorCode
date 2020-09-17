@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.SysRegionMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.SysRegion">
+ <result column="REGION_ID" property="regionId" jdbcType="INTEGER"/> <!---->
+ <result column="REGION_CODE" property="regionCode" jdbcType="VARCHAR"/> <!---->
+ <result column="REGION_NAME" property="regionName" jdbcType="VARCHAR"/> <!---->
+ <result column="PARENT_ID" property="parentId" jdbcType="INTEGER"/> <!---->
+ <result column="REGION_LEVEL" property="regionLevel" jdbcType="INTEGER"/> <!---->
+ <result column="REGION_INDEX" property="regionIndex" jdbcType="INTEGER"/> <!---->
+ <result column="NAME_EN" property="nameEn" jdbcType="VARCHAR"/> <!---->
+ <result column="SHORTNAME_EN" property="shortnameEn" jdbcType="VARCHAR"/> <!---->
+ <result column="PROV_CODE" property="provCode" jdbcType="VARCHAR"/> <!---->
+ <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/> <!---->
+ <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!---->
+ <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="INTEGER"/> <!---->
+ <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR"/> <!---->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!---->
+</resultMap>
+ <sql id="filed">
+ <if test="regionId != null and regionId !='' ">
+REGION_ID,
+ </if>
+ <if test="regionCode != null and regionCode !='' ">
+REGION_CODE,
+ </if>
+ <if test="regionName != null and regionName !='' ">
+REGION_NAME,
+ </if>
+ <if test="parentId != null and parentId !='' ">
+PARENT_ID,
+ </if>
+ <if test="regionLevel != null and regionLevel !='' ">
+REGION_LEVEL,
+ </if>
+ <if test="regionIndex != null and regionIndex !='' ">
+REGION_INDEX,
+ </if>
+ <if test="nameEn != null and nameEn !='' ">
+NAME_EN,
+ </if>
+ <if test="shortnameEn != null and shortnameEn !='' ">
+SHORTNAME_EN,
+ </if>
+ <if test="provCode != null and provCode !='' ">
+PROV_CODE,
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID,
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE,
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID,
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="regionId != null and regionId !='' ">
+#{regionId,jdbcType=INTEGER},
+ </if>
+ <if test="regionCode != null and regionCode !='' ">
+#{regionCode,jdbcType=VARCHAR},
+ </if>
+ <if test="regionName != null and regionName !='' ">
+#{regionName,jdbcType=VARCHAR},
+ </if>
+ <if test="parentId != null and parentId !='' ">
+#{parentId,jdbcType=INTEGER},
+ </if>
+ <if test="regionLevel != null and regionLevel !='' ">
+#{regionLevel,jdbcType=INTEGER},
+ </if>
+ <if test="regionIndex != null and regionIndex !='' ">
+#{regionIndex,jdbcType=INTEGER},
+ </if>
+ <if test="nameEn != null and nameEn !='' ">
+#{nameEn,jdbcType=VARCHAR},
+ </if>
+ <if test="shortnameEn != null and shortnameEn !='' ">
+#{shortnameEn,jdbcType=VARCHAR},
+ </if>
+ <if test="provCode != null and provCode !='' ">
+#{provCode,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+#{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+#{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+#{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+#{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="regionId != null and regionId !='' ">
+and REGION_ID = #{regionId,jdbcType=INTEGER}
+ </if>
+ <if test="regionCode != null and regionCode !='' ">
+and REGION_CODE = #{regionCode,jdbcType=VARCHAR}
+ </if>
+ <if test="regionName != null and regionName !='' ">
+and REGION_NAME = #{regionName,jdbcType=VARCHAR}
+ </if>
+ <if test="parentId != null and parentId !='' ">
+and PARENT_ID = #{parentId,jdbcType=INTEGER}
+ </if>
+ <if test="regionLevel != null and regionLevel !='' ">
+and REGION_LEVEL = #{regionLevel,jdbcType=INTEGER}
+ </if>
+ <if test="regionIndex != null and regionIndex !='' ">
+and REGION_INDEX = #{regionIndex,jdbcType=INTEGER}
+ </if>
+ <if test="nameEn != null and nameEn !='' ">
+and NAME_EN = #{nameEn,jdbcType=VARCHAR}
+ </if>
+ <if test="shortnameEn != null and shortnameEn !='' ">
+and SHORTNAME_EN = #{shortnameEn,jdbcType=VARCHAR}
+ </if>
+ <if test="provCode != null and provCode !='' ">
+and PROV_CODE = #{provCode,jdbcType=VARCHAR}
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+and CREATE_USER_ID = #{createUserId,jdbcType=INTEGER}
+ </if>
+ <if test="createDate != null and createDate !='' ">
+and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+and MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER}
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+and MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="regionId != null and regionId !='' ">
+REGION_ID = #{regionId,jdbcType=INTEGER},
+ </if>
+ <if test="regionCode != null and regionCode !='' ">
+REGION_CODE = #{regionCode,jdbcType=VARCHAR},
+ </if>
+ <if test="regionName != null and regionName !='' ">
+REGION_NAME = #{regionName,jdbcType=VARCHAR},
+ </if>
+ <if test="parentId != null and parentId !='' ">
+PARENT_ID = #{parentId,jdbcType=INTEGER},
+ </if>
+ <if test="regionLevel != null and regionLevel !='' ">
+REGION_LEVEL = #{regionLevel,jdbcType=INTEGER},
+ </if>
+ <if test="regionIndex != null and regionIndex !='' ">
+REGION_INDEX = #{regionIndex,jdbcType=INTEGER},
+ </if>
+ <if test="nameEn != null and nameEn !='' ">
+NAME_EN = #{nameEn,jdbcType=VARCHAR},
+ </if>
+ <if test="shortnameEn != null and shortnameEn !='' ">
+SHORTNAME_EN = #{shortnameEn,jdbcType=VARCHAR},
+ </if>
+ <if test="provCode != null and provCode !='' ">
+PROV_CODE = #{provCode,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.SysRegion">
+select * from sys_region
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by null </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.SysRegion" useGeneratedKeys="true" keyProperty="">
+ insert into sys_region
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.SysRegion">
+ update sys_region
+<set>
+<include refid="update"/>
+</set>
+where null = #{,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.SysRegion">
+  <if test=" != null and  != ''">
+delete from sys_region where null = #{}
+ </if>
+ </delete>
+</mapper>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.BizIngerfaceDocMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.BizIngerfaceDoc">
+ <id column="INTERFACE_DOC_ID" property="interfaceDocId" jdbcType="INTEGER"/> <!--接口文档ID-->
+ <result column="INTERFACE_DOC_TITLE" property="interfaceDocTitle" jdbcType="VARCHAR"/> <!--接口文档标题-->
+ <result column="INTERFACE_DOC_CODE" property="interfaceDocCode" jdbcType="VARCHAR"/> <!--接口文档编号-->
+ <result column="INTERFACE_DOC_VERSION" property="interfaceDocVersion" jdbcType="VARCHAR"/> <!--接口文档版本号-->
+ <result column="INTERFACE_DOC_FILE_PATH" property="interfaceDocFilePath" jdbcType="VARCHAR"/> <!--接口文档路径-->
+ <result column="ABILITY_ID" property="abilityId" jdbcType="INTEGER"/> <!--能力ID-->
+ <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/> <!--创建人员ID-->
+ <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!--创建时间-->
+ <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="INTEGER"/> <!--修改人员ID-->
+ <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR"/> <!--修改时间-->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+ <result column="REMARK_" property="remark" jdbcType="VARCHAR"/> <!--备注-->
+</resultMap>
+ <sql id="filed">
+ <if test="interfaceDocId != null and interfaceDocId !='' ">
+INTERFACE_DOC_ID,
+ </if>
+ <if test="interfaceDocTitle != null and interfaceDocTitle !='' ">
+INTERFACE_DOC_TITLE,
+ </if>
+ <if test="interfaceDocCode != null and interfaceDocCode !='' ">
+INTERFACE_DOC_CODE,
+ </if>
+ <if test="interfaceDocVersion != null and interfaceDocVersion !='' ">
+INTERFACE_DOC_VERSION,
+ </if>
+ <if test="interfaceDocFilePath != null and interfaceDocFilePath !='' ">
+INTERFACE_DOC_FILE_PATH,
+ </if>
+ <if test="abilityId != null and abilityId !='' ">
+ABILITY_ID,
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID,
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE,
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID,
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="interfaceDocId != null and interfaceDocId !='' ">
+#{interfaceDocId,jdbcType=INTEGER},
+ </if>
+ <if test="interfaceDocTitle != null and interfaceDocTitle !='' ">
+#{interfaceDocTitle,jdbcType=VARCHAR},
+ </if>
+ <if test="interfaceDocCode != null and interfaceDocCode !='' ">
+#{interfaceDocCode,jdbcType=VARCHAR},
+ </if>
+ <if test="interfaceDocVersion != null and interfaceDocVersion !='' ">
+#{interfaceDocVersion,jdbcType=VARCHAR},
+ </if>
+ <if test="interfaceDocFilePath != null and interfaceDocFilePath !='' ">
+#{interfaceDocFilePath,jdbcType=VARCHAR},
+ </if>
+ <if test="abilityId != null and abilityId !='' ">
+#{abilityId,jdbcType=INTEGER},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+#{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+#{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+#{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+#{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+#{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="interfaceDocId != null and interfaceDocId !='' ">
+and INTERFACE_DOC_ID = #{interfaceDocId,jdbcType=INTEGER}
+ </if>
+ <if test="interfaceDocTitle != null and interfaceDocTitle !='' ">
+and INTERFACE_DOC_TITLE = #{interfaceDocTitle,jdbcType=VARCHAR}
+ </if>
+ <if test="interfaceDocCode != null and interfaceDocCode !='' ">
+and INTERFACE_DOC_CODE = #{interfaceDocCode,jdbcType=VARCHAR}
+ </if>
+ <if test="interfaceDocVersion != null and interfaceDocVersion !='' ">
+and INTERFACE_DOC_VERSION = #{interfaceDocVersion,jdbcType=VARCHAR}
+ </if>
+ <if test="interfaceDocFilePath != null and interfaceDocFilePath !='' ">
+and INTERFACE_DOC_FILE_PATH = #{interfaceDocFilePath,jdbcType=VARCHAR}
+ </if>
+ <if test="abilityId != null and abilityId !='' ">
+and ABILITY_ID = #{abilityId,jdbcType=INTEGER}
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+and CREATE_USER_ID = #{createUserId,jdbcType=INTEGER}
+ </if>
+ <if test="createDate != null and createDate !='' ">
+and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+and MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER}
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+and MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+ <if test="remark != null and remark !='' ">
+and REMARK_ = #{remark,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="interfaceDocId != null and interfaceDocId !='' ">
+INTERFACE_DOC_ID = #{interfaceDocId,jdbcType=INTEGER},
+ </if>
+ <if test="interfaceDocTitle != null and interfaceDocTitle !='' ">
+INTERFACE_DOC_TITLE = #{interfaceDocTitle,jdbcType=VARCHAR},
+ </if>
+ <if test="interfaceDocCode != null and interfaceDocCode !='' ">
+INTERFACE_DOC_CODE = #{interfaceDocCode,jdbcType=VARCHAR},
+ </if>
+ <if test="interfaceDocVersion != null and interfaceDocVersion !='' ">
+INTERFACE_DOC_VERSION = #{interfaceDocVersion,jdbcType=VARCHAR},
+ </if>
+ <if test="interfaceDocFilePath != null and interfaceDocFilePath !='' ">
+INTERFACE_DOC_FILE_PATH = #{interfaceDocFilePath,jdbcType=VARCHAR},
+ </if>
+ <if test="abilityId != null and abilityId !='' ">
+ABILITY_ID = #{abilityId,jdbcType=INTEGER},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_ = #{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.BizIngerfaceDoc">
+select * from biz_ingerface_doc
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by INTERFACE_DOC_ID </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.BizIngerfaceDoc" useGeneratedKeys="true" keyProperty="interfaceDocId">
+ insert into biz_ingerface_doc
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.BizIngerfaceDoc">
+ update biz_ingerface_doc
+<set>
+<include refid="update"/>
+</set>
+where INTERFACE_DOC_ID = #{interfaceDocId,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.BizIngerfaceDoc">
+  <if test="interfaceDocId != null and interfaceDocId != ''">
+delete from biz_ingerface_doc where INTERFACE_DOC_ID = #{interfaceDocId}
+ </if>
+ </delete>
+</mapper>

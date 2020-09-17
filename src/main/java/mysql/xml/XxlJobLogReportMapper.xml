@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.XxlJobLogReportMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.XxlJobLogReport">
+ <id column="id" property="id" jdbcType="INTEGER"/> <!---->
+ <result column="trigger_day" property="triggerDay" jdbcType="VARCHAR"/> <!--调度-时间-->
+ <result column="running_count" property="runningCount" jdbcType="INTEGER"/> <!--运行中-日志数量-->
+ <result column="suc_count" property="sucCount" jdbcType="INTEGER"/> <!--执行成功-日志数量-->
+ <result column="fail_count" property="failCount" jdbcType="INTEGER"/> <!--执行失败-日志数量-->
+</resultMap>
+ <sql id="filed">
+ <if test="id != null and id !='' ">
+id,
+ </if>
+ <if test="triggerDay != null and triggerDay !='' ">
+trigger_day,
+ </if>
+ <if test="runningCount != null and runningCount !='' ">
+running_count,
+ </if>
+ <if test="sucCount != null and sucCount !='' ">
+suc_count,
+ </if>
+ <if test="failCount != null and failCount !='' ">
+fail_count,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="id != null and id !='' ">
+#{id,jdbcType=INTEGER},
+ </if>
+ <if test="triggerDay != null and triggerDay !='' ">
+#{triggerDay,jdbcType=VARCHAR},
+ </if>
+ <if test="runningCount != null and runningCount !='' ">
+#{runningCount,jdbcType=INTEGER},
+ </if>
+ <if test="sucCount != null and sucCount !='' ">
+#{sucCount,jdbcType=INTEGER},
+ </if>
+ <if test="failCount != null and failCount !='' ">
+#{failCount,jdbcType=INTEGER},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="id != null and id !='' ">
+and id = #{id,jdbcType=INTEGER}
+ </if>
+ <if test="triggerDay != null and triggerDay !='' ">
+and trigger_day = #{triggerDay,jdbcType=VARCHAR}
+ </if>
+ <if test="runningCount != null and runningCount !='' ">
+and running_count = #{runningCount,jdbcType=INTEGER}
+ </if>
+ <if test="sucCount != null and sucCount !='' ">
+and suc_count = #{sucCount,jdbcType=INTEGER}
+ </if>
+ <if test="failCount != null and failCount !='' ">
+and fail_count = #{failCount,jdbcType=INTEGER}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="id != null and id !='' ">
+id = #{id,jdbcType=INTEGER},
+ </if>
+ <if test="triggerDay != null and triggerDay !='' ">
+trigger_day = #{triggerDay,jdbcType=VARCHAR},
+ </if>
+ <if test="runningCount != null and runningCount !='' ">
+running_count = #{runningCount,jdbcType=INTEGER},
+ </if>
+ <if test="sucCount != null and sucCount !='' ">
+suc_count = #{sucCount,jdbcType=INTEGER},
+ </if>
+ <if test="failCount != null and failCount !='' ">
+fail_count = #{failCount,jdbcType=INTEGER},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.XxlJobLogReport">
+select * from xxl_job_log_report
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by id </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.XxlJobLogReport" useGeneratedKeys="true" keyProperty="id">
+ insert into xxl_job_log_report
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.XxlJobLogReport">
+ update xxl_job_log_report
+<set>
+<include refid="update"/>
+</set>
+where id = #{id,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.XxlJobLogReport">
+  <if test="id != null and id != ''">
+delete from xxl_job_log_report where id = #{id}
+ </if>
+ </delete>
+</mapper>

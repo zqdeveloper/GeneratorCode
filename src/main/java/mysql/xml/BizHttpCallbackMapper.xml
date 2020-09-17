@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.BizHttpCallbackMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.BizHttpCallback">
+ <id column="CALLBACK_ID" property="callbackId" jdbcType="INTEGER"/> <!--对外接口ID-->
+ <result column="APP_CODE" property="appCode" jdbcType="VARCHAR"/> <!--上层应用编号-->
+ <result column="HTTP_URL" property="httpUrl" jdbcType="VARCHAR"/> <!--回调地址-->
+ <result column="IS_OPEN" property="isOpen" jdbcType="VARCHAR"/> <!--是否启用 | 1 启用 0 停止-->
+ <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/> <!--创建人员ID-->
+ <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!--创建时间-->
+ <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="INTEGER"/> <!--修改人员ID-->
+ <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR"/> <!--修改时间-->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+ <result column="REMARK_" property="remark" jdbcType="VARCHAR"/> <!--备注-->
+</resultMap>
+ <sql id="filed">
+ <if test="callbackId != null and callbackId !='' ">
+CALLBACK_ID,
+ </if>
+ <if test="appCode != null and appCode !='' ">
+APP_CODE,
+ </if>
+ <if test="httpUrl != null and httpUrl !='' ">
+HTTP_URL,
+ </if>
+ <if test="isOpen != null and isOpen !='' ">
+IS_OPEN,
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID,
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE,
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID,
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="callbackId != null and callbackId !='' ">
+#{callbackId,jdbcType=INTEGER},
+ </if>
+ <if test="appCode != null and appCode !='' ">
+#{appCode,jdbcType=VARCHAR},
+ </if>
+ <if test="httpUrl != null and httpUrl !='' ">
+#{httpUrl,jdbcType=VARCHAR},
+ </if>
+ <if test="isOpen != null and isOpen !='' ">
+#{isOpen,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+#{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+#{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+#{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+#{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+#{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="callbackId != null and callbackId !='' ">
+and CALLBACK_ID = #{callbackId,jdbcType=INTEGER}
+ </if>
+ <if test="appCode != null and appCode !='' ">
+and APP_CODE = #{appCode,jdbcType=VARCHAR}
+ </if>
+ <if test="httpUrl != null and httpUrl !='' ">
+and HTTP_URL = #{httpUrl,jdbcType=VARCHAR}
+ </if>
+ <if test="isOpen != null and isOpen !='' ">
+and IS_OPEN = #{isOpen,jdbcType=VARCHAR}
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+and CREATE_USER_ID = #{createUserId,jdbcType=INTEGER}
+ </if>
+ <if test="createDate != null and createDate !='' ">
+and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+and MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER}
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+and MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+ <if test="remark != null and remark !='' ">
+and REMARK_ = #{remark,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="callbackId != null and callbackId !='' ">
+CALLBACK_ID = #{callbackId,jdbcType=INTEGER},
+ </if>
+ <if test="appCode != null and appCode !='' ">
+APP_CODE = #{appCode,jdbcType=VARCHAR},
+ </if>
+ <if test="httpUrl != null and httpUrl !='' ">
+HTTP_URL = #{httpUrl,jdbcType=VARCHAR},
+ </if>
+ <if test="isOpen != null and isOpen !='' ">
+IS_OPEN = #{isOpen,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_ = #{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.BizHttpCallback">
+select * from biz_http_callback
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by CALLBACK_ID </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.BizHttpCallback" useGeneratedKeys="true" keyProperty="callbackId">
+ insert into biz_http_callback
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.BizHttpCallback">
+ update biz_http_callback
+<set>
+<include refid="update"/>
+</set>
+where CALLBACK_ID = #{callbackId,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.BizHttpCallback">
+  <if test="callbackId != null and callbackId != ''">
+delete from biz_http_callback where CALLBACK_ID = #{callbackId}
+ </if>
+ </delete>
+</mapper>

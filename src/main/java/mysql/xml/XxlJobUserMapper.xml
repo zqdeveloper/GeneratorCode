@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.XxlJobUserMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.XxlJobUser">
+ <id column="id" property="id" jdbcType="INTEGER"/> <!---->
+ <result column="username" property="username" jdbcType="VARCHAR"/> <!--账号-->
+ <result column="password" property="password" jdbcType="VARCHAR"/> <!--密码-->
+ <result column="role" property="role" jdbcType="INTEGER"/> <!--角色：0-普通用户、1-管理员-->
+ <result column="permission" property="permission" jdbcType="VARCHAR"/> <!--权限：执行器ID列表，多个逗号分割-->
+</resultMap>
+ <sql id="filed">
+ <if test="id != null and id !='' ">
+id,
+ </if>
+ <if test="username != null and username !='' ">
+username,
+ </if>
+ <if test="password != null and password !='' ">
+password,
+ </if>
+ <if test="role != null and role !='' ">
+role,
+ </if>
+ <if test="permission != null and permission !='' ">
+permission,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="id != null and id !='' ">
+#{id,jdbcType=INTEGER},
+ </if>
+ <if test="username != null and username !='' ">
+#{username,jdbcType=VARCHAR},
+ </if>
+ <if test="password != null and password !='' ">
+#{password,jdbcType=VARCHAR},
+ </if>
+ <if test="role != null and role !='' ">
+#{role,jdbcType=INTEGER},
+ </if>
+ <if test="permission != null and permission !='' ">
+#{permission,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="id != null and id !='' ">
+and id = #{id,jdbcType=INTEGER}
+ </if>
+ <if test="username != null and username !='' ">
+and username = #{username,jdbcType=VARCHAR}
+ </if>
+ <if test="password != null and password !='' ">
+and password = #{password,jdbcType=VARCHAR}
+ </if>
+ <if test="role != null and role !='' ">
+and role = #{role,jdbcType=INTEGER}
+ </if>
+ <if test="permission != null and permission !='' ">
+and permission = #{permission,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="id != null and id !='' ">
+id = #{id,jdbcType=INTEGER},
+ </if>
+ <if test="username != null and username !='' ">
+username = #{username,jdbcType=VARCHAR},
+ </if>
+ <if test="password != null and password !='' ">
+password = #{password,jdbcType=VARCHAR},
+ </if>
+ <if test="role != null and role !='' ">
+role = #{role,jdbcType=INTEGER},
+ </if>
+ <if test="permission != null and permission !='' ">
+permission = #{permission,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.XxlJobUser">
+select * from xxl_job_user
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by id </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.XxlJobUser" useGeneratedKeys="true" keyProperty="id">
+ insert into xxl_job_user
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.XxlJobUser">
+ update xxl_job_user
+<set>
+<include refid="update"/>
+</set>
+where id = #{id,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.XxlJobUser">
+  <if test="id != null and id != ''">
+delete from xxl_job_user where id = #{id}
+ </if>
+ </delete>
+</mapper>

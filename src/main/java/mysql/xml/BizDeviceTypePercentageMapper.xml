@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.BizDeviceTypePercentageMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.BizDeviceTypePercentage">
+ <id column="DEVICE_TYPE_PERCENTAGE_ID" property="deviceTypePercentageId" jdbcType="INTEGER"/> <!--主键ID-->
+ <result column="DEVICE_TYPE_ID" property="deviceTypeId" jdbcType="INTEGER"/> <!--设备类型ID-->
+ <result column="DEVICE_TYPE_PERCENTAGE" property="deviceTypePercentage" jdbcType="VARCHAR"/> <!--设备类型占比-->
+ <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/> <!--创建人员ID-->
+ <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!--创建时间-->
+ <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="INTEGER"/> <!--修改人员ID-->
+ <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR"/> <!--修改时间-->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+ <result column="REMARK_" property="remark" jdbcType="VARCHAR"/> <!--备注-->
+</resultMap>
+ <sql id="filed">
+ <if test="deviceTypePercentageId != null and deviceTypePercentageId !='' ">
+DEVICE_TYPE_PERCENTAGE_ID,
+ </if>
+ <if test="deviceTypeId != null and deviceTypeId !='' ">
+DEVICE_TYPE_ID,
+ </if>
+ <if test="deviceTypePercentage != null and deviceTypePercentage !='' ">
+DEVICE_TYPE_PERCENTAGE,
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID,
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE,
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID,
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="deviceTypePercentageId != null and deviceTypePercentageId !='' ">
+#{deviceTypePercentageId,jdbcType=INTEGER},
+ </if>
+ <if test="deviceTypeId != null and deviceTypeId !='' ">
+#{deviceTypeId,jdbcType=INTEGER},
+ </if>
+ <if test="deviceTypePercentage != null and deviceTypePercentage !='' ">
+#{deviceTypePercentage,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+#{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+#{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+#{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+#{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+#{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="deviceTypePercentageId != null and deviceTypePercentageId !='' ">
+and DEVICE_TYPE_PERCENTAGE_ID = #{deviceTypePercentageId,jdbcType=INTEGER}
+ </if>
+ <if test="deviceTypeId != null and deviceTypeId !='' ">
+and DEVICE_TYPE_ID = #{deviceTypeId,jdbcType=INTEGER}
+ </if>
+ <if test="deviceTypePercentage != null and deviceTypePercentage !='' ">
+and DEVICE_TYPE_PERCENTAGE = #{deviceTypePercentage,jdbcType=VARCHAR}
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+and CREATE_USER_ID = #{createUserId,jdbcType=INTEGER}
+ </if>
+ <if test="createDate != null and createDate !='' ">
+and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+and MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER}
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+and MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+ <if test="remark != null and remark !='' ">
+and REMARK_ = #{remark,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="deviceTypePercentageId != null and deviceTypePercentageId !='' ">
+DEVICE_TYPE_PERCENTAGE_ID = #{deviceTypePercentageId,jdbcType=INTEGER},
+ </if>
+ <if test="deviceTypeId != null and deviceTypeId !='' ">
+DEVICE_TYPE_ID = #{deviceTypeId,jdbcType=INTEGER},
+ </if>
+ <if test="deviceTypePercentage != null and deviceTypePercentage !='' ">
+DEVICE_TYPE_PERCENTAGE = #{deviceTypePercentage,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_ = #{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.BizDeviceTypePercentage">
+select * from biz_device_type_percentage
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by DEVICE_TYPE_PERCENTAGE_ID </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.BizDeviceTypePercentage" useGeneratedKeys="true" keyProperty="deviceTypePercentageId">
+ insert into biz_device_type_percentage
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.BizDeviceTypePercentage">
+ update biz_device_type_percentage
+<set>
+<include refid="update"/>
+</set>
+where DEVICE_TYPE_PERCENTAGE_ID = #{deviceTypePercentageId,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.BizDeviceTypePercentage">
+  <if test="deviceTypePercentageId != null and deviceTypePercentageId != ''">
+delete from biz_device_type_percentage where DEVICE_TYPE_PERCENTAGE_ID = #{deviceTypePercentageId}
+ </if>
+ </delete>
+</mapper>

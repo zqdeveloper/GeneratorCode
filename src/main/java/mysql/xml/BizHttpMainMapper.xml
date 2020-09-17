@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.BizHttpMainMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.BizHttpMain">
+ <id column="HTTP_ID" property="httpId" jdbcType="INTEGER"/> <!--HTTP任务ID-->
+ <result column="HTTP_CODE" property="httpCode" jdbcType="VARCHAR"/> <!--HTTP任务编号-->
+ <result column="HTTP_NAME" property="httpName" jdbcType="VARCHAR"/> <!--HTTP任务名称-->
+ <result column="HTTP_MODE" property="httpMode" jdbcType="VARCHAR"/> <!--HTTP运行模式| 1:对外接口|2:定时任务-->
+ <result column="HTTP_URL" property="httpUrl" jdbcType="VARCHAR"/> <!--HTTP URL-->
+ <result column="HTTP_METHOD" property="httpMethod" jdbcType="VARCHAR"/> <!--HTPP方法| 1:GET|2:POST|3:PUT|4:DELETE|5:PATCH-->
+ <result column="POST_FORM_TYPE" property="postFormType" jdbcType="VARCHAR"/> <!--POST参数类型 |1 json | 2 form | 字符串-->
+ <result column="POST_PARAM" property="postParam" jdbcType="VARCHAR"/> <!--非json参数 -->
+ <result column="IS_OPEN" property="isOpen" jdbcType="VARCHAR"/> <!--是否启用 | 1 启用 0 停止-->
+ <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/> <!--创建人员ID-->
+ <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!--创建时间-->
+ <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="INTEGER"/> <!--修改人员ID-->
+ <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR"/> <!--修改时间-->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+ <result column="REMARK_" property="remark" jdbcType="VARCHAR"/> <!--备注-->
+</resultMap>
+ <sql id="filed">
+ <if test="httpId != null and httpId !='' ">
+HTTP_ID,
+ </if>
+ <if test="httpCode != null and httpCode !='' ">
+HTTP_CODE,
+ </if>
+ <if test="httpName != null and httpName !='' ">
+HTTP_NAME,
+ </if>
+ <if test="httpMode != null and httpMode !='' ">
+HTTP_MODE,
+ </if>
+ <if test="httpUrl != null and httpUrl !='' ">
+HTTP_URL,
+ </if>
+ <if test="httpMethod != null and httpMethod !='' ">
+HTTP_METHOD,
+ </if>
+ <if test="postFormType != null and postFormType !='' ">
+POST_FORM_TYPE,
+ </if>
+ <if test="postParam != null and postParam !='' ">
+POST_PARAM,
+ </if>
+ <if test="isOpen != null and isOpen !='' ">
+IS_OPEN,
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID,
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE,
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID,
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="httpId != null and httpId !='' ">
+#{httpId,jdbcType=INTEGER},
+ </if>
+ <if test="httpCode != null and httpCode !='' ">
+#{httpCode,jdbcType=VARCHAR},
+ </if>
+ <if test="httpName != null and httpName !='' ">
+#{httpName,jdbcType=VARCHAR},
+ </if>
+ <if test="httpMode != null and httpMode !='' ">
+#{httpMode,jdbcType=VARCHAR},
+ </if>
+ <if test="httpUrl != null and httpUrl !='' ">
+#{httpUrl,jdbcType=VARCHAR},
+ </if>
+ <if test="httpMethod != null and httpMethod !='' ">
+#{httpMethod,jdbcType=VARCHAR},
+ </if>
+ <if test="postFormType != null and postFormType !='' ">
+#{postFormType,jdbcType=VARCHAR},
+ </if>
+ <if test="postParam != null and postParam !='' ">
+#{postParam,jdbcType=VARCHAR},
+ </if>
+ <if test="isOpen != null and isOpen !='' ">
+#{isOpen,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+#{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+#{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+#{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+#{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+#{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="httpId != null and httpId !='' ">
+and HTTP_ID = #{httpId,jdbcType=INTEGER}
+ </if>
+ <if test="httpCode != null and httpCode !='' ">
+and HTTP_CODE = #{httpCode,jdbcType=VARCHAR}
+ </if>
+ <if test="httpName != null and httpName !='' ">
+and HTTP_NAME = #{httpName,jdbcType=VARCHAR}
+ </if>
+ <if test="httpMode != null and httpMode !='' ">
+and HTTP_MODE = #{httpMode,jdbcType=VARCHAR}
+ </if>
+ <if test="httpUrl != null and httpUrl !='' ">
+and HTTP_URL = #{httpUrl,jdbcType=VARCHAR}
+ </if>
+ <if test="httpMethod != null and httpMethod !='' ">
+and HTTP_METHOD = #{httpMethod,jdbcType=VARCHAR}
+ </if>
+ <if test="postFormType != null and postFormType !='' ">
+and POST_FORM_TYPE = #{postFormType,jdbcType=VARCHAR}
+ </if>
+ <if test="postParam != null and postParam !='' ">
+and POST_PARAM = #{postParam,jdbcType=VARCHAR}
+ </if>
+ <if test="isOpen != null and isOpen !='' ">
+and IS_OPEN = #{isOpen,jdbcType=VARCHAR}
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+and CREATE_USER_ID = #{createUserId,jdbcType=INTEGER}
+ </if>
+ <if test="createDate != null and createDate !='' ">
+and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+and MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER}
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+and MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+ <if test="remark != null and remark !='' ">
+and REMARK_ = #{remark,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="httpId != null and httpId !='' ">
+HTTP_ID = #{httpId,jdbcType=INTEGER},
+ </if>
+ <if test="httpCode != null and httpCode !='' ">
+HTTP_CODE = #{httpCode,jdbcType=VARCHAR},
+ </if>
+ <if test="httpName != null and httpName !='' ">
+HTTP_NAME = #{httpName,jdbcType=VARCHAR},
+ </if>
+ <if test="httpMode != null and httpMode !='' ">
+HTTP_MODE = #{httpMode,jdbcType=VARCHAR},
+ </if>
+ <if test="httpUrl != null and httpUrl !='' ">
+HTTP_URL = #{httpUrl,jdbcType=VARCHAR},
+ </if>
+ <if test="httpMethod != null and httpMethod !='' ">
+HTTP_METHOD = #{httpMethod,jdbcType=VARCHAR},
+ </if>
+ <if test="postFormType != null and postFormType !='' ">
+POST_FORM_TYPE = #{postFormType,jdbcType=VARCHAR},
+ </if>
+ <if test="postParam != null and postParam !='' ">
+POST_PARAM = #{postParam,jdbcType=VARCHAR},
+ </if>
+ <if test="isOpen != null and isOpen !='' ">
+IS_OPEN = #{isOpen,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_ = #{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.BizHttpMain">
+select * from biz_http_main
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by HTTP_ID </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.BizHttpMain" useGeneratedKeys="true" keyProperty="httpId">
+ insert into biz_http_main
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.BizHttpMain">
+ update biz_http_main
+<set>
+<include refid="update"/>
+</set>
+where HTTP_ID = #{httpId,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.BizHttpMain">
+  <if test="httpId != null and httpId != ''">
+delete from biz_http_main where HTTP_ID = #{httpId}
+ </if>
+ </delete>
+</mapper>

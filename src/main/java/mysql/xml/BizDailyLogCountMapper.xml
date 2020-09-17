@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.BizDailyLogCountMapper">
+    <resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.BizDailyLogCount">
+        <id column="DAILY_LOG_COUNT_ID" property="dailyLogCountId" jdbcType="INTEGER"/> <!--主键ID-->
+        <result column="DAILY_LOG_TYPE" property="dailyLogType" jdbcType="VARCHAR"/> <!--日志类型(1:操作日志;2:接口日志)-->
+        <result column="COUNT_" property="count" jdbcType="INTEGER"/> <!--数量-->
+        <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!--创建时间-->
+        <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="INTEGER"/> <!--修改人员ID-->
+        <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR"/> <!--修改时间-->
+        <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+        <result column="REMARK_" property="remark" jdbcType="VARCHAR"/> <!--备注-->
+    </resultMap>
+    <sql id="filed">
+        <if test="dailyLogCountId != null and dailyLogCountId !='' ">
+            DAILY_LOG_COUNT_ID,
+        </if>
+        <if test="dailyLogType != null and dailyLogType !='' ">
+            DAILY_LOG_TYPE,
+        </if>
+        <if test="count != null and count !='' ">
+            COUNT_,
+        </if>
+        <if test="createDate != null and createDate !='' ">
+            CREATE_DATE,
+        </if>
+        <if test="modifyUserId != null and modifyUserId !='' ">
+            MODIFY_USER_ID,
+        </if>
+        <if test="modifyDate != null and modifyDate !='' ">
+            MODIFY_DATE,
+        </if>
+        <if test="status != null and status !='' ">
+            STATUS_,
+        </if>
+        <if test="remark != null and remark !='' ">
+            REMARK_,
+        </if>
+    </sql>
+    <sql id="values">
+        <if test="dailyLogCountId != null and dailyLogCountId !='' ">
+            #{dailyLogCountId,jdbcType=INTEGER},
+        </if>
+        <if test="dailyLogType != null and dailyLogType !='' ">
+            #{dailyLogType,jdbcType=VARCHAR},
+        </if>
+        <if test="count != null and count !='' ">
+            #{count,jdbcType=INTEGER},
+        </if>
+        <if test="createDate != null and createDate !='' ">
+            #{createDate,jdbcType=VARCHAR},
+        </if>
+        <if test="modifyUserId != null and modifyUserId !='' ">
+            #{modifyUserId,jdbcType=INTEGER},
+        </if>
+        <if test="modifyDate != null and modifyDate !='' ">
+            #{modifyDate,jdbcType=VARCHAR},
+        </if>
+        <if test="status != null and status !='' ">
+            #{status,jdbcType=VARCHAR},
+        </if>
+        <if test="remark != null and remark !='' ">
+            #{remark,jdbcType=VARCHAR},
+        </if>
+    </sql>
+    <sql id="select">
+        <if test="dailyLogCountId != null and dailyLogCountId !='' ">
+            and DAILY_LOG_COUNT_ID = #{dailyLogCountId,jdbcType=INTEGER}
+        </if>
+        <if test="dailyLogType != null and dailyLogType !='' ">
+            and DAILY_LOG_TYPE = #{dailyLogType,jdbcType=VARCHAR}
+        </if>
+        <if test="count != null and count !='' ">
+            and COUNT_ = #{count,jdbcType=INTEGER}
+        </if>
+        <if test="createDate != null and createDate !='' ">
+            and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+        </if>
+        <if test="modifyUserId != null and modifyUserId !='' ">
+            and MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER}
+        </if>
+        <if test="modifyDate != null and modifyDate !='' ">
+            and MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR}
+        </if>
+        <if test="status != null and status !='' ">
+            and STATUS_ = #{status,jdbcType=VARCHAR}
+        </if>
+        <if test="remark != null and remark !='' ">
+            and REMARK_ = #{remark,jdbcType=VARCHAR}
+        </if>
+    </sql>
+    <sql id="update">
+        <if test="dailyLogCountId != null and dailyLogCountId !='' ">
+            DAILY_LOG_COUNT_ID = #{dailyLogCountId,jdbcType=INTEGER},
+        </if>
+        <if test="dailyLogType != null and dailyLogType !='' ">
+            DAILY_LOG_TYPE = #{dailyLogType,jdbcType=VARCHAR},
+        </if>
+        <if test="count != null and count !='' ">
+            COUNT_ = #{count,jdbcType=INTEGER},
+        </if>
+        <if test="createDate != null and createDate !='' ">
+            CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+        </if>
+        <if test="modifyUserId != null and modifyUserId !='' ">
+            MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER},
+        </if>
+        <if test="modifyDate != null and modifyDate !='' ">
+            MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+        </if>
+        <if test="status != null and status !='' ">
+            STATUS_ = #{status,jdbcType=VARCHAR},
+        </if>
+        <if test="remark != null and remark !='' ">
+            REMARK_ = #{remark,jdbcType=VARCHAR},
+        </if>
+    </sql>
+    <select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.BizDailyLogCount">
+        select * from biz_daily_log_count
+        where
+        STATUS_ =1
+        <include refid="select"/>
+        order by DAILY_LOG_COUNT_ID
+    </select>
+    <insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.BizDailyLogCount" useGeneratedKeys="true"
+            keyProperty="dailyLogCountId">
+        insert into biz_daily_log_count
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="values"/>
+        </trim>
+    </insert>
+    <update id="update" parameterType="com.zjrc.iot.broker.model.biz.BizDailyLogCount">
+        update biz_daily_log_count
+        <set>
+            <include refid="update"/>
+        </set>
+        where DAILY_LOG_COUNT_ID = #{dailyLogCountId,jdbcType=INTEGER} AND STATUS_ =1
+    </update>
+    <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.BizDailyLogCount">
+        <if test="dailyLogCountId != null and dailyLogCountId != ''">
+            delete from biz_daily_log_count where DAILY_LOG_COUNT_ID = #{dailyLogCountId}
+        </if>
+    </delete>
+</mapper>

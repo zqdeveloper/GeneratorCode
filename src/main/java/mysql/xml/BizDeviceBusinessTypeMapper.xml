@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.BizDeviceBusinessTypeMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.BizDeviceBusinessType">
+ <id column="DEVICE_BUSINESS_TYPE_ID" property="deviceBusinessTypeId" jdbcType="INTEGER"/> <!--主键ID-->
+ <result column="BUSINESS_CODE" property="businessCode" jdbcType="VARCHAR"/> <!--上层应用编号-->
+ <result column="TYPE_CODE" property="typeCode" jdbcType="VARCHAR"/> <!--设备类型编号-->
+ <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/> <!--创建人员ID-->
+ <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!--创建时间-->
+ <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="INTEGER"/> <!--修改人员ID-->
+ <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR"/> <!--修改时间-->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+ <result column="REMARK_" property="remark" jdbcType="VARCHAR"/> <!--备注-->
+</resultMap>
+ <sql id="filed">
+ <if test="deviceBusinessTypeId != null and deviceBusinessTypeId !='' ">
+DEVICE_BUSINESS_TYPE_ID,
+ </if>
+ <if test="businessCode != null and businessCode !='' ">
+BUSINESS_CODE,
+ </if>
+ <if test="typeCode != null and typeCode !='' ">
+TYPE_CODE,
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID,
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE,
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID,
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="deviceBusinessTypeId != null and deviceBusinessTypeId !='' ">
+#{deviceBusinessTypeId,jdbcType=INTEGER},
+ </if>
+ <if test="businessCode != null and businessCode !='' ">
+#{businessCode,jdbcType=VARCHAR},
+ </if>
+ <if test="typeCode != null and typeCode !='' ">
+#{typeCode,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+#{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+#{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+#{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+#{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+#{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="deviceBusinessTypeId != null and deviceBusinessTypeId !='' ">
+and DEVICE_BUSINESS_TYPE_ID = #{deviceBusinessTypeId,jdbcType=INTEGER}
+ </if>
+ <if test="businessCode != null and businessCode !='' ">
+and BUSINESS_CODE = #{businessCode,jdbcType=VARCHAR}
+ </if>
+ <if test="typeCode != null and typeCode !='' ">
+and TYPE_CODE = #{typeCode,jdbcType=VARCHAR}
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+and CREATE_USER_ID = #{createUserId,jdbcType=INTEGER}
+ </if>
+ <if test="createDate != null and createDate !='' ">
+and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+and MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER}
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+and MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+ <if test="remark != null and remark !='' ">
+and REMARK_ = #{remark,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="deviceBusinessTypeId != null and deviceBusinessTypeId !='' ">
+DEVICE_BUSINESS_TYPE_ID = #{deviceBusinessTypeId,jdbcType=INTEGER},
+ </if>
+ <if test="businessCode != null and businessCode !='' ">
+BUSINESS_CODE = #{businessCode,jdbcType=VARCHAR},
+ </if>
+ <if test="typeCode != null and typeCode !='' ">
+TYPE_CODE = #{typeCode,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_ = #{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.BizDeviceBusinessType">
+select * from biz_device_business_type
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by DEVICE_BUSINESS_TYPE_ID </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.BizDeviceBusinessType" useGeneratedKeys="true" keyProperty="deviceBusinessTypeId">
+ insert into biz_device_business_type
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.BizDeviceBusinessType">
+ update biz_device_business_type
+<set>
+<include refid="update"/>
+</set>
+where DEVICE_BUSINESS_TYPE_ID = #{deviceBusinessTypeId,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.BizDeviceBusinessType">
+  <if test="deviceBusinessTypeId != null and deviceBusinessTypeId != ''">
+delete from biz_device_business_type where DEVICE_BUSINESS_TYPE_ID = #{deviceBusinessTypeId}
+ </if>
+ </delete>
+</mapper>

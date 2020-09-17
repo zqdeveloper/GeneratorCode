@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.BizInterfaceSuccessRateMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.BizInterfaceSuccessRate">
+ <id column="INTERFACE_SUCCESS_RATE_ID" property="interfaceSuccessRateId" jdbcType="INTEGER"/> <!--主键ID-->
+ <result column="BUSINESS_ID" property="businessId" jdbcType="INTEGER"/> <!--所属项目编号-->
+ <result column="DATE_" property="date" jdbcType="INTEGER"/> <!--小时-->
+ <result column="SUCESS_RATE" property="sucessRate" jdbcType="VARCHAR"/> <!--成功率-->
+ <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!--创建时间-->
+ <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="INTEGER"/> <!--修改人员ID-->
+ <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR"/> <!--修改时间-->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+ <result column="REMARK_" property="remark" jdbcType="VARCHAR"/> <!--备注-->
+</resultMap>
+ <sql id="filed">
+ <if test="interfaceSuccessRateId != null and interfaceSuccessRateId !='' ">
+INTERFACE_SUCCESS_RATE_ID,
+ </if>
+ <if test="businessId != null and businessId !='' ">
+BUSINESS_ID,
+ </if>
+ <if test="date != null and date !='' ">
+DATE_,
+ </if>
+ <if test="sucessRate != null and sucessRate !='' ">
+SUCESS_RATE,
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE,
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID,
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="interfaceSuccessRateId != null and interfaceSuccessRateId !='' ">
+#{interfaceSuccessRateId,jdbcType=INTEGER},
+ </if>
+ <if test="businessId != null and businessId !='' ">
+#{businessId,jdbcType=INTEGER},
+ </if>
+ <if test="date != null and date !='' ">
+#{date,jdbcType=INTEGER},
+ </if>
+ <if test="sucessRate != null and sucessRate !='' ">
+#{sucessRate,jdbcType=VARCHAR},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+#{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+#{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+#{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+#{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="interfaceSuccessRateId != null and interfaceSuccessRateId !='' ">
+and INTERFACE_SUCCESS_RATE_ID = #{interfaceSuccessRateId,jdbcType=INTEGER}
+ </if>
+ <if test="businessId != null and businessId !='' ">
+and BUSINESS_ID = #{businessId,jdbcType=INTEGER}
+ </if>
+ <if test="date != null and date !='' ">
+and DATE_ = #{date,jdbcType=INTEGER}
+ </if>
+ <if test="sucessRate != null and sucessRate !='' ">
+and SUCESS_RATE = #{sucessRate,jdbcType=VARCHAR}
+ </if>
+ <if test="createDate != null and createDate !='' ">
+and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+and MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER}
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+and MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+ <if test="remark != null and remark !='' ">
+and REMARK_ = #{remark,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="interfaceSuccessRateId != null and interfaceSuccessRateId !='' ">
+INTERFACE_SUCCESS_RATE_ID = #{interfaceSuccessRateId,jdbcType=INTEGER},
+ </if>
+ <if test="businessId != null and businessId !='' ">
+BUSINESS_ID = #{businessId,jdbcType=INTEGER},
+ </if>
+ <if test="date != null and date !='' ">
+DATE_ = #{date,jdbcType=INTEGER},
+ </if>
+ <if test="sucessRate != null and sucessRate !='' ">
+SUCESS_RATE = #{sucessRate,jdbcType=VARCHAR},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_ = #{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.BizInterfaceSuccessRate">
+select * from biz_interface_success_rate
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by INTERFACE_SUCCESS_RATE_ID </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.BizInterfaceSuccessRate" useGeneratedKeys="true" keyProperty="interfaceSuccessRateId">
+ insert into biz_interface_success_rate
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.BizInterfaceSuccessRate">
+ update biz_interface_success_rate
+<set>
+<include refid="update"/>
+</set>
+where INTERFACE_SUCCESS_RATE_ID = #{interfaceSuccessRateId,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.BizInterfaceSuccessRate">
+  <if test="interfaceSuccessRateId != null and interfaceSuccessRateId != ''">
+delete from biz_interface_success_rate where INTERFACE_SUCCESS_RATE_ID = #{interfaceSuccessRateId}
+ </if>
+ </delete>
+</mapper>

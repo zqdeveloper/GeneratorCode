@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.SysParamMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.SysParam">
+ <id column="SYS_PARAM_ID" property="sysParamId" jdbcType="INTEGER"/> <!--数据字典ID-->
+ <result column="PARAM_TYPE" property="paramType" jdbcType="VARCHAR"/> <!--关键字类别-->
+ <result column="PARAM_ID" property="paramId" jdbcType="VARCHAR"/> <!--关键字ID-->
+ <result column="PARAM_VALUE" property="paramValue" jdbcType="VARCHAR"/> <!--关键字值-->
+ <result column="PARAM_INDEX" property="paramIndex" jdbcType="INTEGER"/> <!--关键字次序-->
+ <result column="PARENT_ID" property="parentId" jdbcType="INTEGER"/> <!--父节点ID(默认值为0)-->
+ <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/> <!--创建人员-->
+ <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!--创建时间-->
+ <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="INTEGER"/> <!--修改人员-->
+ <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR"/> <!--修改时间-->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+ <result column="REMARK_" property="remark" jdbcType="VARCHAR"/> <!--备注-->
+</resultMap>
+ <sql id="filed">
+ <if test="sysParamId != null and sysParamId !='' ">
+SYS_PARAM_ID,
+ </if>
+ <if test="paramType != null and paramType !='' ">
+PARAM_TYPE,
+ </if>
+ <if test="paramId != null and paramId !='' ">
+PARAM_ID,
+ </if>
+ <if test="paramValue != null and paramValue !='' ">
+PARAM_VALUE,
+ </if>
+ <if test="paramIndex != null and paramIndex !='' ">
+PARAM_INDEX,
+ </if>
+ <if test="parentId != null and parentId !='' ">
+PARENT_ID,
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID,
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE,
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID,
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="sysParamId != null and sysParamId !='' ">
+#{sysParamId,jdbcType=INTEGER},
+ </if>
+ <if test="paramType != null and paramType !='' ">
+#{paramType,jdbcType=VARCHAR},
+ </if>
+ <if test="paramId != null and paramId !='' ">
+#{paramId,jdbcType=VARCHAR},
+ </if>
+ <if test="paramValue != null and paramValue !='' ">
+#{paramValue,jdbcType=VARCHAR},
+ </if>
+ <if test="paramIndex != null and paramIndex !='' ">
+#{paramIndex,jdbcType=INTEGER},
+ </if>
+ <if test="parentId != null and parentId !='' ">
+#{parentId,jdbcType=INTEGER},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+#{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+#{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+#{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+#{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+#{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="sysParamId != null and sysParamId !='' ">
+and SYS_PARAM_ID = #{sysParamId,jdbcType=INTEGER}
+ </if>
+ <if test="paramType != null and paramType !='' ">
+and PARAM_TYPE = #{paramType,jdbcType=VARCHAR}
+ </if>
+ <if test="paramId != null and paramId !='' ">
+and PARAM_ID = #{paramId,jdbcType=VARCHAR}
+ </if>
+ <if test="paramValue != null and paramValue !='' ">
+and PARAM_VALUE = #{paramValue,jdbcType=VARCHAR}
+ </if>
+ <if test="paramIndex != null and paramIndex !='' ">
+and PARAM_INDEX = #{paramIndex,jdbcType=INTEGER}
+ </if>
+ <if test="parentId != null and parentId !='' ">
+and PARENT_ID = #{parentId,jdbcType=INTEGER}
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+and CREATE_USER_ID = #{createUserId,jdbcType=INTEGER}
+ </if>
+ <if test="createDate != null and createDate !='' ">
+and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+and MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER}
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+and MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+ <if test="remark != null and remark !='' ">
+and REMARK_ = #{remark,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="sysParamId != null and sysParamId !='' ">
+SYS_PARAM_ID = #{sysParamId,jdbcType=INTEGER},
+ </if>
+ <if test="paramType != null and paramType !='' ">
+PARAM_TYPE = #{paramType,jdbcType=VARCHAR},
+ </if>
+ <if test="paramId != null and paramId !='' ">
+PARAM_ID = #{paramId,jdbcType=VARCHAR},
+ </if>
+ <if test="paramValue != null and paramValue !='' ">
+PARAM_VALUE = #{paramValue,jdbcType=VARCHAR},
+ </if>
+ <if test="paramIndex != null and paramIndex !='' ">
+PARAM_INDEX = #{paramIndex,jdbcType=INTEGER},
+ </if>
+ <if test="parentId != null and parentId !='' ">
+PARENT_ID = #{parentId,jdbcType=INTEGER},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_ = #{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.SysParam">
+select * from sys_param
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by SYS_PARAM_ID </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.SysParam" useGeneratedKeys="true" keyProperty="sysParamId">
+ insert into sys_param
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.SysParam">
+ update sys_param
+<set>
+<include refid="update"/>
+</set>
+where SYS_PARAM_ID = #{sysParamId,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.SysParam">
+  <if test="sysParamId != null and sysParamId != ''">
+delete from sys_param where SYS_PARAM_ID = #{sysParamId}
+ </if>
+ </delete>
+</mapper>

@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.BizDeviceMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.BizDevice">
+ <id column="DEVICE_ID" property="deviceId" jdbcType="INTEGER"/> <!--设备ID-->
+ <result column="DEVICE_CODE" property="deviceCode" jdbcType="VARCHAR"/> <!--设备编号-->
+ <result column="DEVICE_TYPE_ID" property="deviceTypeId" jdbcType="INTEGER"/> <!--设备类型ID-->
+ <result column="DEVICE_ACCESS" property="deviceAccess" jdbcType="VARCHAR"/> <!--设备接入类型(1:第三方平台接入;2:平台直连)-->
+ <result column="THIRD_PLATFROM_ID" property="thirdPlatfromId" jdbcType="INTEGER"/> <!--设备所属第三方平台ID-->
+ <result column="THIRD_PLATFROM_CODE" property="thirdPlatfromCode" jdbcType="VARCHAR"/> <!--设备所属第三方平台编号-->
+ <result column="DEVICE_THIRD_CODE" property="deviceThirdCode" jdbcType="VARCHAR"/> <!--设备在第三方平台编号-->
+ <result column="DEVICE_AGREEMENGT_CODE" property="deviceAgreemengtCode" jdbcType="VARCHAR"/> <!--设备接入协议编号（当DEVICE_ACCESS为2时填写）-->
+ <result column="DEVICE_STATUS" property="deviceStatus" jdbcType="VARCHAR"/> <!--设备状态（0离线1在线2报警3故障）-->
+ <result column="BUSINESS_CODE" property="businessCode" jdbcType="VARCHAR"/> <!--所属项目编号-->
+ <result column="LAST_RECALL_TIME" property="lastRecallTime" jdbcType="VARCHAR"/> <!--最新回传时间-->
+ <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/> <!--创建人员ID-->
+ <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!--创建时间-->
+ <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="INTEGER"/> <!--修改人员ID-->
+ <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR"/> <!--修改时间-->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+ <result column="REMARK_" property="remark" jdbcType="VARCHAR"/> <!--备注-->
+</resultMap>
+ <sql id="filed">
+ <if test="deviceId != null and deviceId !='' ">
+DEVICE_ID,
+ </if>
+ <if test="deviceCode != null and deviceCode !='' ">
+DEVICE_CODE,
+ </if>
+ <if test="deviceTypeId != null and deviceTypeId !='' ">
+DEVICE_TYPE_ID,
+ </if>
+ <if test="deviceAccess != null and deviceAccess !='' ">
+DEVICE_ACCESS,
+ </if>
+ <if test="thirdPlatfromId != null and thirdPlatfromId !='' ">
+THIRD_PLATFROM_ID,
+ </if>
+ <if test="thirdPlatfromCode != null and thirdPlatfromCode !='' ">
+THIRD_PLATFROM_CODE,
+ </if>
+ <if test="deviceThirdCode != null and deviceThirdCode !='' ">
+DEVICE_THIRD_CODE,
+ </if>
+ <if test="deviceAgreemengtCode != null and deviceAgreemengtCode !='' ">
+DEVICE_AGREEMENGT_CODE,
+ </if>
+ <if test="deviceStatus != null and deviceStatus !='' ">
+DEVICE_STATUS,
+ </if>
+ <if test="businessCode != null and businessCode !='' ">
+BUSINESS_CODE,
+ </if>
+ <if test="lastRecallTime != null and lastRecallTime !='' ">
+LAST_RECALL_TIME,
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID,
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE,
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID,
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="deviceId != null and deviceId !='' ">
+#{deviceId,jdbcType=INTEGER},
+ </if>
+ <if test="deviceCode != null and deviceCode !='' ">
+#{deviceCode,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceTypeId != null and deviceTypeId !='' ">
+#{deviceTypeId,jdbcType=INTEGER},
+ </if>
+ <if test="deviceAccess != null and deviceAccess !='' ">
+#{deviceAccess,jdbcType=VARCHAR},
+ </if>
+ <if test="thirdPlatfromId != null and thirdPlatfromId !='' ">
+#{thirdPlatfromId,jdbcType=INTEGER},
+ </if>
+ <if test="thirdPlatfromCode != null and thirdPlatfromCode !='' ">
+#{thirdPlatfromCode,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceThirdCode != null and deviceThirdCode !='' ">
+#{deviceThirdCode,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceAgreemengtCode != null and deviceAgreemengtCode !='' ">
+#{deviceAgreemengtCode,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceStatus != null and deviceStatus !='' ">
+#{deviceStatus,jdbcType=VARCHAR},
+ </if>
+ <if test="businessCode != null and businessCode !='' ">
+#{businessCode,jdbcType=VARCHAR},
+ </if>
+ <if test="lastRecallTime != null and lastRecallTime !='' ">
+#{lastRecallTime,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+#{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+#{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+#{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+#{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+#{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="deviceId != null and deviceId !='' ">
+and DEVICE_ID = #{deviceId,jdbcType=INTEGER}
+ </if>
+ <if test="deviceCode != null and deviceCode !='' ">
+and DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR}
+ </if>
+ <if test="deviceTypeId != null and deviceTypeId !='' ">
+and DEVICE_TYPE_ID = #{deviceTypeId,jdbcType=INTEGER}
+ </if>
+ <if test="deviceAccess != null and deviceAccess !='' ">
+and DEVICE_ACCESS = #{deviceAccess,jdbcType=VARCHAR}
+ </if>
+ <if test="thirdPlatfromId != null and thirdPlatfromId !='' ">
+and THIRD_PLATFROM_ID = #{thirdPlatfromId,jdbcType=INTEGER}
+ </if>
+ <if test="thirdPlatfromCode != null and thirdPlatfromCode !='' ">
+and THIRD_PLATFROM_CODE = #{thirdPlatfromCode,jdbcType=VARCHAR}
+ </if>
+ <if test="deviceThirdCode != null and deviceThirdCode !='' ">
+and DEVICE_THIRD_CODE = #{deviceThirdCode,jdbcType=VARCHAR}
+ </if>
+ <if test="deviceAgreemengtCode != null and deviceAgreemengtCode !='' ">
+and DEVICE_AGREEMENGT_CODE = #{deviceAgreemengtCode,jdbcType=VARCHAR}
+ </if>
+ <if test="deviceStatus != null and deviceStatus !='' ">
+and DEVICE_STATUS = #{deviceStatus,jdbcType=VARCHAR}
+ </if>
+ <if test="businessCode != null and businessCode !='' ">
+and BUSINESS_CODE = #{businessCode,jdbcType=VARCHAR}
+ </if>
+ <if test="lastRecallTime != null and lastRecallTime !='' ">
+and LAST_RECALL_TIME = #{lastRecallTime,jdbcType=VARCHAR}
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+and CREATE_USER_ID = #{createUserId,jdbcType=INTEGER}
+ </if>
+ <if test="createDate != null and createDate !='' ">
+and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+and MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER}
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+and MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+ <if test="remark != null and remark !='' ">
+and REMARK_ = #{remark,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="deviceId != null and deviceId !='' ">
+DEVICE_ID = #{deviceId,jdbcType=INTEGER},
+ </if>
+ <if test="deviceCode != null and deviceCode !='' ">
+DEVICE_CODE = #{deviceCode,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceTypeId != null and deviceTypeId !='' ">
+DEVICE_TYPE_ID = #{deviceTypeId,jdbcType=INTEGER},
+ </if>
+ <if test="deviceAccess != null and deviceAccess !='' ">
+DEVICE_ACCESS = #{deviceAccess,jdbcType=VARCHAR},
+ </if>
+ <if test="thirdPlatfromId != null and thirdPlatfromId !='' ">
+THIRD_PLATFROM_ID = #{thirdPlatfromId,jdbcType=INTEGER},
+ </if>
+ <if test="thirdPlatfromCode != null and thirdPlatfromCode !='' ">
+THIRD_PLATFROM_CODE = #{thirdPlatfromCode,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceThirdCode != null and deviceThirdCode !='' ">
+DEVICE_THIRD_CODE = #{deviceThirdCode,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceAgreemengtCode != null and deviceAgreemengtCode !='' ">
+DEVICE_AGREEMENGT_CODE = #{deviceAgreemengtCode,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceStatus != null and deviceStatus !='' ">
+DEVICE_STATUS = #{deviceStatus,jdbcType=VARCHAR},
+ </if>
+ <if test="businessCode != null and businessCode !='' ">
+BUSINESS_CODE = #{businessCode,jdbcType=VARCHAR},
+ </if>
+ <if test="lastRecallTime != null and lastRecallTime !='' ">
+LAST_RECALL_TIME = #{lastRecallTime,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_ = #{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.BizDevice">
+select * from biz_device
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by DEVICE_ID </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.BizDevice" useGeneratedKeys="true" keyProperty="deviceId">
+ insert into biz_device
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.BizDevice">
+ update biz_device
+<set>
+<include refid="update"/>
+</set>
+where DEVICE_ID = #{deviceId,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.BizDevice">
+  <if test="deviceId != null and deviceId != ''">
+delete from biz_device where DEVICE_ID = #{deviceId}
+ </if>
+ </delete>
+</mapper>

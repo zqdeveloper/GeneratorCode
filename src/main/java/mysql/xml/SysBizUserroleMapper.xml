@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.SysBizUserroleMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.SysBizUserrole">
+ <id column="USER_ROLE_ID" property="userRoleId" jdbcType="INTEGER"/> <!--人员角色关联ID-->
+ <result column="USER_ID" property="userId" jdbcType="INTEGER"/> <!--人员ID-->
+ <result column="ROLE_ID" property="roleId" jdbcType="INTEGER"/> <!--角色ID-->
+ <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/> <!--创建人员-->
+ <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!--创建时间-->
+ <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="INTEGER"/> <!--修改人员-->
+ <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR"/> <!--修改时间-->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+</resultMap>
+ <sql id="filed">
+ <if test="userRoleId != null and userRoleId !='' ">
+USER_ROLE_ID,
+ </if>
+ <if test="userId != null and userId !='' ">
+USER_ID,
+ </if>
+ <if test="roleId != null and roleId !='' ">
+ROLE_ID,
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID,
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE,
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID,
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="userRoleId != null and userRoleId !='' ">
+#{userRoleId,jdbcType=INTEGER},
+ </if>
+ <if test="userId != null and userId !='' ">
+#{userId,jdbcType=INTEGER},
+ </if>
+ <if test="roleId != null and roleId !='' ">
+#{roleId,jdbcType=INTEGER},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+#{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+#{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+#{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+#{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="userRoleId != null and userRoleId !='' ">
+and USER_ROLE_ID = #{userRoleId,jdbcType=INTEGER}
+ </if>
+ <if test="userId != null and userId !='' ">
+and USER_ID = #{userId,jdbcType=INTEGER}
+ </if>
+ <if test="roleId != null and roleId !='' ">
+and ROLE_ID = #{roleId,jdbcType=INTEGER}
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+and CREATE_USER_ID = #{createUserId,jdbcType=INTEGER}
+ </if>
+ <if test="createDate != null and createDate !='' ">
+and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+and MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER}
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+and MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="userRoleId != null and userRoleId !='' ">
+USER_ROLE_ID = #{userRoleId,jdbcType=INTEGER},
+ </if>
+ <if test="userId != null and userId !='' ">
+USER_ID = #{userId,jdbcType=INTEGER},
+ </if>
+ <if test="roleId != null and roleId !='' ">
+ROLE_ID = #{roleId,jdbcType=INTEGER},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.SysBizUserrole">
+select * from sys_biz_userrole
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by USER_ROLE_ID </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.SysBizUserrole" useGeneratedKeys="true" keyProperty="userRoleId">
+ insert into sys_biz_userrole
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.SysBizUserrole">
+ update sys_biz_userrole
+<set>
+<include refid="update"/>
+</set>
+where USER_ROLE_ID = #{userRoleId,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.SysBizUserrole">
+  <if test="userRoleId != null and userRoleId != ''">
+delete from sys_biz_userrole where USER_ROLE_ID = #{userRoleId}
+ </if>
+ </delete>
+</mapper>

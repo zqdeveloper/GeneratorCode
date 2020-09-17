@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.BizHttpGetParamMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.BizHttpGetParam">
+ <id column="GET_PARAM_ID" property="getParamId" jdbcType="INTEGER"/> <!--GET参数ID-->
+ <result column="HTTP_CODE" property="httpCode" jdbcType="VARCHAR"/> <!--HTTP任务编号-->
+ <result column="GET_PARAM_NAME" property="getParamName" jdbcType="VARCHAR"/> <!--GET参数名称-->
+ <result column="GET_PARAM_VALUE" property="getParamValue" jdbcType="VARCHAR"/> <!--GET参数值-->
+ <result column="GET_PARAM_TYPE" property="getParamType" jdbcType="VARCHAR"/> <!--GET参数类型 |1:string -->
+ <result column="IS_VARIABLE" property="isVariable" jdbcType="VARCHAR"/> <!--是否变量 0:不是|1:是|2:南向具体属性-->
+ <result column="IS_NULL" property="isNull" jdbcType="VARCHAR"/> <!--是否可为空 1:是|    0:不是-->
+ <result column="SOUTH_ANALYSIS_PROP_ID" property="southAnalysisPropId" jdbcType="INTEGER"/> <!--南向具体属性ID-->
+ <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/> <!--创建人员ID-->
+ <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!--创建时间-->
+ <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="INTEGER"/> <!--修改人员ID-->
+ <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR"/> <!--修改时间-->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+ <result column="REMARK_" property="remark" jdbcType="VARCHAR"/> <!--备注-->
+</resultMap>
+ <sql id="filed">
+ <if test="getParamId != null and getParamId !='' ">
+GET_PARAM_ID,
+ </if>
+ <if test="httpCode != null and httpCode !='' ">
+HTTP_CODE,
+ </if>
+ <if test="getParamName != null and getParamName !='' ">
+GET_PARAM_NAME,
+ </if>
+ <if test="getParamValue != null and getParamValue !='' ">
+GET_PARAM_VALUE,
+ </if>
+ <if test="getParamType != null and getParamType !='' ">
+GET_PARAM_TYPE,
+ </if>
+ <if test="isVariable != null and isVariable !='' ">
+IS_VARIABLE,
+ </if>
+ <if test="isNull != null and isNull !='' ">
+IS_NULL,
+ </if>
+ <if test="southAnalysisPropId != null and southAnalysisPropId !='' ">
+SOUTH_ANALYSIS_PROP_ID,
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID,
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE,
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID,
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="getParamId != null and getParamId !='' ">
+#{getParamId,jdbcType=INTEGER},
+ </if>
+ <if test="httpCode != null and httpCode !='' ">
+#{httpCode,jdbcType=VARCHAR},
+ </if>
+ <if test="getParamName != null and getParamName !='' ">
+#{getParamName,jdbcType=VARCHAR},
+ </if>
+ <if test="getParamValue != null and getParamValue !='' ">
+#{getParamValue,jdbcType=VARCHAR},
+ </if>
+ <if test="getParamType != null and getParamType !='' ">
+#{getParamType,jdbcType=VARCHAR},
+ </if>
+ <if test="isVariable != null and isVariable !='' ">
+#{isVariable,jdbcType=VARCHAR},
+ </if>
+ <if test="isNull != null and isNull !='' ">
+#{isNull,jdbcType=VARCHAR},
+ </if>
+ <if test="southAnalysisPropId != null and southAnalysisPropId !='' ">
+#{southAnalysisPropId,jdbcType=INTEGER},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+#{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+#{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+#{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+#{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+#{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="getParamId != null and getParamId !='' ">
+and GET_PARAM_ID = #{getParamId,jdbcType=INTEGER}
+ </if>
+ <if test="httpCode != null and httpCode !='' ">
+and HTTP_CODE = #{httpCode,jdbcType=VARCHAR}
+ </if>
+ <if test="getParamName != null and getParamName !='' ">
+and GET_PARAM_NAME = #{getParamName,jdbcType=VARCHAR}
+ </if>
+ <if test="getParamValue != null and getParamValue !='' ">
+and GET_PARAM_VALUE = #{getParamValue,jdbcType=VARCHAR}
+ </if>
+ <if test="getParamType != null and getParamType !='' ">
+and GET_PARAM_TYPE = #{getParamType,jdbcType=VARCHAR}
+ </if>
+ <if test="isVariable != null and isVariable !='' ">
+and IS_VARIABLE = #{isVariable,jdbcType=VARCHAR}
+ </if>
+ <if test="isNull != null and isNull !='' ">
+and IS_NULL = #{isNull,jdbcType=VARCHAR}
+ </if>
+ <if test="southAnalysisPropId != null and southAnalysisPropId !='' ">
+and SOUTH_ANALYSIS_PROP_ID = #{southAnalysisPropId,jdbcType=INTEGER}
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+and CREATE_USER_ID = #{createUserId,jdbcType=INTEGER}
+ </if>
+ <if test="createDate != null and createDate !='' ">
+and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+and MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER}
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+and MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+ <if test="remark != null and remark !='' ">
+and REMARK_ = #{remark,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="getParamId != null and getParamId !='' ">
+GET_PARAM_ID = #{getParamId,jdbcType=INTEGER},
+ </if>
+ <if test="httpCode != null and httpCode !='' ">
+HTTP_CODE = #{httpCode,jdbcType=VARCHAR},
+ </if>
+ <if test="getParamName != null and getParamName !='' ">
+GET_PARAM_NAME = #{getParamName,jdbcType=VARCHAR},
+ </if>
+ <if test="getParamValue != null and getParamValue !='' ">
+GET_PARAM_VALUE = #{getParamValue,jdbcType=VARCHAR},
+ </if>
+ <if test="getParamType != null and getParamType !='' ">
+GET_PARAM_TYPE = #{getParamType,jdbcType=VARCHAR},
+ </if>
+ <if test="isVariable != null and isVariable !='' ">
+IS_VARIABLE = #{isVariable,jdbcType=VARCHAR},
+ </if>
+ <if test="isNull != null and isNull !='' ">
+IS_NULL = #{isNull,jdbcType=VARCHAR},
+ </if>
+ <if test="southAnalysisPropId != null and southAnalysisPropId !='' ">
+SOUTH_ANALYSIS_PROP_ID = #{southAnalysisPropId,jdbcType=INTEGER},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_ = #{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.BizHttpGetParam">
+select * from biz_http_get_param
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by GET_PARAM_ID </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.BizHttpGetParam" useGeneratedKeys="true" keyProperty="getParamId">
+ insert into biz_http_get_param
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.BizHttpGetParam">
+ update biz_http_get_param
+<set>
+<include refid="update"/>
+</set>
+where GET_PARAM_ID = #{getParamId,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.BizHttpGetParam">
+  <if test="getParamId != null and getParamId != ''">
+delete from biz_http_get_param where GET_PARAM_ID = #{getParamId}
+ </if>
+ </delete>
+</mapper>

@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.BizDeviceTypeMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.BizDeviceType">
+ <id column="DEVICE_TYPE_ID" property="deviceTypeId" jdbcType="INTEGER"/> <!--设备类型ID-->
+ <result column="DEVICE_TYPE_CODE" property="deviceTypeCode" jdbcType="VARCHAR"/> <!--编号-->
+ <result column="DEVICE_TYPE_NAME" property="deviceTypeName" jdbcType="VARCHAR"/> <!--名称-->
+ <result column="DEVICE_TYPE_LEVEL_CODE" property="deviceTypeLevelCode" jdbcType="VARCHAR"/> <!--等级编码-->
+ <result column="DEVICE_TYPE_INFO" property="deviceTypeInfo" jdbcType="VARCHAR"/> <!--介绍-->
+ <result column="DEVICE_TYPE_IMG" property="deviceTypeImg" jdbcType="VARCHAR"/> <!--图片地址-->
+ <result column="USAGE_SCENARIOS" property="usageScenarios" jdbcType="VARCHAR"/> <!--适用场景-->
+ <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/> <!--创建人员ID-->
+ <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!--创建时间-->
+ <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="INTEGER"/> <!--修改人员ID-->
+ <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR"/> <!--修改时间-->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+ <result column="REMARK_" property="remark" jdbcType="VARCHAR"/> <!--备注-->
+</resultMap>
+ <sql id="filed">
+ <if test="deviceTypeId != null and deviceTypeId !='' ">
+DEVICE_TYPE_ID,
+ </if>
+ <if test="deviceTypeCode != null and deviceTypeCode !='' ">
+DEVICE_TYPE_CODE,
+ </if>
+ <if test="deviceTypeName != null and deviceTypeName !='' ">
+DEVICE_TYPE_NAME,
+ </if>
+ <if test="deviceTypeLevelCode != null and deviceTypeLevelCode !='' ">
+DEVICE_TYPE_LEVEL_CODE,
+ </if>
+ <if test="deviceTypeInfo != null and deviceTypeInfo !='' ">
+DEVICE_TYPE_INFO,
+ </if>
+ <if test="deviceTypeImg != null and deviceTypeImg !='' ">
+DEVICE_TYPE_IMG,
+ </if>
+ <if test="usageScenarios != null and usageScenarios !='' ">
+USAGE_SCENARIOS,
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID,
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE,
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID,
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="deviceTypeId != null and deviceTypeId !='' ">
+#{deviceTypeId,jdbcType=INTEGER},
+ </if>
+ <if test="deviceTypeCode != null and deviceTypeCode !='' ">
+#{deviceTypeCode,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceTypeName != null and deviceTypeName !='' ">
+#{deviceTypeName,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceTypeLevelCode != null and deviceTypeLevelCode !='' ">
+#{deviceTypeLevelCode,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceTypeInfo != null and deviceTypeInfo !='' ">
+#{deviceTypeInfo,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceTypeImg != null and deviceTypeImg !='' ">
+#{deviceTypeImg,jdbcType=VARCHAR},
+ </if>
+ <if test="usageScenarios != null and usageScenarios !='' ">
+#{usageScenarios,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+#{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+#{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+#{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+#{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+#{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="deviceTypeId != null and deviceTypeId !='' ">
+and DEVICE_TYPE_ID = #{deviceTypeId,jdbcType=INTEGER}
+ </if>
+ <if test="deviceTypeCode != null and deviceTypeCode !='' ">
+and DEVICE_TYPE_CODE = #{deviceTypeCode,jdbcType=VARCHAR}
+ </if>
+ <if test="deviceTypeName != null and deviceTypeName !='' ">
+and DEVICE_TYPE_NAME = #{deviceTypeName,jdbcType=VARCHAR}
+ </if>
+ <if test="deviceTypeLevelCode != null and deviceTypeLevelCode !='' ">
+and DEVICE_TYPE_LEVEL_CODE = #{deviceTypeLevelCode,jdbcType=VARCHAR}
+ </if>
+ <if test="deviceTypeInfo != null and deviceTypeInfo !='' ">
+and DEVICE_TYPE_INFO = #{deviceTypeInfo,jdbcType=VARCHAR}
+ </if>
+ <if test="deviceTypeImg != null and deviceTypeImg !='' ">
+and DEVICE_TYPE_IMG = #{deviceTypeImg,jdbcType=VARCHAR}
+ </if>
+ <if test="usageScenarios != null and usageScenarios !='' ">
+and USAGE_SCENARIOS = #{usageScenarios,jdbcType=VARCHAR}
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+and CREATE_USER_ID = #{createUserId,jdbcType=INTEGER}
+ </if>
+ <if test="createDate != null and createDate !='' ">
+and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+and MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER}
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+and MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+ <if test="remark != null and remark !='' ">
+and REMARK_ = #{remark,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="deviceTypeId != null and deviceTypeId !='' ">
+DEVICE_TYPE_ID = #{deviceTypeId,jdbcType=INTEGER},
+ </if>
+ <if test="deviceTypeCode != null and deviceTypeCode !='' ">
+DEVICE_TYPE_CODE = #{deviceTypeCode,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceTypeName != null and deviceTypeName !='' ">
+DEVICE_TYPE_NAME = #{deviceTypeName,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceTypeLevelCode != null and deviceTypeLevelCode !='' ">
+DEVICE_TYPE_LEVEL_CODE = #{deviceTypeLevelCode,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceTypeInfo != null and deviceTypeInfo !='' ">
+DEVICE_TYPE_INFO = #{deviceTypeInfo,jdbcType=VARCHAR},
+ </if>
+ <if test="deviceTypeImg != null and deviceTypeImg !='' ">
+DEVICE_TYPE_IMG = #{deviceTypeImg,jdbcType=VARCHAR},
+ </if>
+ <if test="usageScenarios != null and usageScenarios !='' ">
+USAGE_SCENARIOS = #{usageScenarios,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_ = #{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.BizDeviceType">
+select * from biz_device_type
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by DEVICE_TYPE_ID </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.BizDeviceType" useGeneratedKeys="true" keyProperty="deviceTypeId">
+ insert into biz_device_type
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.BizDeviceType">
+ update biz_device_type
+<set>
+<include refid="update"/>
+</set>
+where DEVICE_TYPE_ID = #{deviceTypeId,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.BizDeviceType">
+  <if test="deviceTypeId != null and deviceTypeId != ''">
+delete from biz_device_type where DEVICE_TYPE_ID = #{deviceTypeId}
+ </if>
+ </delete>
+</mapper>

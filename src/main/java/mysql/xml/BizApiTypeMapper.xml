@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zjrc.iot.broker.dao.biz.BizApiTypeMapper">
+<resultMap id="baseDataResultMap" type="com.zjrc.iot.broker.model.biz.BizApiType">
+ <id column="API_TYPE_ID" property="apiTypeId" jdbcType="INTEGER"/> <!--接口类型ID-->
+ <result column="API_TYPE_CODE" property="apiTypeCode" jdbcType="VARCHAR"/> <!--编号-->
+ <result column="API_TYPE_NAME" property="apiTypeName" jdbcType="VARCHAR"/> <!--名称-->
+ <result column="API_TYPE_LEVEL_CODE" property="apiTypeLevelCode" jdbcType="VARCHAR"/> <!--等级编码-->
+ <result column="CREATE_USER_ID" property="createUserId" jdbcType="INTEGER"/> <!--创建人员ID-->
+ <result column="CREATE_DATE" property="createDate" jdbcType="VARCHAR"/> <!--创建时间-->
+ <result column="MODIFY_USER_ID" property="modifyUserId" jdbcType="INTEGER"/> <!--修改人员ID-->
+ <result column="MODIFY_DATE" property="modifyDate" jdbcType="VARCHAR"/> <!--修改时间-->
+ <result column="STATUS_" property="status" jdbcType="VARCHAR"/> <!--状态-->
+ <result column="REMARK_" property="remark" jdbcType="VARCHAR"/> <!--备注-->
+</resultMap>
+ <sql id="filed">
+ <if test="apiTypeId != null and apiTypeId !='' ">
+API_TYPE_ID,
+ </if>
+ <if test="apiTypeCode != null and apiTypeCode !='' ">
+API_TYPE_CODE,
+ </if>
+ <if test="apiTypeName != null and apiTypeName !='' ">
+API_TYPE_NAME,
+ </if>
+ <if test="apiTypeLevelCode != null and apiTypeLevelCode !='' ">
+API_TYPE_LEVEL_CODE,
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID,
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE,
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID,
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE,
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_,
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_,
+ </if>
+</sql>
+ <sql id="values">
+ <if test="apiTypeId != null and apiTypeId !='' ">
+#{apiTypeId,jdbcType=INTEGER},
+ </if>
+ <if test="apiTypeCode != null and apiTypeCode !='' ">
+#{apiTypeCode,jdbcType=VARCHAR},
+ </if>
+ <if test="apiTypeName != null and apiTypeName !='' ">
+#{apiTypeName,jdbcType=VARCHAR},
+ </if>
+ <if test="apiTypeLevelCode != null and apiTypeLevelCode !='' ">
+#{apiTypeLevelCode,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+#{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+#{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+#{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+#{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+#{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+#{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+ <sql id="select">
+ <if test="apiTypeId != null and apiTypeId !='' ">
+and API_TYPE_ID = #{apiTypeId,jdbcType=INTEGER}
+ </if>
+ <if test="apiTypeCode != null and apiTypeCode !='' ">
+and API_TYPE_CODE = #{apiTypeCode,jdbcType=VARCHAR}
+ </if>
+ <if test="apiTypeName != null and apiTypeName !='' ">
+and API_TYPE_NAME = #{apiTypeName,jdbcType=VARCHAR}
+ </if>
+ <if test="apiTypeLevelCode != null and apiTypeLevelCode !='' ">
+and API_TYPE_LEVEL_CODE = #{apiTypeLevelCode,jdbcType=VARCHAR}
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+and CREATE_USER_ID = #{createUserId,jdbcType=INTEGER}
+ </if>
+ <if test="createDate != null and createDate !='' ">
+and CREATE_DATE = #{createDate,jdbcType=VARCHAR}
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+and MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER}
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+and MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR}
+ </if>
+ <if test="status != null and status !='' ">
+and STATUS_ = #{status,jdbcType=VARCHAR}
+ </if>
+ <if test="remark != null and remark !='' ">
+and REMARK_ = #{remark,jdbcType=VARCHAR}
+ </if>
+</sql>
+ <sql id="update">
+ <if test="apiTypeId != null and apiTypeId !='' ">
+API_TYPE_ID = #{apiTypeId,jdbcType=INTEGER},
+ </if>
+ <if test="apiTypeCode != null and apiTypeCode !='' ">
+API_TYPE_CODE = #{apiTypeCode,jdbcType=VARCHAR},
+ </if>
+ <if test="apiTypeName != null and apiTypeName !='' ">
+API_TYPE_NAME = #{apiTypeName,jdbcType=VARCHAR},
+ </if>
+ <if test="apiTypeLevelCode != null and apiTypeLevelCode !='' ">
+API_TYPE_LEVEL_CODE = #{apiTypeLevelCode,jdbcType=VARCHAR},
+ </if>
+ <if test="createUserId != null and createUserId !='' ">
+CREATE_USER_ID = #{createUserId,jdbcType=INTEGER},
+ </if>
+ <if test="createDate != null and createDate !='' ">
+CREATE_DATE = #{createDate,jdbcType=VARCHAR},
+ </if>
+ <if test="modifyUserId != null and modifyUserId !='' ">
+MODIFY_USER_ID = #{modifyUserId,jdbcType=INTEGER},
+ </if>
+ <if test="modifyDate != null and modifyDate !='' ">
+MODIFY_DATE = #{modifyDate,jdbcType=VARCHAR},
+ </if>
+ <if test="status != null and status !='' ">
+STATUS_ = #{status,jdbcType=VARCHAR},
+ </if>
+ <if test="remark != null and remark !='' ">
+REMARK_ = #{remark,jdbcType=VARCHAR},
+ </if>
+</sql>
+<select id="page" resultMap="baseDataResultMap" parameterType="com.zjrc.iot.broker.model.biz.BizApiType">
+select * from biz_api_type
+ where
+ STATUS_ =1
+  <include refid="select"/>
+   order by API_TYPE_ID </select>
+<insert id="insert" parameterType="com.zjrc.iot.broker.model.biz.BizApiType" useGeneratedKeys="true" keyProperty="apiTypeId">
+ insert into biz_api_type
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+            <include refid="filed"/>
+		        </trim>
+ values
+  <trim prefix="(" suffix=")" suffixOverrides=",">
+		            <include refid="values"/>
+		        </trim>
+ </insert>
+<update id="update" parameterType="com.zjrc.iot.broker.model.biz.BizApiType">
+ update biz_api_type
+<set>
+<include refid="update"/>
+</set>
+where API_TYPE_ID = #{apiTypeId,jdbcType=INTEGER} AND STATUS_ =1
+</update>
+ <delete id="delete" parameterType="com.zjrc.iot.broker.model.biz.BizApiType">
+  <if test="apiTypeId != null and apiTypeId != ''">
+delete from biz_api_type where API_TYPE_ID = #{apiTypeId}
+ </if>
+ </delete>
+</mapper>
